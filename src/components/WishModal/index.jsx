@@ -1,13 +1,30 @@
+import { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { IoMdClose } from 'react-icons/io';
 import Button from '../Button';
 
-const WishModal = ({ setIsWishModal }) => {
+const WishModal = ({ isWishModal, setIsWishModal }) => {
+  const modalRef = useRef();
+
+  useEffect(() => {
+    const clickOutside = e => {
+      if (isWishModal && modalRef.current && !modalRef.current.contains(e.target)) {
+        setIsWishModal(false);
+      }
+    };
+
+    document.addEventListener('mousedown', clickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', clickOutside);
+    };
+  }, [setIsWishModal]);
+
   return (
     <>
       <Background />
       <Positioner>
-        <WishModalContainer>
+        <WishModalContainer ref={modalRef}>
           <div className='modal-header'>
             <IoMdClose
               onClick={() => {
