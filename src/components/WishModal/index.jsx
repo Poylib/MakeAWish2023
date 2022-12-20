@@ -19,6 +19,9 @@ const WishModal = ({ setIsWishModal }) => {
             <img alt='rabbit' src='https://velog.velcdn.com/images/daydreamplace/post/56743fb6-20ac-4044-a957-7eb9bfb0fca9/image.png' />
           </div>
           <div className='text-wrapper'>
+            <label>닉네임</label>
+            <input placeholder='닉네임을 적어주세요!' />
+            <label>소원</label>
             <textarea placeholder='소원을 작성해주세요!' />
           </div>
           <div className='button-wrapper'>
@@ -92,12 +95,29 @@ const WishModalContainer = styled.div`
   .text-wrapper {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+
+    label {
+      color: tomato;
+      font-weight: 700;
+    }
+
+    input {
+      margin: 0.5rem 0;
+      padding: 0.5rem 0.75rem;
+      border: 2px solid transparent;
+      border-image: linear-gradient(to right, tomato, yellow, tomato, yellow, tomato);
+      border-image-slice: 1;
+      font-size: 1rem;
+      outline: none;
+    }
 
     textarea {
       width: 100%;
       height: 13rem;
-      padding: 1rem;
-      background: #ffffff;
+      margin: 0.5rem 0;
+      padding: 0.75rem;
+      background: #fff;
       border: 2px solid transparent;
       border-image: linear-gradient(to right, tomato, yellow, tomato, yellow, tomato);
       border-image-slice: 1;
