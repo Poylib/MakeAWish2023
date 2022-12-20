@@ -114,7 +114,7 @@ const WishModalContainer = styled.div`
   }
 
   div + div {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
   }
 `;
 
