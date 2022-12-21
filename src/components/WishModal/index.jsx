@@ -41,7 +41,7 @@ const WishModal = ({ setIsWishModal, setIsCreatedModal }) => {
                     setIsWishModal(false);
                   }}
                   onConfirm={() => {
-                    // setIsWishModal(false);
+                    setIsWishModal(false);
                     setIsCreatedModal(true);
                   }}
                   closeText='닫기'

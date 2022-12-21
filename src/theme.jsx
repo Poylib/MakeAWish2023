@@ -2,6 +2,13 @@ export const mainColor = '#EA7048';
 export const contentFontColor = '#2D2D2D';
 export const backgroundColor = '#E4DDCC';
 
+export const mainFont = `@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}`;
+
 export const textFont1 = `@font-face {
   font-family: 'UhBeeSeulvely';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeSeulvely.woff') format('woff');
