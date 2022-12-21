@@ -131,6 +131,10 @@ const WishModalContainer = styled.div`
       overflow: hidden;
       resize: none;
     }
+
+    span {
+      color: #787878;
+    }
   }
 
   .button-wrapper {
