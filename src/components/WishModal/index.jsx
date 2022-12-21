@@ -119,7 +119,7 @@ const WishModalContainer = styled.div`
       span {
         display: block;
         color: #787878;
-        transform: translate(82%, -220%);
+        transform: translate(80%, -220%);
       }
 
       .image-wrapper {
