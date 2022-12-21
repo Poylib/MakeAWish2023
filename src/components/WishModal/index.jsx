@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { TiWarningOutline } from 'react-icons/ti';
 import MultiButton from '../MultiButton';
 
-const WishModal = ({ setIsWishModal }) => {
+const WishModal = ({ setIsWishModal, setIsCreatedModal }) => {
   const [name, setName] = useState('');
   const [wish, setWish] = useState('');
 
@@ -41,7 +41,8 @@ const WishModal = ({ setIsWishModal }) => {
                     setIsWishModal(false);
                   }}
                   onConfirm={() => {
-                    setIsWishModal(false);
+                    // setIsWishModal(false);
+                    setIsCreatedModal(true);
                   }}
                   closeText='닫기'
                   confirmText='작성완료'

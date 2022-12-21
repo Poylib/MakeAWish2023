@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import WishModal from '../../components/WishModal';
+import CreatedModal from '../../components/CreatedModal';
 import Button from '../../components/Button';
 import { mainColor, contentFontColor } from '../../theme';
 import MainBackground from '../../components/MainBackground';
 import { Link } from 'react-router-dom';
 const Home = () => {
   const [isWishModal, setIsWishModal] = useState(false);
+  const [isCreatedModal, setIsCreatedModal] = useState(false);
 
   return (
     <HomeContainer>
@@ -26,7 +28,8 @@ const Home = () => {
         <Link to='/main'>모달 테스트 링크 버튼</Link>
       </article>
       <MainBackground />
-      {isWishModal && <WishModal isWishModal={isWishModal} setIsWishModal={setIsWishModal} />}
+      {isWishModal && <WishModal setIsWishModal={setIsWishModal} setIsCreatedModal={setIsCreatedModal} />}
+      {isCreatedModal && <CreatedModal />}
     </HomeContainer>
   );
 };
