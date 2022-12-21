@@ -1,6 +1,5 @@
 import { useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { IoMdClose } from 'react-icons/io';
 import Button from '../Button';
 
 const WishModal = ({ isWishModal, setIsWishModal }) => {
@@ -12,9 +11,7 @@ const WishModal = ({ isWishModal, setIsWishModal }) => {
         setIsWishModal(false);
       }
     };
-
     document.addEventListener('mousedown', clickOutside);
-
     return () => {
       document.removeEventListener('mousedown', clickOutside);
     };
@@ -25,21 +22,9 @@ const WishModal = ({ isWishModal, setIsWishModal }) => {
       <Background />
       <Positioner>
         <WishModalContainer ref={modalRef}>
-          <div className='modal-header'>
-            <IoMdClose
-              onClick={() => {
-                setIsWishModal(false);
-              }}
-            />
-          </div>
-          <div className='image-wrapper'>
-            <img alt='rabbit' src='https://velog.velcdn.com/images/daydreamplace/post/56743fb6-20ac-4044-a957-7eb9bfb0fca9/image.png' />
-          </div>
           <div className='text-wrapper'>
-            <label>닉네임</label>
             <input placeholder='닉네임을 적어주세요!' />
-            <label>소원</label>
-            <textarea placeholder='소원을 작성해주세요!' />
+            <textarea maxLength={200} placeholder='소원을 작성해주세요!' />
           </div>
           <div className='button-wrapper'>
             <Button
@@ -82,7 +67,7 @@ const Positioner = styled.div`
 const WishModalContainer = styled.div`
   width: 25rem;
   border-radius: 4px;
-  background: bisque;
+  background: url('https://velog.velcdn.com/images/daydreamplace/post/f2eb89c6-f025-4099-8a2d-c74bf8652874/image.png');
   padding: 1.25rem;
   box-shadow: rgb(0 0 0 / 9%) 0px 2px 12px 0px;
 
@@ -122,9 +107,8 @@ const WishModalContainer = styled.div`
     input {
       margin: 0.5rem 0;
       padding: 0.5rem 0.75rem;
-      border: 2px solid transparent;
-      border-image: linear-gradient(to right, tomato, yellow, tomato, yellow, tomato);
-      border-image-slice: 1;
+      border: none;
+      background: transparent;
       font-size: 1rem;
       outline: none;
     }
@@ -135,9 +119,9 @@ const WishModalContainer = styled.div`
       margin: 0.5rem 0;
       padding: 0.75rem;
       background: #fff;
-      border: 2px solid transparent;
-      border-image: linear-gradient(to right, tomato, yellow, tomato, yellow, tomato);
-      border-image-slice: 1;
+      border: none;
+      border-radius: 15px;
+
       font-size: 1rem;
       outline: none;
       overflow: hidden;
