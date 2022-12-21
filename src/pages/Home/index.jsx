@@ -33,7 +33,7 @@ const HomeContainer = styled.main`
   flex-direction: column;
   align-items: center;
   width: 100vw;
-  height: 900px;
+  height: 100vh;
   @font-face {
     font-family: 'CWDangamAsac-Bold';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/CWDangamAsac-Bold.woff') format('woff');

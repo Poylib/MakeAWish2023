@@ -12,10 +12,16 @@ const MainBackground = () => {
 export default MainBackground;
 
 const MainBackgroundContainer = styled.div`
-  width: 1440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: inherit;
   position: absolute;
-  bottom: 0%;
+  top: 0%;
+  height: 960px;
+  overflow: hidden;
   img {
     width: 1440px;
+    height: 960px;
   }
 `;
