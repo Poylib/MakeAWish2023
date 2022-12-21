@@ -7,6 +7,7 @@ export const textFont1 = `@font-face {
   font-weight: normal;
   font-style: normal;
   }`;
+
 export const textFont2 = `@font-face {
   font-family: 'UhBeeRice';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeRice.woff') format('woff');
