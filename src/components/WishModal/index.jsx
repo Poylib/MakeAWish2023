@@ -103,6 +103,7 @@ const WishModalContainer = styled.div`
         background: #fff;
         border: none;
         border-radius: 15px;
+        color: ${({ theme }) => theme.contentFontColor};
         font-size: 1.3rem;
         outline: none;
         overflow: hidden;
