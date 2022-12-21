@@ -94,8 +94,10 @@ const WishModalContainer = styled.div`
       input {
         width: 100%;
         margin: 0.5rem 0;
+        padding: 0 0.25rem;
         border: none;
         background: transparent;
+        color: ${({ theme }) => theme.mainColor};
         font-size: 1.75rem;
         outline: none;
       }
