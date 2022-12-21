@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Button from '../Button';
 
-const CreatedModal = () => {
+const CreatedModal = ({ setIsCreatedModal }) => {
   return (
     <>
       <Background />
@@ -15,7 +15,13 @@ const CreatedModal = () => {
           </div>
           <div className='bottom-wrapper'>
             <Button color='main' text='내가 빈 소원 모두 보기' />
-            <Button color='transparent' text='메인으로 돌아가기' />
+            <Button
+              color='transparent'
+              onClick={() => {
+                setIsCreatedModal(false);
+              }}
+              text='메인으로 돌아가기'
+            />
           </div>
         </CreatedModalContainer>
       </Positioner>
@@ -62,6 +68,10 @@ const CreatedModalContainer = styled.div`
     p {
       font-size: 1.75rem;
       text-align: center;
+
+      :hover {
+        cursor: default;
+      }
     }
   }
 
