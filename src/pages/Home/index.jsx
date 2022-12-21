@@ -5,7 +5,7 @@ import Button from '../../components/Button';
 import { headercolor, blackcolor } from '../../theme';
 import MainBackground from '../../components/MainBackground';
 const Home = () => {
-  const [isWishModal, setIsWishModal] = useState(true);
+  const [isWishModal, setIsWishModal] = useState(false);
 
   return (
     <HomeContainer>
