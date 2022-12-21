@@ -4,6 +4,7 @@ import WishModal from '../../components/WishModal';
 import Button from '../../components/Button';
 import { headercolor, blackcolor } from '../../theme';
 import MainBackground from '../../components/MainBackground';
+import { Link } from 'react-router-dom';
 const Home = () => {
   const [isWishModal, setIsWishModal] = useState(false);
 
@@ -22,6 +23,7 @@ const Home = () => {
           text='소원 빌러가기'
           className='head-font'
         />
+        <Link to='/main'>모달 테스트 링크 버튼</Link>
       </article>
       <MainBackground />
       {isWishModal && <WishModal isWishModal={isWishModal} setIsWishModal={setIsWishModal} />}
