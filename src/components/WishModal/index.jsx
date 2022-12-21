@@ -107,10 +107,13 @@ const WishModalContainer = styled.div`
         border: none;
         border-radius: 15px;
         color: ${({ theme }) => theme.contentFontColor};
+        font-family: 'UhBeeRice';
         font-size: 1.3rem;
         outline: none;
         overflow: hidden;
         resize: none;
+
+        ${({ theme }) => theme.textFont2};
       }
 
       span {
