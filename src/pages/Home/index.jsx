@@ -18,6 +18,7 @@ const Home = () => {
           <h4>Make a wish for 2023</h4>
         </div>
         <Button
+          color='main'
           onClick={() => {
             setIsWishModal(true);
           }}
@@ -27,7 +28,7 @@ const Home = () => {
       </article>
       <MainBackground />
       {isWishModal && <WishModal setIsWishModal={setIsWishModal} setIsCreatedModal={setIsCreatedModal} />}
-      {isCreatedModal && <CreatedModal />}
+      {isCreatedModal && <CreatedModal setIsCreatedModal={setIsCreatedModal} />}
     </HomeContainer>
   );
 };

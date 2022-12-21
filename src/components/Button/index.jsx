@@ -1,7 +1,12 @@
 import styled from 'styled-components';
+import { mainColor } from '../../Theme';
 
-const Button = ({ onClick, text }) => {
-  return <ButtonContainer onClick={onClick}>{text}</ButtonContainer>;
+const Button = ({ color, onClick, text }) => {
+  return (
+    <ButtonContainer color={color} onClick={onClick}>
+      {text}
+    </ButtonContainer>
+  );
 };
 
 const ButtonContainer = styled.button`
@@ -15,8 +20,9 @@ const ButtonContainer = styled.button`
 
   outline: none;
   border: none;
-  border-radius: 4px;
-  background: ${({ theme }) => theme.mainColor};
+  border-radius: 10px;
+  background: ${props => props.color === 'transparent' && 'transparent'};
+  background: ${props => props.color === 'main' && `${mainColor}`};
   color: #fff;
   font-size: 1rem;
   /* font-weight: bold; */

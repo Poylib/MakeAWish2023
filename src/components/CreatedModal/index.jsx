@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Button from '../Button';
 
 const CreatedModal = () => {
   return (
@@ -6,7 +7,16 @@ const CreatedModal = () => {
       <Background />
       <Positioner>
         <CreatedModalContainer>
-          <div></div>
+          <div className='content-wrapper'>
+            <p>
+              달토끼한테 <br />
+              소원 접수 완료
+            </p>
+          </div>
+          <div className='bottom-wrapper'>
+            <Button color='main' text='내가 빈 소원 모두 보기' />
+            <Button color='transparent' text='메인으로 돌아가기' />
+          </div>
         </CreatedModalContainer>
       </Positioner>
     </>
@@ -37,6 +47,33 @@ const Positioner = styled.div`
   z-index: 200;
 `;
 
-const CreatedModalContainer = styled.div``;
+const CreatedModalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  height: auto;
+
+  .content-wrapper {
+    width: 100%;
+    padding: 30px;
+    background: #fff;
+    border-radius: 15px;
+
+    p {
+      font-size: 1.75rem;
+      text-align: center;
+    }
+  }
+
+  .bottom-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+
+    button {
+      height: 3rem;
+    }
+  }
+`;
 
 export default CreatedModal;

@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
-import { maincolor } from './theme';
+import { maincolor, mainFont } from './theme';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -20,7 +20,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Noto Sans KR', sans-serif;
+    ${mainFont};
+    font-family: 'Pretendard-Regular', sans-serif;
     background-color: ${maincolor};
     max-height:960px;
     margin:0 auto;
