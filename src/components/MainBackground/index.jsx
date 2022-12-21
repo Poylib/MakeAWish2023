@@ -14,7 +14,6 @@ export default MainBackground;
 const MainBackgroundContainer = styled.div`
   width: 1440px;
   position: absolute;
-
   bottom: 0%;
   img {
     width: 1440px;

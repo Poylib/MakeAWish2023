@@ -19,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Noto Sans KR', sans-serif;
     background-color: ${maincolor};
     /* max-width:100vw; */
+    max-height:900px;
     margin:0 auto;
   }
 `;

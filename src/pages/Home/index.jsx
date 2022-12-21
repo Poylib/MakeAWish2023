@@ -22,7 +22,6 @@ const Home = () => {
           text='소원빌기'
         />
       </article>
-
       <MainBackground />
       {isWishModal && <WishModal isWishModal={isWishModal} setIsWishModal={setIsWishModal} />}
     </HomeContainer>
