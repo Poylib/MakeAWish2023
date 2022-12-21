@@ -23,7 +23,7 @@ const MultuButtonContainer = styled.div`
 
   outline: none;
   border: none;
-  border-radius: 10px;
+  border-radius: 15px;
   background: ${({ theme }) => theme.mainColor};
   color: #fff;
   font-size: 1rem;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { TiWarningOutline } from 'react-icons/ti';
 import MultiButton from '../MultiButton';
 
-const WishModal = ({ isWishModal, setIsWishModal }) => {
+const WishModal = ({ setIsWishModal }) => {
   const [wish, setWish] = useState('');
 
   const handleWish = e => {
@@ -26,18 +26,20 @@ const WishModal = ({ isWishModal, setIsWishModal }) => {
             </div>
           </div>
           <div className='bottom-wrapper'>
-            <div className='warning'>
-              <TiWarningOutline className='icon' />
-              <span>소원은 하루 한 개만 작성할 수 있습니다. 작성한 소원은 수정 및 삭제를 할 수 없으니 신중하게 작성해주세요.</span>
-            </div>
-            <div className='button-wrapper'>
-              <MultiButton
-                onClose={() => {
-                  setIsWishModal(false);
-                }}
-                closeText='닫기'
-                confirmText='작성완료'
-              />
+            <div className='contents'>
+              <div className='warning'>
+                <TiWarningOutline className='icon' />
+                <span>소원은 하루 한 개만 작성할 수 있습니다. 작성한 소원은 수정 및 삭제를 할 수 없으니 신중하게 작성해주세요.</span>
+              </div>
+              <div className='button-wrapper'>
+                <MultiButton
+                  onClose={() => {
+                    setIsWishModal(false);
+                  }}
+                  closeText='닫기'
+                  confirmText='작성완료'
+                />
+              </div>
             </div>
           </div>
         </WishModalContainer>
@@ -78,6 +80,7 @@ const WishModalContainer = styled.div`
   .content-wrapper {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     width: 100%;
     height: 80%;
@@ -85,13 +88,15 @@ const WishModalContainer = styled.div`
     background: url('https://s3.us-west-2.amazonaws.com/secure.notion-static.com/acbd91bc-1ce5-41e9-b291-734df6942d72/%E1%84%87%E1%85%A2%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%AB.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221221%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221221T091032Z&X-Amz-Expires=86400&X-Amz-Signature=ad24c4f951c3ae59509afd671c13ad66f2e88e25eac52c229b2403ba16fac464&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22%25E1%2584%2587%25E1%2585%25A2%25E1%2584%2580%25E1%2585%25A7%25E1%2586%25BC%25E1%2584%2586%25E1%2585%25A1%25E1%2586%25AB.png%22&x-id=GetObject');
 
     .contents {
+      padding: 15px;
+      width: 390px;
+
       input {
         width: 100%;
         margin: 0.5rem 0;
-        padding: 0.5rem 0.75rem;
         border: none;
         background: transparent;
-        font-size: 1rem;
+        font-size: 1.75rem;
         outline: none;
       }
 
@@ -103,7 +108,7 @@ const WishModalContainer = styled.div`
         background: #fff;
         border: none;
         border-radius: 15px;
-        font-size: 1rem;
+        font-size: 1.3rem;
         outline: none;
         overflow: hidden;
         resize: none;
@@ -128,33 +133,38 @@ const WishModalContainer = styled.div`
   .bottom-wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    align-items: center;
+    justify-content: space-around;
     height: 20%;
 
-    .warning {
-      display: flex;
-      justify-content: center;
-      color: #fff;
-      font-weight: 300;
-      text-align: center;
+    .contents {
+      width: 390px;
 
-      .icon {
-        margin-right: 5px;
-        font-size: 0.75rem;
+      .warning {
+        display: flex;
+        justify-content: center;
+        padding: 10px 10px 15px 10px;
+        color: #fff;
+        font-weight: 300;
+
+        .icon {
+          margin-right: 5px;
+          font-size: 0.75rem;
+        }
+
+        span {
+          width: 90%;
+          line-height: 0.75rem;
+          letter-spacing: 0.01rem;
+          font-size: 0.7rem;
+        }
       }
 
-      span {
-        width: 90%;
-        line-height: 0.75rem;
-        letter-spacing: 0.01rem;
-        font-size: 0.7rem;
+      .button-wrapper {
+        display: flex;
+        justify-content: center;
+        width: 100%;
       }
-    }
-
-    .button-wrapper {
-      display: flex;
-      justify-content: center;
-      width: 100%;
     }
   }
 `;
