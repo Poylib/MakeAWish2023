@@ -83,6 +83,10 @@ const CreatedModalContainer = styled.div`
     button {
       height: 3rem;
     }
+
+    button + button {
+      margin-top: 5px;
+    }
   }
 `;
 
