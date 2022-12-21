@@ -27,10 +27,13 @@ const WishModal = ({ isWishModal, setIsWishModal }) => {
       <Background />
       <Positioner>
         <WishModalContainer ref={modalRef}>
-          <div className='text-wrapper'>
+          <div className='content-wrapper'>
             <input placeholder='이름 또는 닉네임 (8글자 이하)' />
             <textarea maxLength={200} placeholder='소원을 작성해주세요!' onChange={handleWish} value={wish} />
             <span>{wish.length}/200</span>
+            <div className='image-wrapper'>
+              <img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/fbdc7f7f-5e7d-483b-8c84-27623c81c508/%E1%84%83%E1%85%A1%E1%86%AF_%28%E1%84%8B%E1%85%A7%E1%84%87%E1%85%A2%E1%86%A8_%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%80%E1%85%A6%29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221221%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221221T091023Z&X-Amz-Expires=86400&X-Amz-Signature=83c8848f6281839b95ac2dc70233135a58078ae078b6977396d944f5f749e9f5&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22%25E1%2584%2583%25E1%2585%25A1%25E1%2586%25AF%2520%28%25E1%2584%258B%25E1%2585%25A7%25E1%2584%2587%25E1%2585%25A2%25E1%2586%25A8%2520%25E1%2584%258C%25E1%2585%25A5%25E1%2586%25A8%25E1%2584%2580%25E1%2585%25A6%29.png%22&x-id=GetObject' />
+            </div>
           </div>
           <div className='bottom-wrapper'>
             <Button
@@ -75,7 +78,7 @@ const WishModalContainer = styled.div`
   height: 100%;
   box-shadow: rgb(0 0 0 / 9%) 0px 2px 12px 0px;
 
-  .text-wrapper {
+  .content-wrapper {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -109,6 +112,16 @@ const WishModalContainer = styled.div`
 
     span {
       color: #787878;
+    }
+
+    .image-wrapper {
+      display: flex;
+      justify-content: center;
+
+      img {
+        width: 100%;
+        transform: translate(0, -50%);
+      }
     }
   }
 
