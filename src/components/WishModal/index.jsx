@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import Button from '../Button';
+import MultiButton from '../MultiButton';
 
 const WishModal = ({ isWishModal, setIsWishModal }) => {
   const modalRef = useRef();
@@ -36,12 +37,13 @@ const WishModal = ({ isWishModal, setIsWishModal }) => {
             </div>
           </div>
           <div className='bottom-wrapper'>
-            <Button
+            {/* <Button
               text='소원빌기'
               onClick={() => {
                 setIsWishModal(false);
               }}
-            />
+            /> */}
+            <MultiButton />
           </div>
         </WishModalContainer>
       </Positioner>
