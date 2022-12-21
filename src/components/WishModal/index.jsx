@@ -72,7 +72,7 @@ const WishModalContainer = styled.div`
 
   .content-wrapper {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     width: 100%;
@@ -81,7 +81,7 @@ const WishModalContainer = styled.div`
     background: url('https://s3.us-west-2.amazonaws.com/secure.notion-static.com/acbd91bc-1ce5-41e9-b291-734df6942d72/%E1%84%87%E1%85%A2%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%AB.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221221%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221221T091032Z&X-Amz-Expires=86400&X-Amz-Signature=ad24c4f951c3ae59509afd671c13ad66f2e88e25eac52c229b2403ba16fac464&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22%25E1%2584%2587%25E1%2585%25A2%25E1%2584%2580%25E1%2585%25A7%25E1%2586%25BC%25E1%2584%2586%25E1%2585%25A1%25E1%2586%25AB.png%22&x-id=GetObject');
 
     .contents {
-      padding: 15px;
+      padding: 1.5rem;
       width: 390px;
 
       input {
@@ -111,7 +111,9 @@ const WishModalContainer = styled.div`
       }
 
       span {
+        display: block;
         color: #787878;
+        transform: translate(85%, -220%);
       }
 
       .image-wrapper {
@@ -120,7 +122,7 @@ const WishModalContainer = styled.div`
 
         img {
           width: 100%;
-          transform: translate(0, -50%);
+          transform: translate(0, -60%);
         }
       }
     }
