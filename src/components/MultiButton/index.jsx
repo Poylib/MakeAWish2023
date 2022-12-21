@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
-const MultiButton = () => {
+const MultiButton = ({ onClose, closeText, confirmText }) => {
   return (
     <MultuButtonContainer>
-      <button className='close-button'>닫기</button>
+      <button className='close-button' onClick={onClose}>
+        {closeText}
+      </button>
       <div className='border'></div>
-      <button className='confirm-button'>작성 완료</button>
+      <button className='confirm-button'>{confirmText}</button>
     </MultuButtonContainer>
   );
 };
