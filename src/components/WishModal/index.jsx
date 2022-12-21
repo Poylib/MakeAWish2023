@@ -90,15 +90,6 @@ const WishModalContainer = styled.div`
     }
   }
 
-  .image-wrapper {
-    display: flex;
-    justify-content: center;
-
-    img {
-      width: 50%;
-    }
-  }
-
   .text-wrapper {
     display: flex;
     justify-content: center;
