@@ -24,7 +24,7 @@ const WishModal = ({ isWishModal, setIsWishModal }) => {
         <WishModalContainer ref={modalRef}>
           <div className='text-wrapper'>
             <input placeholder='닉네임을 적어주세요!' />
-            <textarea placeholder='소원을 작성해주세요!' />
+            <textarea maxLength={200} placeholder='소원을 작성해주세요!' />
           </div>
           <div className='button-wrapper'>
             <Button
