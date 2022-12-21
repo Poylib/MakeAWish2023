@@ -4,7 +4,12 @@ import { TiWarningOutline } from 'react-icons/ti';
 import MultiButton from '../MultiButton';
 
 const WishModal = ({ setIsWishModal }) => {
+  const [name, setName] = useState('');
   const [wish, setWish] = useState('');
+
+  const handleName = e => {
+    setName(e.target.value);
+  };
 
   const handleWish = e => {
     setWish(e.target.value);
@@ -16,7 +21,7 @@ const WishModal = ({ setIsWishModal }) => {
         <WishModalContainer>
           <div className='content-wrapper'>
             <div className='contents'>
-              <input placeholder='이름 또는 닉네임 (8글자 이하)' />
+              <input placeholder='이름 또는 닉네임 (8글자 이하)' onChange={handleName} value={name} />
               <textarea maxLength={200} placeholder='소원을 작성해주세요!' onChange={handleWish} value={wish} />
               <span>{wish.length}/200</span>
               <div className='image-wrapper'>
