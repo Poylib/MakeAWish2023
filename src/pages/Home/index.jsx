@@ -4,7 +4,7 @@ import WishModal from '../../components/WishModal';
 import Button from '../../components/Button';
 
 const Home = () => {
-  const [isWishModal, setIsWishModal] = useState(false);
+  const [isWishModal, setIsWishModal] = useState(true);
 
   return (
     <HomeContainer>

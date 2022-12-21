@@ -1,4 +1,9 @@
 export const mainColor = '#EA7048';
 
-export const textFont1 = '';
+export const textFont1 = `@font-face {
+  font-family: 'UhBeeSeulvely';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeSeulvely.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  }`;
 export const textFont2 = '';

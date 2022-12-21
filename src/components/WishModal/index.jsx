@@ -1,9 +1,10 @@
-import { useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import Button from '../Button';
 
 const WishModal = ({ isWishModal, setIsWishModal }) => {
   const modalRef = useRef();
+  const [wish, setWish] = useState('');
 
   useEffect(() => {
     const clickOutside = e => {
@@ -17,6 +18,10 @@ const WishModal = ({ isWishModal, setIsWishModal }) => {
     };
   }, [setIsWishModal]);
 
+  const handleWish = e => {
+    setWish(e.target.value);
+  };
+
   return (
     <>
       <Background />
@@ -24,7 +29,8 @@ const WishModal = ({ isWishModal, setIsWishModal }) => {
         <WishModalContainer ref={modalRef}>
           <div className='text-wrapper'>
             <input placeholder='이름 또는 닉네임 (8글자 이하)' />
-            <textarea maxLength={200} placeholder='소원을 작성해주세요!' />
+            <textarea maxLength={200} placeholder='소원을 작성해주세요!' onChange={handleWish} value={wish} />
+            <span>{wish.length}/200</span>
           </div>
           <div className='button-wrapper'>
             <Button
@@ -66,8 +72,7 @@ const Positioner = styled.div`
 
 const WishModalContainer = styled.div`
   width: 25rem;
-  border-radius: 4px;
-  background: url('https://velog.velcdn.com/images/daydreamplace/post/f2eb89c6-f025-4099-8a2d-c74bf8652874/image.png');
+  background: url('https://s3.us-west-2.amazonaws.com/secure.notion-static.com/acbd91bc-1ce5-41e9-b291-734df6942d72/%E1%84%87%E1%85%A2%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%AB.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221221%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221221T091032Z&X-Amz-Expires=86400&X-Amz-Signature=ad24c4f951c3ae59509afd671c13ad66f2e88e25eac52c229b2403ba16fac464&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22%25E1%2584%2587%25E1%2585%25A2%25E1%2584%2580%25E1%2585%25A7%25E1%2586%25BC%25E1%2584%2586%25E1%2585%25A1%25E1%2586%25AB.png%22&x-id=GetObject');
   padding: 1.25rem;
   box-shadow: rgb(0 0 0 / 9%) 0px 2px 12px 0px;
 
@@ -121,7 +126,6 @@ const WishModalContainer = styled.div`
       background: #fff;
       border: none;
       border-radius: 15px;
-
       font-size: 1rem;
       outline: none;
       overflow: hidden;
