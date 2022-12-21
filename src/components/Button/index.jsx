@@ -11,7 +11,7 @@ const ButtonContainer = styled.button`
   -webkit-box-pack: center;
   justify-content: center;
   height: 2rem;
-  padding: 0px 1.25rem;
+  padding: 0.75rem 1.5rem;
 
   outline: none;
   border: none;
@@ -19,7 +19,7 @@ const ButtonContainer = styled.button`
   background: ${({ theme }) => theme.mainColor};
   color: #fff;
   font-size: 1rem;
-  font-weight: bold;
+  /* font-weight: bold; */
 
   &:hover {
     cursor: pointer;
