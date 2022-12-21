@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import WishModal from '../../components/WishModal';
+import CreatedModal from '../../components/CreatedModal';
 import Button from '../../components/Button';
 import { headercolor, blackcolor } from '../../theme';
 import MainBackground from '../../components/MainBackground';
 const Home = () => {
   const [isWishModal, setIsWishModal] = useState(false);
+  const [isCreatedModal, setIsCreatedModal] = useState(false);
 
   return (
     <HomeContainer>
@@ -24,7 +26,8 @@ const Home = () => {
         />
       </article>
       <MainBackground />
-      {isWishModal && <WishModal isWishModal={isWishModal} setIsWishModal={setIsWishModal} />}
+      {isWishModal && <WishModal setIsWishModal={setIsWishModal} setIsCreatedModal={setIsCreatedModal} />}
+      {isCreatedModal && <CreatedModal />}
     </HomeContainer>
   );
 };
