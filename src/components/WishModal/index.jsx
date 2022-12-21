@@ -23,7 +23,7 @@ const WishModal = ({ isWishModal, setIsWishModal }) => {
       <Positioner>
         <WishModalContainer ref={modalRef}>
           <div className='text-wrapper'>
-            <input placeholder='닉네임을 적어주세요!' />
+            <input placeholder='이름 또는 닉네임 (8글자 이하)' />
             <textarea maxLength={200} placeholder='소원을 작성해주세요!' />
           </div>
           <div className='button-wrapper'>
@@ -46,7 +46,7 @@ const Background = styled.div`
   left: 0px;
   width: 100%;
   height: 100%;
-  background: rgba(249, 249, 249, 0.85);
+  background: rgba(0, 0, 0, 0.85);
   z-index: 10;
 `;
 
