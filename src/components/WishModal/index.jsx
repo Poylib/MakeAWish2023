@@ -12,7 +12,6 @@ const WishModal = ({ setIsWishModal }) => {
 
   return (
     <>
-      <Background />
       <Positioner>
         <WishModalContainer>
           <div className='content-wrapper'>
@@ -47,16 +46,6 @@ const WishModal = ({ setIsWishModal }) => {
     </>
   );
 };
-
-const Background = styled.div`
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.85);
-  z-index: 10;
-`;
 
 const Positioner = styled.div`
   position: fixed;
@@ -138,6 +127,7 @@ const WishModalContainer = styled.div`
     align-items: center;
     justify-content: space-around;
     height: 20%;
+    background: rgba(0, 0, 0, 0.85);
 
     .contents {
       width: 390px;
