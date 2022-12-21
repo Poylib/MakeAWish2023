@@ -19,7 +19,8 @@ const Home = () => {
           onClick={() => {
             setIsWishModal(true);
           }}
-          text='소원빌기'
+          text='소원 빌러가기'
+          className='head-font'
         />
       </article>
       <MainBackground />
@@ -34,6 +35,7 @@ const HomeContainer = styled.main`
   align-items: center;
   width: 100vw;
   height: 100vh;
+
   @font-face {
     font-family: 'CWDangamAsac-Bold';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/CWDangamAsac-Bold.woff') format('woff');
@@ -42,13 +44,14 @@ const HomeContainer = styled.main`
   }
   article {
     position: relative;
-    width: 375px;
+    width: 390px;
+    height: 100vh;
     z-index: 100;
     margin: 0 auto;
     padding: 55px 1rem 1rem 1rem;
     background-color: inherit;
+    font-family: 'CWDangamAsac-Bold';
     .header-box {
-      font-family: 'CWDangamAsac-Bold';
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -66,6 +69,11 @@ const HomeContainer = styled.main`
         font-size: 10px;
         font-family: 'Noto Sans KR', sans-serif;
       }
+    }
+    button {
+      font-family: 'CWDangamAsac-Bold';
+      position: absolute;
+      bottom: 0%;
     }
   }
 `;
