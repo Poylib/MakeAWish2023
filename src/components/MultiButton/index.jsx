@@ -44,11 +44,19 @@ const MultuButtonContainer = styled.div`
   .close-button {
     width: 30%;
     padding: 1rem;
+
+    :hover {
+      cursor: pointer;
+    }
   }
 
   .confirm-button {
     width: 70%;
     padding: 1rem;
+
+    :hover {
+      cursor: pointer;
+    }
   }
 `;
 
