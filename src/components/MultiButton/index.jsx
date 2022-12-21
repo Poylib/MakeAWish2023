@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 
-const MultiButton = ({ onClose, closeText, confirmText }) => {
+const MultiButton = ({ onClose, onConfirm, closeText, confirmText }) => {
   return (
     <MultuButtonContainer>
       <button className='close-button' onClick={onClose}>
         {closeText}
       </button>
-      <div className='border'></div>
-      <button className='confirm-button'>{confirmText}</button>
+      <div className='border' />
+      <button className='confirm-button' onClick={onConfirm}>
+        {confirmText}
+      </button>
     </MultuButtonContainer>
   );
 };

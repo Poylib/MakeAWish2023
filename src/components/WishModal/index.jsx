@@ -40,6 +40,9 @@ const WishModal = ({ setIsWishModal }) => {
                   onClose={() => {
                     setIsWishModal(false);
                   }}
+                  onConfirm={() => {
+                    setIsWishModal(false);
+                  }}
                   closeText='닫기'
                   confirmText='작성완료'
                 />
