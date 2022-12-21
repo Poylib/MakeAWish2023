@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
+import { maincolor } from './theme';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -16,7 +17,8 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Noto Sans KR', sans-serif;
-    max-width:100vw;
+    background-color: ${maincolor};
+    /* max-width:100vw; */
     margin:0 auto;
   }
 `;
