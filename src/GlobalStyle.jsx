@@ -15,6 +15,10 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
+  input::placeholder, textarea::placeholder {
+    color: #9e9e9e;
+  }
+
   body {
     font-family: 'Noto Sans KR', sans-serif;
     background-color: ${maincolor};

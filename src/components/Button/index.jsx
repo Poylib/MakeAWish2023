@@ -16,7 +16,7 @@ const ButtonContainer = styled.button`
   outline: none;
   border: none;
   border-radius: 4px;
-  background: tomato;
+  background: ${({ theme }) => theme.mainColor};
   color: #fff;
   font-size: 1rem;
   /* font-weight: bold; */
