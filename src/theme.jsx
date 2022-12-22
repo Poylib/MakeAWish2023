@@ -1,7 +1,3 @@
-export const maincolor = '#e4ddcc';
-export const headercolor = '#EA7048';
-export const blackcolor = '#2D2D2D';
-
 export const mainColor = '#EA7048';
 export const contentFontColor = '#2D2D2D';
 
