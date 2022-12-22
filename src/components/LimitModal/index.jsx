@@ -68,7 +68,7 @@ const Overlay = styled.div`
       .Toastify__toast-body {
         margin: 5px 10px;
         font-weight: 600;
-        font-size: 20px;
+        font-size: 18px;
         color: white;
       }
     }
@@ -84,22 +84,13 @@ const ModalWrap = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-const CloseButton = styled.div`
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  font-size: 25px;
-  color: #202020;
-  cursor: pointer;
-`;
-
 const Contents = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
+
   img {
+    margin-top: 20px;
     width: 330px;
   }
 
@@ -113,6 +104,7 @@ const Contents = styled.div`
     font-size: 20px;
     border: 0;
     border-radius: 50px;
+    cursor: pointer;
   }
 `;
 
