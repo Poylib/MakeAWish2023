@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Button from '../Button';
+import stamp from '../../assets/tokki-stamp.png';
 
 const CreatedModal = ({ setIsCreatedModal }) => {
   return (
@@ -12,6 +13,7 @@ const CreatedModal = ({ setIsCreatedModal }) => {
               달토끼한테 <br />
               소원 접수 완료
             </p>
+            <img alt='tokki-stamp' src={stamp} />
           </div>
           <div className='bottom-wrapper'>
             <Button color='main' text='내가 빈 소원 모두 보기' />
@@ -57,10 +59,15 @@ const CreatedModalContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 350px;
-  height: auto;
+  height: 500px;
 
   .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
+    height: 100%;
     padding: 30px;
     background: #fff;
     border-radius: 15px;
@@ -73,6 +80,10 @@ const CreatedModalContainer = styled.div`
         cursor: default;
       }
     }
+
+    img {
+      width: 70%;
+    }
   }
 
   .bottom-wrapper {
@@ -81,7 +92,7 @@ const CreatedModalContainer = styled.div`
     margin-top: 50px;
 
     button {
-      height: 3rem;
+      height: 3.5rem;
     }
 
     button + button {
