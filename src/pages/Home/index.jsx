@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import WishModal from '../../components/WishModal';
 import Button from '../../components/Button';
-import { headercolor, blackcolor } from '../../theme';
+import { mainColor, contentFontColor } from '../../theme';
 import MainBackground from '../../components/MainBackground';
 import { Link } from 'react-router-dom';
 const Home = () => {
@@ -60,12 +60,12 @@ const HomeContainer = styled.main`
       align-items: center;
       h2 {
         font-size: 30px;
-        color: ${headercolor};
+        color: ${mainColor};
       }
       h1 {
         margin: 8px;
         font-size: 40px;
-        color: ${blackcolor};
+        color: ${contentFontColor};
       }
       h4 {
         font-size: 10px;

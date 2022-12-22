@@ -1,5 +1,6 @@
 export const mainColor = '#EA7048';
 export const contentFontColor = '#2D2D2D';
+export const backgroundColor = '#E4DDCC';
 
 export const textFont1 = `@font-face {
   font-family: 'UhBeeSeulvely';
