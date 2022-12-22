@@ -83,6 +83,69 @@ const CreatedModalContainer = styled.div`
 
     img {
       width: 70%;
+
+      animation-name: stamp;
+      animation-duration: 2s;
+      animation-iteration-count: 100;
+    }
+
+    @keyframes stamp {
+      0% {
+        transform: scale(1);
+      }
+
+      5% {
+        transform: scale(1.2);
+      }
+
+      10% {
+        transform: scale(1);
+        opacity: 0;
+      }
+
+      15% {
+        transform: scale(1.1);
+      }
+
+      20% {
+        transform: scale(1);
+      }
+
+      25% {
+        transform: scale(1.2);
+      }
+
+      35% {
+        transform: scale(1.1);
+      }
+
+      50% {
+        transform: scale(1.1);
+      }
+
+      70% {
+        transform: scale(1);
+      }
+
+      75% {
+        transform: scale(1.2);
+      }
+
+      80% {
+        transform: scale(1.1);
+      }
+
+      90% {
+        transform: scale(1);
+      }
+
+      95% {
+        transform: scale(1.2);
+      }
+
+      100% {
+        transform: scale(1);
+      }
     }
   }
 

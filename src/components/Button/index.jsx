@@ -15,7 +15,6 @@ const ButtonContainer = styled.button`
   align-items: center;
   -webkit-box-pack: center;
   justify-content: center;
-  height: 2rem;
   padding: 0.75rem 1.5rem;
 
   outline: none;
