@@ -20,7 +20,7 @@ const ButtonContainer = styled.button`
 
   outline: none;
   border: none;
-  border-radius: 10px;
+  border-radius: 15px;
   background: ${props => props.color === 'transparent' && 'transparent'};
   background: ${props => props.color === 'main' && `${mainColor}`};
   color: #fff;
