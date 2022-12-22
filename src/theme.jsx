@@ -9,6 +9,45 @@ export const mainFont = `@font-face {
   font-style: normal;
 }`;
 
+export const mainFont500 = `@font-face {
+	font-family: 'Pretendard';
+	font-weight: 500;
+	font-display: swap;
+	src: local('Pretendard Medium'), url('./woff2/Pretendard-Medium.woff2') format('woff2'), url('./woff/Pretendard-Medium.woff') format('woff');
+}
+`;
+
+export const mainFont600 = `@font-face {
+	font-family: 'Pretendard';
+	font-weight: 600;
+	font-display: swap;
+	src: local('Pretendard SemiBold'), url('./woff2/Pretendard-SemiBold.woff2') format('woff2'), url('./woff/Pretendard-SemiBold.woff') format('woff');
+}`;
+
+export const mainFont700 = `@font-face {
+	font-family: 'Pretendard';
+	font-weight: 700;
+	font-display: swap;
+	src: local('Pretendard Bold'), url('./woff2/Pretendard-Bold.woff2') format('woff2'), url('./woff/Pretendard-Bold.woff') format('woff');
+} 
+`;
+
+export const mainFont800 = `@font-face {
+	font-family: 'Pretendard';
+	font-weight: 800;
+	font-display: swap;
+	src: local('Pretendard ExtraBold'), url('./woff2/Pretendard-ExtraBold.woff2') format('woff2'), url('./woff/Pretendard-ExtraBold.woff') format('woff');
+}
+`;
+
+export const mainFont900 = `@font-face {
+	font-family: 'Pretendard';
+	font-weight: 900;
+	font-display: swap;
+	src: local('Pretendard Black'), url('./woff2/Pretendard-Black.woff2') format('woff2'), url('./woff/Pretendard-Black.woff') format('woff');
+}
+`;
+
 export const textFont1 = `@font-face {
   font-family: 'UhBeeSeulvely';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeSeulvely.woff') format('woff');
