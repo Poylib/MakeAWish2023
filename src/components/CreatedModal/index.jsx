@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Button from '../Button';
 import stamp from '../../assets/tokki-stamp.png';
+import { mainFont700 } from '../../theme';
 
 const CreatedModal = ({ setIsCreatedModal }) => {
   return (
@@ -64,16 +65,19 @@ const CreatedModalContainer = styled.div`
   .content-wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 100%;
-    padding: 30px;
+    padding: 50px 30px;
     background: #fff;
     border-radius: 15px;
 
     p {
+      ${mainFont700};
+      margin-bottom: 1.5rem;
+      font-family: 'Pretendard';
       font-size: 1.75rem;
+      font-weight: 900;
       text-align: center;
 
       :hover {
