@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
-import { maincolor, mainFont } from './theme';
+import { maincolor } from './theme';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -20,11 +20,14 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    ${mainFont};
-    font-family: 'Pretendard-Regular', sans-serif;
+    font-family: 'Pretendard', sans-serif;
     background-color: ${maincolor};
     max-height:960px;
     margin:0 auto;
+  }
+
+  button {
+    font-family: inherit;
   }
 `;
 export default GlobalStyle;
