@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
-import { backgroundColor } from './theme';
+import { maincolor } from './theme';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -20,10 +20,14 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background-color: ${backgroundColor};
+    font-family: 'Pretendard', sans-serif;
+    background-color: ${maincolor};
     max-height:960px;
     margin:0 auto;
+  }
+
+  button {
+    font-family: inherit;
   }
 `;
 export default GlobalStyle;
