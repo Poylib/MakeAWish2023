@@ -2,6 +2,8 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { TiWarningOutline } from 'react-icons/ti';
 import MultiButton from '../MultiButton';
+import background from '../../assets/wish/wish-background.png';
+import moon from '../../assets/wish/wish-moon.png';
 
 const WishModal = ({ setIsWishModal, setIsCreatedModal }) => {
   const [name, setName] = useState('');
@@ -25,7 +27,7 @@ const WishModal = ({ setIsWishModal, setIsCreatedModal }) => {
               <textarea maxLength={200} placeholder='소원을 작성해주세요!' onChange={handleWish} value={wish} />
               <span>{wish.length} / 200</span>
               <div className='image-wrapper'>
-                <img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/fbdc7f7f-5e7d-483b-8c84-27623c81c508/%E1%84%83%E1%85%A1%E1%86%AF_%28%E1%84%8B%E1%85%A7%E1%84%87%E1%85%A2%E1%86%A8_%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%80%E1%85%A6%29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221221%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221221T091023Z&X-Amz-Expires=86400&X-Amz-Signature=83c8848f6281839b95ac2dc70233135a58078ae078b6977396d944f5f749e9f5&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22%25E1%2584%2583%25E1%2585%25A1%25E1%2586%25AF%2520%28%25E1%2584%258B%25E1%2585%25A7%25E1%2584%2587%25E1%2585%25A2%25E1%2586%25A8%2520%25E1%2584%258C%25E1%2585%25A5%25E1%2586%25A8%25E1%2584%2580%25E1%2585%25A6%29.png%22&x-id=GetObject' />
+                <img src={moon} alt='moon' />
               </div>
             </div>
           </div>
@@ -82,7 +84,7 @@ const WishModalContainer = styled.div`
     width: 100%;
     height: 80%;
     padding: 1.25rem;
-    background: url('https://s3.us-west-2.amazonaws.com/secure.notion-static.com/acbd91bc-1ce5-41e9-b291-734df6942d72/%E1%84%87%E1%85%A2%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%AB.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221221%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221221T091032Z&X-Amz-Expires=86400&X-Amz-Signature=ad24c4f951c3ae59509afd671c13ad66f2e88e25eac52c229b2403ba16fac464&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22%25E1%2584%2587%25E1%2585%25A2%25E1%2584%2580%25E1%2585%25A7%25E1%2586%25BC%25E1%2584%2586%25E1%2585%25A1%25E1%2586%25AB.png%22&x-id=GetObject');
+    background: url(${background});
 
     .contents {
       padding: 1.5rem;
