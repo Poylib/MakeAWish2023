@@ -108,7 +108,7 @@ const WishModalContainer = styled.div`
         width: 100%;
         height: 20rem;
         margin: 0.5rem 0;
-        padding: 0.75rem;
+        padding: 0.75rem 1rem;
         background: #fff;
         border: none;
         border-radius: 15px;
