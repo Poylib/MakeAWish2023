@@ -20,10 +20,14 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Pretendard', sans-serif;
     background-color: ${maincolor};
     max-height:960px;
     margin:0 auto;
+  }
+
+  button {
+    font-family: inherit;
   }
 `;
 export default GlobalStyle;
