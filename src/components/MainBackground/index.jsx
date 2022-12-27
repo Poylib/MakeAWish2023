@@ -3,13 +3,15 @@ import hill from '../../assets/main/main-hill.png';
 import trees from '../../assets/main/main-trees-lines.png';
 import sun from '../../assets/main/main-sun.png';
 import lines from '../../assets/main/main-clothesline.png';
+import pocket from '../../assets/main/pocket-shadow.png';
 const MainBackground = () => {
   return (
     <MainBackgroundContainer>
       <img src={sun} className='sun' />
-      <img src={hill} className='hill' />
       <img src={trees} className='trees' />
       <img src={lines} />
+      <img src={pocket} />
+      <img src={hill} className='hill' />
     </MainBackgroundContainer>
   );
 };

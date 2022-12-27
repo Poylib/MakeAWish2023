@@ -17,14 +17,16 @@ const Home = () => {
           <h1>소원을 빌어보세요</h1>
           <h4>Make a wish for 2023</h4>
         </div>
-        <Button
-          color='main'
-          onClick={() => {
-            setIsWishModal(true);
-          }}
-          text='소원 빌러가기'
-          className='head-font'
-        />
+        <div className='footer-box'>
+          <Button
+            onClick={() => {
+              setIsWishModal(true);
+            }}
+            text='소원 빌러가기'
+            className='head-font'
+          />
+          <h4>DEOK MANI BADA</h4>
+        </div>
       </article>
       <MainBackground />
       {isWishModal && <WishModal setIsWishModal={setIsWishModal} setIsCreatedModal={setIsCreatedModal} />}
@@ -48,13 +50,23 @@ const HomeContainer = styled.main`
   }
   article {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 390px;
     height: 100vh;
     z-index: 100;
     margin: 0 auto;
-    padding: 55px 1rem 1rem 1rem;
+    padding: 40px 1rem 0.5rem 1rem;
     background-color: inherit;
     font-family: 'CWDangamAsac-Bold';
+    color: ${contentFontColor};
+    button {
+      font-family: 'CWDangamAsac-Bold';
+      border-radius: 24px;
+      /* width: 240px; */
+      /* height: 70px; */
+    }
     .header-box {
       display: flex;
       flex-direction: column;
@@ -70,14 +82,22 @@ const HomeContainer = styled.main`
         color: ${contentFontColor};
       }
       h4 {
-        font-size: 10px;
+        font-size: 13px;
         font-family: 'Noto Sans KR', sans-serif;
       }
     }
-    button {
-      font-family: 'CWDangamAsac-Bold';
-      position: absolute;
-      bottom: 0%;
+    .footer-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 35px;
+      h4 {
+        font-size: 10px;
+        margin: 20px 0 0 0;
+        font-family: 'Noto Sans KR', sans-serif;
+        font-weight: bold;
+      }
     }
   }
 `;
