@@ -66,7 +66,7 @@ export const HomeContainer = styled.main`
     position: absolute;
     bottom: 0%;
     width: 100%;
-    height: 100%;
+    height: 45rem;
     /* se반응형 40rem */
     z-index: 100;
     padding: 3.5rem 1rem 1rem 1rem;

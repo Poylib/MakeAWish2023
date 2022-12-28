@@ -4,8 +4,9 @@ import { HomeContainer } from '../Intro';
 import { contentFontColor, headercolor } from '../../theme';
 import { useEffect, useState } from 'react';
 import MainBackground from '../../components/MainBackground';
+import Button from '../../components/Button';
 const Home = () => {
-  const [pocketCounts, setPocketCounts] = useState(200);
+  const [pocketCounts, setPocketCounts] = useState(200000);
   const { falseIntroPass } = useStore();
   useEffect(() => {
     falseIntroPass();
@@ -15,10 +16,16 @@ const Home = () => {
       <ContentBody>
         <div className='header'>
           <div className='font-box'>
-            <h2 className='headercolor'>{pocketCounts}</h2>
+            <h2 className='headercolor'>{pocketCounts.toLocaleString()}</h2>
             <h2>개의</h2>
           </div>
           <h2>소원이 달렸어요</h2>
+        </div>
+        <div>
+          <div></div>
+        </div>
+        <div className='footer-box'>
+          <Button text='다른 소원들 보기' />
         </div>
       </ContentBody>
       <MainBackground />
@@ -28,7 +35,9 @@ const Home = () => {
 
 const ContentBody = styled.article`
   display: flex;
+  height: 45rem;
   max-width: 700px;
+  /* max-height: 950px; */
   .header {
     display: flex;
     padding-left: 5%;
