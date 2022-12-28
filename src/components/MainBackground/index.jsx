@@ -12,9 +12,13 @@ const MainBackground = () => {
   const { introPass } = useStore();
   const [openFade, setOpenFade] = useState(false);
   useEffect(() => {
-    setTimeout(() => {
+    if (introPass) {
+      setTimeout(() => {
+        setOpenFade(true);
+      }, 1000);
+    } else {
       setOpenFade(true);
-    }, 1000);
+    }
   });
   return (
     <MainBackgroundContainer>
@@ -37,21 +41,22 @@ const MainBackgroundContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100vw;
+  width: 100%;
+  min-width: 375px;
   position: absolute;
   bottom: 0%;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
   img {
-    width: 70rem;
+    width: 1200px;
     /* se반응형 70rem */
     position: absolute;
     bottom: 0%;
   }
   .sun-trees {
-    animation: ${fadeIn} 3s;
+    animation: ${fadeIn} 1.7s;
   }
   .lines-pocket {
-    animation: ${fadeIn} 1s ease;
+    animation: ${fadeIn} 1s;
   }
 `;

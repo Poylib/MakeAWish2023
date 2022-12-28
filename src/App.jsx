@@ -15,7 +15,7 @@ const App = () => {
           <Route path='/' element={<Intro />} />
           <Route path='/home' element={<Home />} />
         </Routes>
-        {/* <MainBackground /> */}
+        <MainBackground />
       </ThemeProvider>
     </>
   );
