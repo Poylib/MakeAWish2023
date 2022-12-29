@@ -18,13 +18,13 @@ const Intro = () => {
     trueIntroPass();
     setTimeout(() => {
       setFadeInHeader(true);
-    }, 1900);
+    }, 1500);
   }, []);
   return (
     <HomeContainer>
       <IntroArticle>
         {fadeInHeader ? (
-          <div className='header-box'>
+          <div className='header-box header-fade'>
             <h2>2023 새해</h2>
             <h1>소원을 빌어보세요</h1>
             <h4>Make a wish for 2023</h4>
@@ -74,7 +74,6 @@ const IntroArticle = styled.article`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    animation: ${fadeIn} 3.5s ease-in;
     h2 {
       font-size: 30px;
       color: ${mainColor};
@@ -88,6 +87,9 @@ const IntroArticle = styled.article`
       font-size: 13px;
       font-family: 'Noto Sans KR', sans-serif;
     }
+  }
+  .header-fade {
+    animation: ${fadeIn} 2s;
   }
   .footer-box {
     display: flex;

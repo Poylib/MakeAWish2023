@@ -35,16 +35,18 @@ const Home = () => {
           <div className='text'>
             <img src={wishText} />
           </div>
-          <div className='column wish-btn' onClick={() => setIsWishModal(true)}>
-            <img src={onePocket} />
+          <div className='home-img'>
+            <div className='column wish-btn' onClick={() => setIsWishModal(true)}>
+              <img src={onePocket} />
+            </div>
+            {wroteWish.map(v => {
+              return (
+                <div className='column' key={v}>
+                  <img src={pocket} />
+                </div>
+              );
+            })}
           </div>
-          {wroteWish.map(v => {
-            return (
-              <div className='column' key={v}>
-                <img src={pocket} />
-              </div>
-            );
-          })}
         </div>
         <div className='home-footer'>
           <Button text='다른 소원들 보기' />
@@ -90,11 +92,13 @@ const HomeArticle = styled.article`
     }
   }
   .home-body {
+    position: relative;
     width: 100%;
     margin: 0 auto;
     .text {
-      height: 20px;
-      padding-left: 10px;
+      position: absolute;
+      top: -5%;
+      left: 3%;
       img {
         width: 70px;
       }
