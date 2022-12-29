@@ -141,33 +141,35 @@ const WishModalContainer = styled.div`
   }
 
   .bottom-wrapper {
+    display: flex;
+    justify-content: center;
     height: 20%;
     background: rgba(0, 0, 0, 0.85);
 
     .contents {
       display: flex;
       flex-direction: column;
-      /* justify-content: flex-end; */
-      vertical-align: middle;
+      justify-content: space-evenly;
       width: 390px;
+      height: 100%;
 
       .warning {
         display: flex;
         justify-content: center;
-        padding: 10px 10px 15px 10px;
+        padding: 0 10px;
         color: #fff;
         font-weight: 300;
 
         .icon {
           margin-right: 5px;
-          font-size: 0.75rem;
+          font-size: 1rem;
         }
 
         span {
           width: 90%;
-          line-height: 0.75rem;
+          line-height: 1rem;
           letter-spacing: 0.01rem;
-          font-size: 0.7rem;
+          font-size: 0.75rem;
         }
       }
 
