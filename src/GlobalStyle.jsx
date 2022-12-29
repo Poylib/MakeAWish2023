@@ -20,9 +20,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    position:relative;
     font-family: 'Pretendard', sans-serif;
     background-color: ${maincolor};
-    max-height:960px;
     margin:0 auto;
   }
 
