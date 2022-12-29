@@ -87,12 +87,12 @@ const WishModalContainer = styled.div`
     background: url(${background});
 
     .contents {
-      padding: 1.5rem;
       width: 390px;
+      padding: 1.5rem;
 
       input {
         width: 100%;
-        margin: 0.5rem 0;
+        margin: 1rem 0;
         padding: 0 0.25rem;
         border: none;
         background: transparent;
@@ -106,7 +106,7 @@ const WishModalContainer = styled.div`
 
       textarea {
         width: 100%;
-        height: 20rem;
+        min-height: 20rem;
         margin: 0.5rem 0;
         padding: 0.75rem 1rem;
         background: #fff;
@@ -141,14 +141,14 @@ const WishModalContainer = styled.div`
   }
 
   .bottom-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
     height: 20%;
     background: rgba(0, 0, 0, 0.85);
 
     .contents {
+      display: flex;
+      flex-direction: column;
+      /* justify-content: flex-end; */
+      vertical-align: middle;
       width: 390px;
 
       .warning {

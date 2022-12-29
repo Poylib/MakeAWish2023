@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Button from '../Button';
-import stamp from '../../assets/tokki-stamp.png';
+import stamp from '../../assets/created/tokki-stamp.png';
 import { mainFont700 } from '../../theme';
 
 const CreatedModal = ({ setIsCreatedModal }) => {
