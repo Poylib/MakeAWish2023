@@ -4,6 +4,7 @@ export const blackcolor = '#2D2D2D';
 
 export const mainColor = '#EA7048';
 export const contentFontColor = '#2D2D2D';
+export const wishButton = '#FD8A69';
 
 export const mainFont = `@font-face {
   font-family: 'Pretendard-Regular';
@@ -63,4 +64,11 @@ export const textFont2 = `@font-face {
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeRice.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+  }`;
+
+export const HomeButtonFont = `@font-face {
+    font-family: 'CWDangamAsac-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/CWDangamAsac-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
   }`;
