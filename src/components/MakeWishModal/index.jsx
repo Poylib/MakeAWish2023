@@ -5,7 +5,7 @@ import MultiButton from '../MultiButton';
 import background from '../../assets/wish/wish-background.png';
 import moon from '../../assets/wish/wish-moon.png';
 
-const WishModal = ({ setIsWishModal, setIsCreatedModal }) => {
+const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
   const [name, setName] = useState('');
   const [wish, setWish] = useState('');
 
@@ -40,10 +40,10 @@ const WishModal = ({ setIsWishModal, setIsCreatedModal }) => {
               <div className='button-wrapper'>
                 <MultiButton
                   onClose={() => {
-                    setIsWishModal(false);
+                    setIsMakeWish(false);
                   }}
                   onConfirm={() => {
-                    setIsWishModal(false);
+                    setIsMakeWish(false);
                     setIsCreatedModal(true);
                   }}
                   closeText='닫기'
@@ -182,4 +182,4 @@ const WishModalContainer = styled.div`
   }
 `;
 
-export default WishModal;
+export default MakeWishModal;
