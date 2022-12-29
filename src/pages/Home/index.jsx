@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import { HomeContainer } from '../Intro';
 import { contentFontColor, headercolor, HomeButtonFont, wishButton } from '../../theme';
-import WishModal from '../../components/WishModal';
+import MakeWishModal from '../../components/MakeWishModal';
 import CreatedModal from '../../components/CreatedModal';
 import MainBackground from '../../components/MainBackground';
 import Button from '../../components/Button';
@@ -15,7 +15,7 @@ import { bell } from '../../utils/Animation.jsx';
 const Home = () => {
   const [pocketCounts, setPocketCounts] = useState(200000);
   const [wroteWish, setWroteWish] = useState([0, 1, 2, 3, 4, 5, 6, 7]);
-  const [isWishModal, setIsWishModal] = useState(false);
+  const [isMakeWish, setIsMakeWish] = useState(false);
   const [isCreatedModal, setIsCreatedModal] = useState(false);
   const { falseIntroPass } = useStore();
   useEffect(() => {
@@ -36,7 +36,7 @@ const Home = () => {
             <img src={wishText} />
           </div>
           <div className='home-img'>
-            <div className='column wish-btn' onClick={() => setIsWishModal(true)}>
+            <div className='column wish-btn' onClick={() => setIsMakeWish(true)}>
               <img src={onePocket} />
             </div>
             {wroteWish.map(v => {
@@ -52,7 +52,7 @@ const Home = () => {
           <Button text='다른 소원들 보기' />
         </div>
       </HomeArticle>
-      {isWishModal && <WishModal setIsWishModal={setIsWishModal} setIsCreatedModal={setIsCreatedModal} />}
+      {isMakeWish && <MakeWishModal setIsMakeWish={setIsMakeWish} setIsCreatedModal={setIsCreatedModal} />}
       {isCreatedModal && <CreatedModal setIsCreatedModal={setIsCreatedModal} />}
     </HomeContainer>
   );
