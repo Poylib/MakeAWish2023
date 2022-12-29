@@ -28,8 +28,6 @@ const MultuButtonContainer = styled.div`
   border-radius: 15px;
   background: ${({ theme }) => theme.mainColor};
   color: #fff;
-  font-size: 1rem;
-  font-weight: bold;
 
   .border {
     width: 1px;
@@ -41,6 +39,8 @@ const MultuButtonContainer = styled.div`
     border: none;
     background: transparent;
     color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
   }
 
   .close-button {
