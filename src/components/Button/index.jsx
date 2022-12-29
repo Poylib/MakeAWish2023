@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { mainColor } from '../../Theme';
+import { mainColor } from '../../theme';
 
 const Button = ({ color, onClick, text }) => {
   return (
