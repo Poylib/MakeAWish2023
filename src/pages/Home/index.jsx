@@ -11,7 +11,7 @@ import Button from '../../components/Button';
 import onePocket from '../../assets/main/pockets/shadow.png';
 import pocket from '../../assets/main/pockets/004.png';
 import wishText from '../../assets/main/pockets/wish-text.png';
-import { bell } from '../../utils/Animation.jsx';
+import { bell } from '../../utils/Animation.jsx/index.jsx';
 const Home = () => {
   const [pocketCounts, setPocketCounts] = useState(200000);
   const [wroteWish, setWroteWish] = useState([0, 1, 2, 3, 4, 5, 6, 7]);

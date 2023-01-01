@@ -6,7 +6,7 @@ import Button from '../../components/Button';
 import { mainColor, contentFontColor, wishButton, HomeButtonFont } from '../../theme';
 import MainBackground from '../../components/MainBackground';
 import useStore from '../../context/store';
-import { fadeIn } from '../../utils/Animation.jsx';
+import { fadeIn } from '../../utils/Animation.jsx/index.jsx';
 
 const Intro = () => {
   const navigate = useNavigate();
@@ -42,7 +42,6 @@ const Intro = () => {
 };
 
 export const HomeContainer = styled.main`
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,7 +50,6 @@ export const HomeContainer = styled.main`
   margin: 0 auto;
   min-width: 375px;
   max-width: 430px;
-
   ${HomeButtonFont};
 `;
 const IntroArticle = styled.article`
@@ -64,7 +62,7 @@ const IntroArticle = styled.article`
   height: 100vh;
   max-height: 800px;
   z-index: 100;
-  padding: 3.5rem 1rem 1rem 1rem;
+  padding: 2rem 1rem 1rem 1rem;
   background-color: inherit;
   font-family: 'CWDangamAsac-Bold';
   color: ${contentFontColor};
