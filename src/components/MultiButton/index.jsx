@@ -20,7 +20,7 @@ const MultuButtonContainer = styled.div`
   align-items: center;
   -webkit-box-pack: center;
   justify-content: center;
-  width: 90%;
+  width: 100%;
   height: 3rem;
 
   outline: none;

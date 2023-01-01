@@ -6,17 +6,20 @@ import { HomeContainer } from '../Intro';
 import { contentFontColor, headercolor, HomeButtonFont, wishButton } from '../../theme';
 import MakeWishModal from '../../components/MakeWishModal';
 import CreatedModal from '../../components/CreatedModal';
+import ReadWishModal from '../../components/ReadWishModal';
 import MainBackground from '../../components/MainBackground';
 import Button from '../../components/Button';
 import onePocket from '../../assets/main/pockets/shadow.png';
 import pocket from '../../assets/main/pockets/004.png';
 import wishText from '../../assets/main/pockets/wish-text.png';
 import { bell } from '../../utils/Animation.jsx';
+
 const Home = () => {
   const [pocketCounts, setPocketCounts] = useState(200000);
   const [wroteWish, setWroteWish] = useState([0, 1, 2, 3, 4, 5, 6, 7]);
   const [isMakeWish, setIsMakeWish] = useState(false);
   const [isCreatedModal, setIsCreatedModal] = useState(false);
+  const [isReadWish, setIsReadWish] = useState(false);
   const { falseIntroPass } = useStore();
   useEffect(() => {
     falseIntroPass();
@@ -41,7 +44,7 @@ const Home = () => {
             </div>
             {wroteWish.map(v => {
               return (
-                <div className='column' key={v}>
+                <div className='column' key={v} onClick={() => setIsReadWish(true)}>
                   <img src={pocket} />
                 </div>
               );
@@ -54,6 +57,7 @@ const Home = () => {
       </HomeArticle>
       {isMakeWish && <MakeWishModal setIsMakeWish={setIsMakeWish} setIsCreatedModal={setIsCreatedModal} />}
       {isCreatedModal && <CreatedModal setIsCreatedModal={setIsCreatedModal} />}
+      {isReadWish && <ReadWishModal setIsReadWish={setIsReadWish} />}
     </HomeContainer>
   );
 };

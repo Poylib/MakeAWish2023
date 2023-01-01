@@ -2,8 +2,8 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { TiWarningOutline } from 'react-icons/ti';
 import MultiButton from '../MultiButton';
-import background from '../../assets/wish/wish-background.png';
-import moon from '../../assets/wish/wish-moon.png';
+import background from '../../assets/makewish/wish-background.png';
+import moon from '../../assets/makewish/wish-moon.png';
 
 const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
   const [name, setName] = useState('');
@@ -176,7 +176,7 @@ const WishModalContainer = styled.div`
       .button-wrapper {
         display: flex;
         justify-content: center;
-        width: 100%;
+        padding: 0 1.25rem;
       }
     }
   }
