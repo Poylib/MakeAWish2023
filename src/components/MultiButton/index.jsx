@@ -21,11 +21,11 @@ const MultuButtonContainer = styled.div`
   -webkit-box-pack: center;
   justify-content: center;
   width: 100%;
-  height: 3rem;
+  height: 3.5rem;
 
   outline: none;
   border: none;
-  border-radius: 15px;
+  border-radius: 17px;
   background: ${({ theme }) => theme.mainColor};
   color: #fff;
 
@@ -39,8 +39,8 @@ const MultuButtonContainer = styled.div`
     border: none;
     background: transparent;
     color: #fff;
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 1.25rem;
+    font-weight: 500;
   }
 
   .close-button {

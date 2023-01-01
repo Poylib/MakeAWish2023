@@ -81,7 +81,7 @@ const ReadWishModalContainer = styled.div`
   position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
   height: 100%;
 
@@ -116,7 +116,6 @@ const ReadWishModalContainer = styled.div`
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      margin-top: 5rem;
       padding: 1rem;
       background: #fff;
       border: none;
