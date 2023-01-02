@@ -39,7 +39,6 @@ const ReadWishModal = ({ setIsReadWish }) => {
                     if (isLuck === false) {
                       setIsLuck(true);
                       setCount(count + 1);
-                      console.log(count);
                     } else {
                       setIsLuck(false);
                       setCount(count - 1);
