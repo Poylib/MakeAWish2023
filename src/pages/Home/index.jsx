@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import useStore from '../../context/store';
 import { useEffect, useState } from 'react';
-
 import { HomeContainer } from '../Intro';
 import { contentFontColor, headercolor, HomeButtonFont, wishButton } from '../../theme';
 import MakeWishModal from '../../components/MakeWishModal';
@@ -12,7 +11,7 @@ import Button from '../../components/Button';
 import onePocket from '../../assets/main/pockets/shadow.png';
 import pocket from '../../assets/main/pockets/004.png';
 import wishText from '../../assets/main/pockets/wish-text.png';
-import { bell } from '../../utils/Animation.jsx';
+import { bell } from '../../utils/Animation.jsx/index.jsx';
 
 const Home = () => {
   const [pocketCounts, setPocketCounts] = useState(200000);

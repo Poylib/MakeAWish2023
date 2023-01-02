@@ -6,7 +6,7 @@ import sun from '../../assets/main/main-sun.png';
 import lines from '../../assets/main/main-clothesline.png';
 import pocket from '../../assets/main/pocket-shadow.png';
 import { useEffect, useState } from 'react';
-import { fadeIn } from '../../utils/Animation.jsx';
+import { fadeIn } from '../../utils/Animation/index.jsx';
 
 const MainBackground = () => {
   const { introPass } = useStore();
@@ -49,7 +49,6 @@ const MainBackgroundContainer = styled.div`
   overflow: hidden;
   img {
     width: 1200px;
-    /* se반응형 70rem */
     position: absolute;
     bottom: 0%;
   }
