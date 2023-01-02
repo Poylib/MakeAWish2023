@@ -24,7 +24,9 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
           <div className='content-wrapper'>
             <div className='contents'>
               <input maxLength={8} placeholder='이름 또는 닉네임 (8글자 이하)' onChange={handleName} value={name} />
-              <textarea maxLength={200} placeholder='소원을 작성해주세요!' onChange={handleWish} value={wish} />
+              <div className='text'>
+                <textarea maxLength={200} placeholder='소원을 작성해주세요!' onChange={handleWish} value={wish} />
+              </div>
               <span>{wish.length} / 200</span>
               <div className='image-wrapper'>
                 <img src={moon} alt='moon' />
@@ -104,7 +106,7 @@ const WishModalContainer = styled.div`
         ${({ theme }) => theme.textFont1};
       }
 
-      textarea {
+      .text {
         width: 100%;
         min-height: 20rem;
         margin: 0.5rem 0;
@@ -112,14 +114,21 @@ const WishModalContainer = styled.div`
         background: #fff;
         border: none;
         border-radius: 15px;
-        color: ${({ theme }) => theme.contentFontColor};
-        font-family: 'UhBeeRice';
-        font-size: 1.3rem;
-        outline: none;
-        overflow: hidden;
-        resize: none;
 
-        ${({ theme }) => theme.textFont2};
+        textarea {
+          width: 100%;
+          min-height: 15rem;
+          margin: 0;
+          padding: 0;
+          border: none;
+          outline: none;
+          overflow: hidden;
+          resize: none;
+          word-break: break-all;
+          color: ${({ theme }) => theme.contentFontColor};
+          font-family: 'UhBeeRice';
+          font-size: 1.3rem;
+        }
       }
 
       span {
