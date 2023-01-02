@@ -7,7 +7,7 @@ import luckOff from '../../assets/readwish/bok-off.png';
 import { mainColor } from '../../theme';
 
 const ReadWishModal = ({ setIsReadWish }) => {
-  const name = 'dd';
+  const name = '전챠밍';
   const [isLuck, setIsLuck] = useState(false);
 
   return (
@@ -20,7 +20,10 @@ const ReadWishModal = ({ setIsReadWish }) => {
         </div>
         <div className='wish-wrapper'>
           <div className='wish'>
-            <div className='text'>안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요</div>
+            <textarea className='text'>
+              2023년 계묘년에는 여자친구도 생기고 좋은 직장에 취업도 해서 얼른 결혼하고 싶다! 떼 돈 벌어서 팀원들한테 다 나눠주고 싶다! 2023년 계묘년에는 여자친구도 생기고 좋은 직장에 취업도 해서 얼른 결혼하고 싶다! 떼 돈 벌어서 팀원들한테 다
+              나눠주고 싶다!
+            </textarea>
             <div className='luck-wrapper'>
               <div className='luck'>
                 <span className='user'>{name}</span> 님의 소원에 복 보내기
@@ -81,10 +84,9 @@ const ReadWishModalContainer = styled.div`
   position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: 100%;
   height: 100%;
-
   max-width: 390px;
   padding: 1.5rem;
 
@@ -92,8 +94,8 @@ const ReadWishModalContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 15%;
-    padding-bottom: 1rem;
+    margin-top: -20px;
+    padding-bottom: 40px;
     font-size: 1.5rem;
     font-weight: 600;
 
@@ -111,22 +113,44 @@ const ReadWishModalContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 50vh;
+    min-height: 340px;
+    margin-top: 1.5rem;
 
     .wish {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      width: 100%;
+      height: 100%;
       padding: 1rem;
       background: #fff;
       border: none;
       border-radius: 15px;
 
       .text {
+        height: 100%;
         min-height: 10rem;
+        border: none;
+        outline: none;
+        resize: none;
         ${({ theme }) => theme.textFont2};
         color: ${({ theme }) => theme.contentFontColor};
         font-family: 'UhBeeRice';
-        font-size: 1.3rem;
+        font-size: 1.25rem;
+        line-height: 2;
+      }
+
+      .text::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      .text::-webkit-scrollbar-thumb {
+        background-color: ${({ theme }) => theme.mainColor};
+      }
+
+      .text::-webkit-scrollbar-track {
+        background-color: ${({ theme }) => theme.bgColor};
       }
 
       .luck-wrapper {
