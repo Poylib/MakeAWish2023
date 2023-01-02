@@ -27,8 +27,8 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
               <input maxLength={8} placeholder='이름 또는 닉네임 (8글자 이하)' onChange={handleName} value={name} />
               <div className='text'>
                 <textarea maxLength={200} placeholder='소원을 작성해주세요!' onChange={handleWish} value={wish} />
+                <span>{wishLength.padStart(3, '0')} / 200</span>
               </div>
-              <span>{wishLength.padStart(3, '0')} / 200</span>
               <div className='image-wrapper'>
                 <img src={moon} alt='moon' />
               </div>
@@ -108,8 +108,11 @@ const WishModalContainer = styled.div`
       }
 
       .text {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         width: 100%;
-        min-height: 20rem;
+        height: 50vh;
         margin: 0.5rem 0;
         padding: 0.75rem 1rem;
         background: #fff;
@@ -129,6 +132,8 @@ const WishModalContainer = styled.div`
           color: ${({ theme }) => theme.contentFontColor};
           font-family: 'UhBeeRice';
           font-size: 1.3rem;
+
+          ${({ theme }) => theme.textFont2};
         }
 
         textarea::-webkit-scrollbar {
@@ -159,9 +164,9 @@ const WishModalContainer = styled.div`
       }
 
       span {
-        display: block;
+        display: flex;
+        justify-content: flex-end;
         color: #787878;
-        transform: translate(80%, -220%);
       }
 
       .image-wrapper {
@@ -169,7 +174,7 @@ const WishModalContainer = styled.div`
         justify-content: center;
 
         img {
-          width: 100%;
+          width: 95%;
           transform: translate(0, -60%);
         }
       }
