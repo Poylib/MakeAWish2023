@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { FiX } from 'react-icons/fi';
 import MultiButton from '../MultiButton';
 import bg from '../../assets/readwish/bg.png';
 import luckOn from '../../assets/readwish/bok-on.png';
@@ -8,6 +9,10 @@ import { mainColor } from '../../theme';
 
 const ReadWishModal = ({ setIsReadWish }) => {
   const name = '전챠밍';
+  const text =
+    '2023년 계묘년에는 여자친구도 생기고 좋은 직장에 취업도 해서 얼른 결혼하고 싶다! 떼 돈 벌어서 팀원들한테 다 나눠주고 싶다! 2023년 계묘년에는 여자친구도 생기고 좋은 직장에 취업도 해서 얼른 결혼하고 싶다! 떼 돈 벌어서 팀원들한테 다 나눠주고 싶다!';
+
+  const [count, setCount] = useState(200000);
   const [isLuck, setIsLuck] = useState(false);
 
   return (
@@ -20,10 +25,7 @@ const ReadWishModal = ({ setIsReadWish }) => {
         </div>
         <div className='wish-wrapper'>
           <div className='wish'>
-            <textarea className='text'>
-              2023년 계묘년에는 여자친구도 생기고 좋은 직장에 취업도 해서 얼른 결혼하고 싶다! 떼 돈 벌어서 팀원들한테 다 나눠주고 싶다! 2023년 계묘년에는 여자친구도 생기고 좋은 직장에 취업도 해서 얼른 결혼하고 싶다! 떼 돈 벌어서 팀원들한테 다
-              나눠주고 싶다!
-            </textarea>
+            <textarea className='text' value={text} readOnly />
             <div className='luck-wrapper'>
               <div className='luck'>
                 <span className='user'>{name}</span> 님의 소원에 복 보내기
@@ -34,9 +36,20 @@ const ReadWishModal = ({ setIsReadWish }) => {
                   src={isLuck ? luckOn : luckOff}
                   className='bok'
                   onClick={() => {
-                    setIsLuck(!isLuck);
+                    if (isLuck === false) {
+                      setIsLuck(true);
+                      setCount(count + 1);
+                      console.log(count);
+                    } else {
+                      setIsLuck(false);
+                      setCount(count - 1);
+                    }
                   }}
                 />
+                <span className='count'>
+                  <FiX />
+                  {count}
+                </span>
               </div>
             </div>
           </div>
@@ -94,7 +107,7 @@ const ReadWishModalContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -20px;
+    margin-top: -10px;
     padding-bottom: 40px;
     font-size: 1.5rem;
     font-weight: 600;
@@ -111,11 +124,15 @@ const ReadWishModalContainer = styled.div`
 
   .wish-wrapper {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 50vh;
     min-height: 340px;
     margin-top: 1.5rem;
+
+    .count {
+    }
 
     .wish {
       display: flex;
@@ -172,6 +189,21 @@ const ReadWishModalContainer = styled.div`
 
           .bok {
             width: 70px;
+          }
+
+          .count {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: ${({ theme }) => theme.mainColor};
+            font-size: 2rem;
+            font-weight: 600;
+
+            svg {
+              padding-bottom: 0.3rem;
+            }
           }
         }
 
