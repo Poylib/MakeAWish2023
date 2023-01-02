@@ -8,6 +8,7 @@ import moon from '../../assets/makewish/wish-moon.png';
 const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
   const [name, setName] = useState('');
   const [wish, setWish] = useState('');
+  const wishLength = `${wish.length}`;
 
   const handleName = e => {
     setName(e.target.value);
@@ -27,7 +28,7 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
               <div className='text'>
                 <textarea maxLength={200} placeholder='소원을 작성해주세요!' onChange={handleWish} value={wish} />
               </div>
-              <span>{wish.length} / 200</span>
+              <span>{wishLength.padStart(3, '0')} / 200</span>
               <div className='image-wrapper'>
                 <img src={moon} alt='moon' />
               </div>
@@ -122,13 +123,39 @@ const WishModalContainer = styled.div`
           padding: 0;
           border: none;
           outline: none;
-          overflow: hidden;
+          overflow: auto;
           resize: none;
           word-break: break-all;
           color: ${({ theme }) => theme.contentFontColor};
           font-family: 'UhBeeRice';
           font-size: 1.3rem;
         }
+
+        textarea::-webkit-scrollbar {
+          width: 5px;
+        }
+
+        textarea::-webkit-scrollbar-thumb {
+          background-color: ${({ theme }) => theme.mainColor};
+          border-radius: 10px;
+        }
+
+        textarea::-webkit-scrollbar-track {
+          background-color: ${({ theme }) => theme.bgColor};
+        }
+      }
+
+      .text::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      .text::-webkit-scrollbar-thumb {
+        background-color: ${({ theme }) => theme.mainColor};
+        border-radius: 10px;
+      }
+
+      .text::-webkit-scrollbar-track {
+        background-color: ${({ theme }) => theme.bgColor};
       }
 
       span {

@@ -130,9 +130,6 @@ const ReadWishModalContainer = styled.div`
     min-height: 340px;
     margin-top: 1.5rem;
 
-    .count {
-    }
-
     .wish {
       display: flex;
       flex-direction: column;
