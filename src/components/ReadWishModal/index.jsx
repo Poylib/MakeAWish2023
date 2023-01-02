@@ -155,6 +155,7 @@ const ReadWishModalContainer = styled.div`
         font-family: 'UhBeeRice';
         font-size: 1.25rem;
         line-height: 2;
+        overflow: auto;
       }
 
       .text::-webkit-scrollbar {
@@ -163,6 +164,7 @@ const ReadWishModalContainer = styled.div`
 
       .text::-webkit-scrollbar-thumb {
         background-color: ${({ theme }) => theme.mainColor};
+        border-radius: 10px;
       }
 
       .text::-webkit-scrollbar-track {
@@ -201,7 +203,7 @@ const ReadWishModalContainer = styled.div`
             font-weight: 600;
 
             svg {
-              padding-bottom: 0.3rem;
+              margin-bottom: 0.3rem;
             }
           }
         }
