@@ -6,7 +6,7 @@ import Button from '../../components/Button';
 import { mainColor, contentFontColor, wishButton, HomeButtonFont } from '../../theme';
 import MainBackground from '../../components/MainBackground';
 import useStore from '../../context/store';
-import { fadeIn } from '../../utils/Animation.jsx/index.jsx';
+import { fadeIn } from '../../utils/Animation';
 
 const Intro = () => {
   const navigate = useNavigate();
