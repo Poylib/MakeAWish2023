@@ -14,6 +14,21 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
 
   const wishLength = `${wish.length}`;
 
+  const makeWish = async () => {
+    const body = {
+      uuid: 3,
+      nickName: name,
+      comment: wish,
+    };
+    try {
+      const resp = await api.post('/wishes', body);
+      console.log(resp);
+    } catch (error) {
+      console.log(error);
+      console.log(error.response.data);
+    }
+  };
+
   const handleName = e => {
     const nameCurrent = e.target.value;
     setName(nameCurrent);
@@ -62,8 +77,9 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
                     setIsMakeWish(false);
                   }}
                   onConfirm={() => {
-                    setIsMakeWish(false);
-                    setIsCreatedModal(true);
+                    makeWish();
+                    // setIsMakeWish(false);
+                    // setIsCreatedModal(true);
                   }}
                   closeText='닫기'
                   confirmText='작성 완료'
