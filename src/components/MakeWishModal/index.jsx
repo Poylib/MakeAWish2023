@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { api } from '../../api';
 import styled from 'styled-components';
 import { TiWarningOutline } from 'react-icons/ti';
@@ -16,7 +16,7 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
 
   const makeWish = async () => {
     const body = {
-      uuid: 3,
+      uuid: 1,
       nickName: name,
       comment: wish,
     };
@@ -78,8 +78,8 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
                   }}
                   onConfirm={() => {
                     makeWish();
-                    setIsMakeWish(false);
-                    setIsCreatedModal(true);
+                    // setIsMakeWish(false);
+                    // setIsCreatedModal(true);
                   }}
                   closeText='닫기'
                   confirmText='작성 완료'

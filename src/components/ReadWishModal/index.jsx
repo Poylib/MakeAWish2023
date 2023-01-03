@@ -9,23 +9,22 @@ import luckOff from '../../assets/readwish/bok-off.png';
 import { mainColor } from '../../theme';
 
 const ReadWishModal = ({ setIsReadWish }) => {
-  const name = '전챠밍';
-  const text =
-    '2023년 계묘년에는 여자친구도 생기고 좋은 직장에 취업도 해서 얼른 결혼하고 싶다! 떼 돈 벌어서 팀원들한테 다 나눠주고 싶다! 2023년 계묘년에는 여자친구도 생기고 좋은 직장에 취업도 해서 얼른 결혼하고 싶다! 떼 돈 벌어서 팀원들한테 다 나눠주고 싶다!';
-
-  const id = 1;
+  const [wish, setWish] = useState();
   const [count, setCount] = useState(200000);
   const [isLuck, setIsLuck] = useState(false);
 
   useEffect(() => {
-    try {
-      const loader = async () => {
-        await api.get(`wishes?id=${id}`);
-      };
-      loader();
-    } catch (error) {
-      console.log(error);
-    }
+    const id = '63b3ba5b9844281261d5cdb3';
+    const loader = async () => {
+      try {
+        const { data } = await api.get(`wishes?id=${id}`);
+        console.log(data);
+        setWish(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    loader();
   }, []);
 
   return (
@@ -33,15 +32,15 @@ const ReadWishModal = ({ setIsReadWish }) => {
       <Background alt='background' src={bg} />
       <ReadWishModalContainer>
         <div className='user-wrapper'>
-          <span className='user-name'>{name}</span>
+          <span className='user-name'>{wish.nickName}</span>
           <span className='user-wish'>님의 소원</span>
         </div>
         <div className='wish-wrapper'>
           <div className='wish'>
-            <textarea className='text' value={text} readOnly />
+            <textarea className='text' value={wish.comment} readOnly />
             <div className='luck-wrapper'>
               <div className='luck'>
-                <span className='user'>{name}</span> 님의 소원에 복 보내기
+                <span className='user'>{wish.nickName}</span> 님의 소원에 복 보내기
               </div>
               <div className='image-wrapper'>
                 <img
@@ -60,7 +59,7 @@ const ReadWishModal = ({ setIsReadWish }) => {
                 />
                 <span className='count'>
                   <FiX />
-                  {count}
+                  {wish.likes}
                 </span>
               </div>
             </div>
