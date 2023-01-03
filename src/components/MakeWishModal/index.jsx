@@ -66,6 +66,7 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
                   }}
                   closeText='닫기'
                   confirmText='작성 완료'
+                  disabled={!(isName && isWish)}
                 />
               </div>
             </div>

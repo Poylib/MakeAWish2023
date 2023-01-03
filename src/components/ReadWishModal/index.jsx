@@ -58,9 +58,12 @@ const ReadWishModal = ({ setIsReadWish }) => {
             onClose={() => {
               setIsReadWish(false);
             }}
-            onConfirm={() => {}}
+            onConfirm={() => {
+              setIsReadWish(false);
+            }}
             closeText='닫기'
             confirmText='다음'
+            disabled={false}
           />
         </div>
       </ReadWishModalContainer>
