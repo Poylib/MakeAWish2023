@@ -78,8 +78,8 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
                   }}
                   onConfirm={() => {
                     makeWish();
-                    // setIsMakeWish(false);
-                    // setIsCreatedModal(true);
+                    setIsMakeWish(false);
+                    setIsCreatedModal(true);
                   }}
                   closeText='닫기'
                   confirmText='작성 완료'
