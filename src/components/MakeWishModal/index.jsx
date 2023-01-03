@@ -21,8 +21,6 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
     } else {
       setIsName(true);
     }
-
-    console.log(isName);
   };
 
   const handleWish = e => {
