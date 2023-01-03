@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { api } from '../../api';
 import styled from 'styled-components';
 import { TiWarningOutline } from 'react-icons/ti';
 import MultiButton from '../MultiButton';
@@ -26,7 +27,7 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
   const handleWish = e => {
     const wishCurrent = e.target.value;
     setWish(wishCurrent);
-    if (wishCurrent.length < 10) {
+    if (wishCurrent.length < 1) {
       setIsWish(false);
     } else {
       setIsWish(true);
