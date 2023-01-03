@@ -58,9 +58,12 @@ const ReadWishModal = ({ setIsReadWish }) => {
             onClose={() => {
               setIsReadWish(false);
             }}
-            onConfirm={() => {}}
+            onConfirm={() => {
+              setIsReadWish(false);
+            }}
             closeText='닫기'
             confirmText='다음'
+            disabled={false}
           />
         </div>
       </ReadWishModalContainer>
@@ -129,9 +132,6 @@ const ReadWishModalContainer = styled.div`
     height: 50vh;
     min-height: 340px;
     margin-top: 1.5rem;
-
-    .count {
-    }
 
     .wish {
       display: flex;

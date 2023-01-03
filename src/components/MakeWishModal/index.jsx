@@ -8,13 +8,29 @@ import moon from '../../assets/makewish/wish-moon.png';
 const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
   const [name, setName] = useState('');
   const [wish, setWish] = useState('');
+  const [isName, setIsName] = useState(false);
+  const [isWish, setIsWish] = useState(false);
+
+  const wishLength = `${wish.length}`;
 
   const handleName = e => {
-    setName(e.target.value);
+    const nameCurrent = e.target.value;
+    setName(nameCurrent);
+    if (nameCurrent.length < 1) {
+      setIsName(false);
+    } else {
+      setIsName(true);
+    }
   };
 
   const handleWish = e => {
-    setWish(e.target.value);
+    const wishCurrent = e.target.value;
+    setWish(wishCurrent);
+    if (wishCurrent.length < 10) {
+      setIsWish(false);
+    } else {
+      setIsWish(true);
+    }
   };
 
   return (
@@ -24,8 +40,10 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
           <div className='content-wrapper'>
             <div className='contents'>
               <input maxLength={8} placeholder='이름 또는 닉네임 (8글자 이하)' onChange={handleName} value={name} />
-              <textarea maxLength={200} placeholder='소원을 작성해주세요!' onChange={handleWish} value={wish} />
-              <span>{wish.length} / 200</span>
+              <div className='text'>
+                <textarea maxLength={200} placeholder='소원을 작성해주세요!' onChange={handleWish} value={wish} />
+                <span>{wishLength.padStart(3, '0')} / 200</span>
+              </div>
               <div className='image-wrapper'>
                 <img src={moon} alt='moon' />
               </div>
@@ -48,6 +66,7 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
                   }}
                   closeText='닫기'
                   confirmText='작성 완료'
+                  disabled={!(isName && isWish)}
                 />
               </div>
             </div>
@@ -104,28 +123,66 @@ const WishModalContainer = styled.div`
         ${({ theme }) => theme.textFont1};
       }
 
-      textarea {
+      .text {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         width: 100%;
-        min-height: 20rem;
+        height: 50vh;
         margin: 0.5rem 0;
         padding: 0.75rem 1rem;
         background: #fff;
         border: none;
         border-radius: 15px;
-        color: ${({ theme }) => theme.contentFontColor};
-        font-family: 'UhBeeRice';
-        font-size: 1.3rem;
-        outline: none;
-        overflow: hidden;
-        resize: none;
 
-        ${({ theme }) => theme.textFont2};
+        textarea {
+          width: 100%;
+          min-height: 15rem;
+          margin: 0;
+          padding: 0;
+          border: none;
+          outline: none;
+          overflow: auto;
+          resize: none;
+          word-break: break-all;
+          color: ${({ theme }) => theme.contentFontColor};
+          font-family: 'UhBeeRice';
+          font-size: 1.3rem;
+
+          ${({ theme }) => theme.textFont2};
+        }
+
+        textarea::-webkit-scrollbar {
+          width: 5px;
+        }
+
+        textarea::-webkit-scrollbar-thumb {
+          background-color: ${({ theme }) => theme.mainColor};
+          border-radius: 10px;
+        }
+
+        textarea::-webkit-scrollbar-track {
+          background-color: ${({ theme }) => theme.bgColor};
+        }
+      }
+
+      .text::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      .text::-webkit-scrollbar-thumb {
+        background-color: ${({ theme }) => theme.mainColor};
+        border-radius: 10px;
+      }
+
+      .text::-webkit-scrollbar-track {
+        background-color: ${({ theme }) => theme.bgColor};
       }
 
       span {
-        display: block;
+        display: flex;
+        justify-content: flex-end;
         color: #787878;
-        transform: translate(80%, -220%);
       }
 
       .image-wrapper {
@@ -133,7 +190,7 @@ const WishModalContainer = styled.div`
         justify-content: center;
 
         img {
-          width: 100%;
+          width: 95%;
           transform: translate(0, -60%);
         }
       }
