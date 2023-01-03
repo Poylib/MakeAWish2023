@@ -24,7 +24,13 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
   };
 
   const handleWish = e => {
-    setWish(e.target.value);
+    const wishCurrent = e.target.value;
+    setWish(wishCurrent);
+    if (wishCurrent.length < 10) {
+      setIsWish(false);
+    } else {
+      setIsWish(true);
+    }
   };
 
   return (
