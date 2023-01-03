@@ -8,10 +8,21 @@ import moon from '../../assets/makewish/wish-moon.png';
 const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
   const [name, setName] = useState('');
   const [wish, setWish] = useState('');
+  const [isName, setIsName] = useState(false);
+  const [isWish, setIsWish] = useState(false);
+
   const wishLength = `${wish.length}`;
 
   const handleName = e => {
-    setName(e.target.value);
+    const nameCurrent = e.target.value;
+    setName(nameCurrent);
+    if (nameCurrent.length < 1) {
+      setIsName(false);
+    } else {
+      setIsName(true);
+    }
+
+    console.log(isName);
   };
 
   const handleWish = e => {
