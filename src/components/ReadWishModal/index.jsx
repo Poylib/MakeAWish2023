@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { api } from '../../api';
 import styled from 'styled-components';
 import { FiX } from 'react-icons/fi';
 import MultiButton from '../MultiButton';
@@ -12,8 +13,20 @@ const ReadWishModal = ({ setIsReadWish }) => {
   const text =
     '2023년 계묘년에는 여자친구도 생기고 좋은 직장에 취업도 해서 얼른 결혼하고 싶다! 떼 돈 벌어서 팀원들한테 다 나눠주고 싶다! 2023년 계묘년에는 여자친구도 생기고 좋은 직장에 취업도 해서 얼른 결혼하고 싶다! 떼 돈 벌어서 팀원들한테 다 나눠주고 싶다!';
 
+  const id = 1;
   const [count, setCount] = useState(200000);
   const [isLuck, setIsLuck] = useState(false);
+
+  useEffect(() => {
+    try {
+      const loader = async () => {
+        await api.get(`wishes?id=${id}`);
+      };
+      loader();
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   return (
     <Positioner>
