@@ -13,10 +13,12 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
   const [isWish, setIsWish] = useState(false);
 
   const wishLength = `${wish.length}`;
+  const uuid = localStorage.getItem('uuid');
+  console.log('1', uuid);
 
   const makeWish = async () => {
     const body = {
-      uuid: 1,
+      uuid,
       nickName: name,
       comment: wish,
     };
@@ -78,8 +80,6 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
                   }}
                   onConfirm={() => {
                     makeWish();
-                    setIsMakeWish(false);
-                    setIsCreatedModal(true);
                   }}
                   closeText='닫기'
                   confirmText='작성 완료'
