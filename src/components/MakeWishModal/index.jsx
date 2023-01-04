@@ -25,6 +25,8 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
     try {
       const resp = await api.post('/wishes', body);
       console.log(resp);
+      setIsMakeWish(false);
+      setIsCreatedModal(true);
     } catch (error) {
       console.log(error);
       console.log(error.response.data);
