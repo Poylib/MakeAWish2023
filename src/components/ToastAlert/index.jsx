@@ -3,12 +3,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import styled from 'styled-components';
 
 const ToastAlert = () => {
-  return <Toast position='top-right' autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss pauseOnHover theme='colored' />;
+  return <Toast position='center' autoClose={2000} closeButton={false} limit={1} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss hideProgressBar draggable={false} theme='dark' />;
 };
 
 const Toast = styled(ToastContainer)`
   .Toastify__toast {
-    border-radius: 0;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 40px;
+    text-align: center;
   }
 `;
 

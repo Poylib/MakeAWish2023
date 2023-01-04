@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { api } from '../../api';
 import styled from 'styled-components';
 import { TiWarningOutline } from 'react-icons/ti';
+import ToastAlert from '../ToastAlert';
 import MultiButton from '../MultiButton';
 import background from '../../assets/makewish/wish-background.png';
 import moon from '../../assets/makewish/wish-moon.png';
@@ -11,25 +13,26 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
   const [wish, setWish] = useState('');
   const [isName, setIsName] = useState(false);
   const [isWish, setIsWish] = useState(false);
-
   const wishLength = `${wish.length}`;
-  const uuid = localStorage.getItem('uuid');
-  console.log('1', uuid);
 
   const makeWish = async () => {
     const body = {
-      uuid,
+      uuid: localStorage.getItem('uuid'),
       nickName: name,
       comment: wish,
     };
     try {
-      const resp = await api.post('/wishes', body);
-      console.log(resp);
+      await api.post('/wishes', body);
       setIsMakeWish(false);
       setIsCreatedModal(true);
     } catch (error) {
       console.log(error);
-      console.log(error.response.data);
+      const message = error.response.data;
+      if (message === 'Already created') {
+        toast.info('오늘 소원을 이미 작성하셨어요');
+      } else if (message === '비속어는 사용 금지입니다.') {
+        toast.warn(message);
+      }
     }
   };
 
@@ -55,6 +58,7 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
 
   return (
     <>
+      <ToastAlert />
       <Positioner>
         <WishModalContainer>
           <div className='content-wrapper'>
