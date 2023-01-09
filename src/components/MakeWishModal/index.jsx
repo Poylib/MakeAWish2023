@@ -8,7 +8,7 @@ import MultiButton from '../MultiButton';
 import background from '../../assets/makewish/wish-background.png';
 import moon from '../../assets/makewish/wish-moon.png';
 
-const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
+const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal, getWish }) => {
   const [name, setName] = useState('');
   const [wish, setWish] = useState('');
   const [isName, setIsName] = useState(false);
@@ -25,6 +25,7 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
       await api.post('/wishes', body);
       setIsMakeWish(false);
       setIsCreatedModal(true);
+      getWish();
     } catch (error) {
       console.log(error);
       const message = error.response.data;
