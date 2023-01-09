@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-
+import { api } from '../../api';
 import Button from '../../components/Button';
 import { mainColor, contentFontColor, wishButton, HomeButtonFont } from '../../theme';
 import MainBackground from '../../components/MainBackground';
@@ -11,15 +11,24 @@ import { fadeIn } from '../../utils/Animation';
 const Intro = () => {
   const navigate = useNavigate();
   const { trueIntroPass } = useStore();
-  const [isWishModal, setIsWishModal] = useState(false);
-  const [isCreatedModal, setIsCreatedModal] = useState(false);
   const [fadeInHeader, setFadeInHeader] = useState(false);
+
   useEffect(() => {
     trueIntroPass();
     setTimeout(() => {
       setFadeInHeader(true);
     }, 1500);
   }, []);
+
+  const getUuid = async () => {
+    try {
+      const { data } = await api.get('id');
+      localStorage.setItem('uuid', data.uuid);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <HomeContainer>
       <IntroArticle>
@@ -33,7 +42,16 @@ const Intro = () => {
           <div className='header-box'></div>
         )}
         <div className='footer-box'>
-          <Button onClick={() => navigate('/home')} text='소원 빌러가기' className='head-font' />
+          <Button
+            onClick={() => {
+              navigate('/home');
+              {
+                !localStorage.getItem('uuid') && getUuid();
+              }
+            }}
+            text='소원 빌러가기'
+            className='head-font'
+          />
           <h4>DEOK MANI BADA</h4>
         </div>
       </IntroArticle>
