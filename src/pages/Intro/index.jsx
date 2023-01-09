@@ -23,7 +23,6 @@ const Intro = () => {
   const getUuid = async () => {
     try {
       const { data } = await api.get('id');
-      console.log(data.uuid);
       localStorage.setItem('uuid', data.uuid);
     } catch (error) {
       console.log(error);

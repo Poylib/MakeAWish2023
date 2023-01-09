@@ -1,13 +1,14 @@
+import { useEffect, useState } from 'react';
+import { api } from '../../api';
 import styled from 'styled-components';
 import useStore from '../../context/store';
-import { useEffect, useState } from 'react';
-import { HomeContainer } from '../Intro';
-import { contentFontColor, headercolor, HomeButtonFont, wishButton } from '../../theme';
 import MakeWishModal from '../../components/MakeWishModal';
 import CreatedModal from '../../components/CreatedModal';
 import ReadWishModal from '../../components/ReadWishModal';
-import MainBackground from '../../components/MainBackground';
 import Button from '../../components/Button';
+import MainBackground from '../../components/MainBackground';
+import { HomeContainer } from '../Intro';
+import { contentFontColor, headercolor, HomeButtonFont, wishButton } from '../../theme';
 import onePocket from '../../assets/main/pockets/shadow.png';
 import pocket from '../../assets/main/pockets/004.png';
 import wishText from '../../assets/main/pockets/wish-text.png';
@@ -16,13 +17,26 @@ import { bell } from '../../utils/Animation';
 const Home = () => {
   const [pocketCounts, setPocketCounts] = useState(200000);
   const [wroteWish, setWroteWish] = useState([0, 1, 2, 3, 4, 5, 6, 7]);
+  const [wishId, setWishId] = useState();
   const [isMakeWish, setIsMakeWish] = useState(false);
   const [isCreatedModal, setIsCreatedModal] = useState(false);
   const [isReadWish, setIsReadWish] = useState(false);
   const { falseIntroPass } = useStore();
+
   useEffect(() => {
     falseIntroPass();
+    getWish();
   }, []);
+
+  const getWish = async () => {
+    try {
+      const { data } = await api.get('main');
+      setWroteWish(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <HomeContainer>
       <HomeArticle>
@@ -41,9 +55,16 @@ const Home = () => {
             <div className='column wish-btn' onClick={() => setIsMakeWish(true)}>
               <img src={onePocket} />
             </div>
-            {wroteWish.map(v => {
+            {wroteWish.map((wish, index) => {
               return (
-                <div className='column' key={v} onClick={() => setIsReadWish(true)}>
+                <div
+                  className='column'
+                  key={index}
+                  onClick={() => {
+                    setWishId(wish._id);
+                    setIsReadWish(true);
+                  }}
+                >
                   <img src={pocket} />
                 </div>
               );
@@ -56,7 +77,7 @@ const Home = () => {
       </HomeArticle>
       {isMakeWish && <MakeWishModal setIsMakeWish={setIsMakeWish} setIsCreatedModal={setIsCreatedModal} />}
       {isCreatedModal && <CreatedModal setIsCreatedModal={setIsCreatedModal} />}
-      {isReadWish && <ReadWishModal setIsReadWish={setIsReadWish} />}
+      {isReadWish && <ReadWishModal id={wishId} setIsReadWish={setIsReadWish} />}
     </HomeContainer>
   );
 };
