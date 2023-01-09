@@ -8,11 +8,9 @@ import luckOn from '../../assets/readwish/bok-on.png';
 import luckOff from '../../assets/readwish/bok-off.png';
 import { mainColor } from '../../theme';
 
-const ReadWishModal = ({ setIsReadWish }) => {
+const ReadWishModal = ({ id, setIsReadWish }) => {
   const [wish, setWish] = useState();
-
-  const id = '63abecc2bd4deb5a89c631bd';
-  const uuid = 'adfdc637-9f39-4f78-8975-148437448354';
+  const uuid = localStorage.getItem('uuid');
 
   const loader = async () => {
     try {
