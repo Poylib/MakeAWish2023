@@ -96,7 +96,7 @@ const HomeArticle = styled.article`
   justify-content: space-between;
   position: absolute;
   bottom: 0%;
-  width: 80%;
+  width: 90%;
   max-width: 440px;
   height: 720px;
   z-index: 100;
