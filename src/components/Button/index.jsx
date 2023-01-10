@@ -24,11 +24,7 @@ const ButtonContainer = styled.button`
   background: ${props => props.color === 'main' && `${mainColor}`};
   color: #fff;
   font-size: 1rem;
-  /* font-weight: bold; */
-
-  &:hover {
-    cursor: pointer;
-  }
+  box-shadow: rgba(0, 0, 0, 0.3) 3px 3px 3px;
 `;
 
 export default Button;
