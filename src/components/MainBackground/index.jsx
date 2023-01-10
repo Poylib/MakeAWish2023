@@ -42,7 +42,7 @@ const MainBackgroundContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  min-width: 375px;
+  min-width: 355px;
   position: absolute;
   bottom: 0%;
   height: 100vh;
