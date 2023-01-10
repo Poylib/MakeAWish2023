@@ -8,7 +8,7 @@ import MultiButton from '../MultiButton';
 import background from '../../assets/makewish/wish-background.png';
 import moon from '../../assets/makewish/wish-moon.png';
 
-const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal, getWish }) => {
+const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal, getWish, setIsLimitModal }) => {
   const [name, setName] = useState('');
   const [wish, setWish] = useState('');
   const [isName, setIsName] = useState(false);
@@ -30,7 +30,8 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal, getWish }) => {
       console.log(error);
       const message = error.response.data;
       if (message === 'Already created') {
-        toast.info('오늘 소원을 이미 작성하셨어요');
+        setIsMakeWish(false);
+        setIsLimitModal(true);
       } else if (message === '비속어는 사용 금지입니다.') {
         toast.warn(message);
       }
