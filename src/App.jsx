@@ -21,7 +21,6 @@ const App = () => {
           <Route path='/like' element={<MyLike />} />
           <Route path='/keyword' element={<Keyword />} />
         </Routes>
-        {/* <MainBackground /> */}
       </ThemeProvider>
     </>
   );
