@@ -15,12 +15,19 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
+  input::placeholder, textarea::placeholder {
+    color: #9e9e9e;
+  }
+
   body {
-    font-family: 'Noto Sans KR', sans-serif;
+    position:relative;
+    font-family: 'Pretendard', sans-serif;
     background-color: ${maincolor};
-    /* max-width:100vw; */
-    max-height:900px;
     margin:0 auto;
+  }
+
+  button {
+    font-family: inherit;
   }
 `;
 export default GlobalStyle;
