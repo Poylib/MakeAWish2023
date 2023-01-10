@@ -47,18 +47,6 @@ const Home = () => {
           </div>
           <h2>소원이 달렸어요</h2>
         </div>
-<<<<<<< HEAD
-        <Button
-          onClick={() => {
-            setIsWishModal(true);
-          }}
-          text='소원빌기'
-        />
-        <Link to='/main'>모달 테스트 링크 버튼</Link>
-      </article>
-      <MainBackground />
-      {isWishModal && <WishModal isWishModal={isWishModal} setIsWishModal={setIsWishModal} />}
-=======
         <div className='home-body'>
           <div className='text'>
             <img src={wishText} />
@@ -90,7 +78,6 @@ const Home = () => {
       {isMakeWish && <MakeWishModal setIsMakeWish={setIsMakeWish} setIsCreatedModal={setIsCreatedModal} />}
       {isCreatedModal && <CreatedModal setIsCreatedModal={setIsCreatedModal} />}
       {isReadWish && <ReadWishModal id={wishId} setIsReadWish={setIsReadWish} />}
->>>>>>> develop
     </HomeContainer>
   );
 };
