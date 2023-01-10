@@ -29,6 +29,12 @@ const Home = () => {
   useEffect(() => {
     falseIntroPass();
     getWish();
+    (async () => {
+      const {
+        data: { wishes },
+      } = await api.get('wish-count');
+      setPocketCounts(wishes);
+    })();
   }, []);
 
   const getWish = async () => {
@@ -39,7 +45,7 @@ const Home = () => {
       console.log(error);
     }
   };
-
+  console.log(wroteWish);
   return (
     <HomeContainer>
       <HomeArticle>
@@ -67,7 +73,7 @@ const Home = () => {
                 }}
               >
                 <img src={pocket} />
-                <p className='wish-num'>1</p>
+                <p className='wish-num'>{wish.likes}</p>
               </div>
             );
           })}
@@ -136,6 +142,7 @@ const HomeArticle = styled.article`
       text-align: center;
       margin: 0 auto;
       width: 30%;
+
       padding: 5px;
     }
     img {
@@ -151,6 +158,7 @@ const HomeArticle = styled.article`
       position: absolute;
       bottom: 23px;
       left: 70px;
+      font-size: 1.4rem;
       color: ${redButton};
     }
   }
@@ -170,13 +178,12 @@ export const Button = styled.div`
   background-color: ${wishButton};
   color: #fff;
   button {
-    padding: 1rem 1rem;
+    padding: 1rem;
     outline: none;
     border: none;
-    font-size: 1rem;
     font-family: 'mainFont600';
     background-color: inherit;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: #fff;
   }
 `;
