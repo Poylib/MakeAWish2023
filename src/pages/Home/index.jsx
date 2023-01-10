@@ -17,15 +17,17 @@ import { bell } from '../../utils/Animation';
 import TopKeyword from '../../components/TopKeyword';
 import { BsArrowCounterclockwise } from 'react-icons/bs';
 import MenuButton from '../../components/MenuButton';
+import SideBar from '../../components/SideBar';
 
 const Home = () => {
-  const [pocketCounts, setPocketCounts] = useState(200000);
+  const [pocketCounts, setPocketCounts] = useState(0);
   const [wroteWish, setWroteWish] = useState([0, 1, 2, 3, 4, 5, 6, 7]);
   const [wishId, setWishId] = useState();
   const [isMakeWish, setIsMakeWish] = useState(false);
   const [isCreatedModal, setIsCreatedModal] = useState(false);
   const [isReadWish, setIsReadWish] = useState(false);
   const [isLimitModal, setIsLimitModal] = useState(false);
+  const [isSideBar, setIsSideBar] = useState(false);
   const { falseIntroPass } = useStore();
 
   useEffect(() => {
@@ -49,7 +51,6 @@ const Home = () => {
   };
   return (
     <HomeContainer>
-      <MainBackground />
       <HomeArticle>
         <div className='home-header'>
           <div>
@@ -59,8 +60,8 @@ const Home = () => {
             </div>
             <h2>소원이 달렸어요</h2>
           </div>
-          <MenuButton />
         </div>
+
         <div className='home-body'>
           <div className='column wish-btn' onClick={() => setIsMakeWish(true)}>
             <img src={onePocket} />
@@ -89,8 +90,13 @@ const Home = () => {
             <button>다른 소원들 보기</button>
           </Button>
         </div>
+        <SideBar isSideBar={isSideBar} />
+        <MenuButton isSideBar={isSideBar} setIsSideBar={setIsSideBar} />
+        <Blur />
       </HomeArticle>
+      <MainBackground />
       {isMakeWish && <MakeWishModal setIsMakeWish={setIsMakeWish} setIsCreatedModal={setIsCreatedModal} setIsLimitModal={setIsLimitModal} />}
+
       {isCreatedModal && <CreatedModal setIsCreatedModal={setIsCreatedModal} />}
       {isReadWish && <ReadWishModal id={wishId} setIsReadWish={setIsReadWish} />}
       {isLimitModal && <LimitModal isLimitModal={isLimitModal} setIsLimitModal={setIsLimitModal} />}
@@ -99,16 +105,19 @@ const Home = () => {
 };
 
 const HomeArticle = styled.article`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 90%;
+  width: 100%;
   max-width: 440px;
   height: 100vh;
-  min-height: 590px;
-  z-index: 10;
-  padding: 3.5rem 0;
+  min-height: 700px;
+  max-height: 1100px;
+  z-index: 2;
+  padding: 3.5rem 1rem;
   background-color: inherit;
+  overflow-x: hidden;
   ${HomeButtonFont};
   font-family: 'CWDangamAsac-Bold';
   color: ${contentFontColor};
@@ -145,8 +154,6 @@ const HomeArticle = styled.article`
       text-align: center;
       margin: 0 auto;
       width: 30%;
-
-      padding: 5px;
     }
     img {
       width: 75px;
@@ -180,7 +187,6 @@ export const Button = styled.div`
   box-shadow: rgba(0, 0, 0, 0.3) 3px 3px 3px;
   background-color: ${wishButton};
   color: #fff;
-  z-index: 10;
   button {
     padding: 1rem;
     outline: none;
@@ -190,6 +196,18 @@ export const Button = styled.div`
     font-size: 1.3rem;
     color: #fff;
   }
+`;
+
+export const Blur = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2;
 `;
 
 export default Home;

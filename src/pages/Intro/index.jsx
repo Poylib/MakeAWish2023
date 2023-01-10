@@ -31,7 +31,6 @@ const Intro = () => {
 
   return (
     <HomeContainer>
-      <MainBackground />
       <IntroArticle>
         {fadeInHeader ? (
           <div className='header-box header-fade'>
@@ -42,7 +41,6 @@ const Intro = () => {
         ) : (
           <div className='header-box'></div>
         )}
-
         <div className='footer-box'>
           <Button
             onClick={() => {
@@ -57,16 +55,18 @@ const Intro = () => {
           <h4>DEOK MANI BADA</h4>
         </div>
       </IntroArticle>
+      <MainBackground />
     </HomeContainer>
   );
 };
 
 export const HomeContainer = styled.main`
+  /* position: relative; */
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
-  height: 100vh;
   margin: 0 auto;
   min-width: 355px;
   max-width: 450px;
@@ -79,13 +79,12 @@ const IntroArticle = styled.article`
   justify-content: space-between;
   width: 90%;
   max-width: 440px;
-  height: 100vh;
-
+  height: 90vh;
   padding: 3.5rem 0 1rem 0;
   background-color: inherit;
   font-family: 'CWDangamAsac-Bold';
   color: ${contentFontColor};
-
+  z-index: 10;
   .header-box {
     display: flex;
     flex-direction: column;

@@ -7,6 +7,7 @@ import lines from '../../assets/main/main-clothesline.png';
 import pocket from '../../assets/main/pocket-shadow.png';
 import { useEffect, useState } from 'react';
 import { fadeIn } from '../../utils/Animation/index.jsx';
+import { Blur } from '../../pages/Home';
 
 const MainBackground = () => {
   const { introPass } = useStore();
@@ -22,6 +23,7 @@ const MainBackground = () => {
   });
   return (
     <MainBackgroundContainer>
+      {/* <Blur /> */}
       <img src={sun} className='sun-trees' />
       <img src={trees} className='sun-trees' />
       {openFade && (
@@ -42,13 +44,17 @@ const MainBackgroundContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  min-width: 355px;
   top: 0;
   height: 100vh;
+  min-height: 707px;
   overflow: hidden;
   img {
-    height: 90vh;
+    height: 100vh;
+    min-height: 667px;
+    max-height: 1100px;
     position: absolute;
-    top: 10vh;
+    /* top: 10%; */
   }
   .sun-trees {
     animation: ${fadeIn} 1.7s;
