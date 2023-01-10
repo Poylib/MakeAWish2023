@@ -1,33 +1,32 @@
 import { useState, useEffect } from 'react';
 import { api } from '../../api';
 import styled from 'styled-components';
-import { GiTargetDummy } from 'react-icons/gi';
 import WishList from '../../components/WishList';
 
-const MyWish = () => {
-  const [myWishList, setMyWishList] = useState([]);
+const MyLike = () => {
+  const [myLikeList, setMyLikeList] = useState([]);
 
   useEffect(() => {
-    const getMyWish = async () => {
+    const getLike = async () => {
       const uuid = localStorage.getItem('uuid');
       try {
-        const { data } = await api.get(`mywish?uuid=${uuid}&skip=1&limit=3`);
-        setMyWishList(data);
+        const { data } = await api.get(`like?uuid=${uuid}&skip=1&limit=5`);
+        setMyLikeList(data);
       } catch (error) {
         console.log(error);
       }
     };
-    getMyWish();
+    getLike();
   }, []);
 
   return (
-    <MyWishContainer>
-      <WishList title='내가 빈 소원' icon={<GiTargetDummy />} wishList={myWishList} />;
-    </MyWishContainer>
+    <MyLikeContainer>
+      <WishList title='내가 응원한 소원' wishList={myLikeList} />
+    </MyLikeContainer>
   );
 };
 
-const MyWishContainer = styled.div`
+const MyLikeContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
@@ -36,4 +35,4 @@ const MyWishContainer = styled.div`
   background: ${({ theme }) => theme.bgColor};
 `;
 
-export default MyWish;
+export default MyLike;

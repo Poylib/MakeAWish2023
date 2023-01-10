@@ -5,7 +5,7 @@ import GlobalStyle from './GlobalStyle';
 import Intro from './pages/Intro';
 import Home from './pages/Home';
 import MyWish from './pages/MyWish';
-// import MyLikeList
+import MyLike from './pages/MyLike';
 // import Keyword from
 import MainBackground from './components/MainBackground';
 
@@ -18,6 +18,7 @@ const App = () => {
           <Route path='/' element={<Intro />} />
           <Route path='/home' element={<Home />} />
           <Route path='/wish' element={<MyWish />} />
+          <Route path='/like' element={<MyLike />} />
         </Routes>
         {/* <MainBackground /> */}
       </ThemeProvider>
