@@ -5,6 +5,7 @@ import useStore from '../../context/store';
 import MakeWishModal from '../../components/MakeWishModal';
 import CreatedModal from '../../components/CreatedModal';
 import ReadWishModal from '../../components/ReadWishModal';
+import LimitModal from '../../components/LimitModal';
 import Button from '../../components/Button';
 import MainBackground from '../../components/MainBackground';
 import { HomeContainer } from '../Intro';
@@ -21,6 +22,7 @@ const Home = () => {
   const [isMakeWish, setIsMakeWish] = useState(false);
   const [isCreatedModal, setIsCreatedModal] = useState(false);
   const [isReadWish, setIsReadWish] = useState(false);
+  const [isLimitModal, setIsLimitModal] = useState(false);
   const { falseIntroPass } = useStore();
 
   useEffect(() => {
@@ -75,9 +77,10 @@ const Home = () => {
           <Button text='다른 소원들 보기' />
         </div>
       </HomeArticle>
-      {isMakeWish && <MakeWishModal setIsMakeWish={setIsMakeWish} setIsCreatedModal={setIsCreatedModal} />}
+      {isMakeWish && <MakeWishModal setIsMakeWish={setIsMakeWish} setIsCreatedModal={setIsCreatedModal} setIsLimitModal={setIsLimitModal} />}
       {isCreatedModal && <CreatedModal setIsCreatedModal={setIsCreatedModal} />}
       {isReadWish && <ReadWishModal id={wishId} setIsReadWish={setIsReadWish} />}
+      {isLimitModal && <LimitModal setIsLimitModal={setIsLimitModal} />}
     </HomeContainer>
   );
 };
