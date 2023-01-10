@@ -20,7 +20,6 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    position:relative;
     font-family: 'Pretendard', sans-serif;
     background-color: ${maincolor};
     margin:0 auto;
