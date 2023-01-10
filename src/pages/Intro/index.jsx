@@ -81,7 +81,7 @@ const IntroArticle = styled.article`
   justify-content: space-between;
   position: absolute;
   bottom: 0%;
-  width: 80%;
+  width: 90%;
   max-width: 440px;
   height: 100%;
   z-index: 100;
