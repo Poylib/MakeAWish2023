@@ -38,19 +38,18 @@ const MainBackground = () => {
 export default MainBackground;
 
 const MainBackgroundContainer = styled.div`
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  min-width: 355px;
-  position: absolute;
-  bottom: 0%;
+  top: 0;
   height: 100vh;
   overflow: hidden;
   img {
-    width: 1200px;
+    width: 1400px;
     position: absolute;
-    bottom: 0%;
+    top: 0%;
   }
   .sun-trees {
     animation: ${fadeIn} 1.7s;

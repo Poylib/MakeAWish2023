@@ -69,23 +69,16 @@ export const HomeContainer = styled.main`
   margin: 0 auto;
   min-width: 355px;
   max-width: 450px;
-  max-height: 720px;
-  overflow-y: scroll;
   ${HomeButtonFont};
-  ::-webkit-scrollbar {
-    display: none;
-  }
 `;
 const IntroArticle = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: absolute;
-  bottom: 0%;
   width: 90%;
   max-width: 440px;
-  height: 100%;
-  z-index: 100;
+  height: 720px;
+  z-index: 10;
   padding: 3.5rem 0 1rem 0;
   background-color: inherit;
   font-family: 'CWDangamAsac-Bold';
