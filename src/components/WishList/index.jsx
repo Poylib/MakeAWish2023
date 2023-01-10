@@ -1,9 +1,14 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { FiArrowLeft } from 'react-icons/fi';
 import luckOn from '../../assets/readwish/bok-on.png';
 import luckOff from '../../assets/readwish/bok-off.png';
 
 const WishList = () => {
+  const [isLike, setIsLike] = useState(false);
+
+  console.log(isLike);
+
   return (
     <WishListContainer>
       <div className='title-wrapper'>
@@ -14,15 +19,14 @@ const WishList = () => {
         <div className='wish'>
           <div className='text'>2023년 계묘년에는 여자친구도 생기고 좋은 직장에 취업도 해서 얼른 결혼하고 싶다! 그리고 서비스 대박나서 떼돈 벌고 싶ㄴ다</div>
           <div className='like-wrapper'>
-            <p>100</p>
-            <img alt='복' src={luckOn} className='bok' />
-          </div>
-        </div>
-        <div className='wish'>
-          <div className='text'>2023년 계묘년에는 여자친구도 생기고 좋은 직장에 취업도 해서 얼른 결혼하고 싶다! 그리고 서비스 대박나서 떼돈 벌고 싶ㄴ다</div>
-          <div className='like-wrapper'>
-            <p>100</p>
-            <img alt='복' src={luckOn} className='bok' />
+            <p className={isLike ? 'bok' : 'bok-off'}>100</p>
+            <img
+              alt='복'
+              src={isLike ? luckOn : luckOff}
+              onClick={() => {
+                setIsLike(!isLike);
+              }}
+            />
           </div>
         </div>
       </div>
@@ -81,15 +85,22 @@ const WishListContainer = styled.div`
       justify-content: flex-end;
       align-items: flex-end;
 
+      img {
+        width: 70px;
+      }
+
       p {
         margin-right: 5px;
-        color: #cc3333;
         font-size: 1.5rem;
         font-weight: 700;
       }
 
       .bok {
-        width: 70px;
+        color: #cc3333;
+      }
+
+      .bok-off {
+        color: #9e9e9e;
       }
     }
   }
