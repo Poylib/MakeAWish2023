@@ -1,36 +1,55 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { TiArrowLeftThick, TiArrowRightThick } from 'react-icons/ti';
 import { FiArrowLeft } from 'react-icons/fi';
 import luckOn from '../../assets/readwish/bok-on.png';
 import luckOff from '../../assets/readwish/bok-off.png';
 
 const WishList = ({ title, icon, wishList }) => {
+  const navigate = useNavigate();
   const [isLike, setIsLike] = useState(false);
 
   return (
     <WishListContainer>
       <div className='title-wrapper'>
-        <FiArrowLeft />
+        <FiArrowLeft
+          onClick={() => {
+            navigate('/home');
+          }}
+        />
         <h3>
           {title}&nbsp;{icon}
         </h3>
       </div>
+      {location.pathname === '/keyword' && (
+        <div className='keyword-wrapper'>
+          <div className='prev-keyword'>#건강</div>
+          <TiArrowLeftThick />
+          <div className='keyword'>#돈</div>
+          <TiArrowRightThick />
+          <div className='next-keyword'>#행복</div>
+        </div>
+      )}
       <div className='list-wrapper'>
         {wishList.map(wish => {
           return (
-            <div className='wish' key={wish._id}>
-              <div className='text'>{wish.comment}</div>
-              <div className='like-wrapper'>
-                <p className={isLike ? 'bok' : 'bok-off'}>{wish.likes}</p>
-                <img
-                  alt='복'
-                  src={isLike ? luckOn : luckOff}
-                  onClick={() => {
-                    setIsLike(!isLike);
-                  }}
-                />
+            <Wish key={wish._id}>
+              <div className='name'>{wish.nickName}</div>
+              <div className='wish'>
+                <div className='text'>{wish.comment}</div>
+                <div className='like-wrapper'>
+                  <p className={isLike ? 'bok' : 'bok-off'}>{wish.likes}</p>
+                  <img
+                    alt='복'
+                    src={isLike ? luckOn : luckOff}
+                    onClick={() => {
+                      setIsLike(!isLike);
+                    }}
+                  />
+                </div>
               </div>
-            </div>
+            </Wish>
           );
         })}
       </div>
@@ -49,10 +68,6 @@ const WishListContainer = styled.div`
   margin-top: 1.5rem;
   padding: 1.25rem;
 
-  div + div {
-    margin-top: 1.5rem;
-  }
-
   .title-wrapper {
     display: flex;
     flex-direction: row;
@@ -66,6 +81,33 @@ const WishListContainer = styled.div`
       font-family: 'CWDangamAsac-Bold';
     }
   }
+
+  .keyword-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 1.5rem;
+
+    ${({ theme }) => theme.textFont1};
+    font-family: 'UhBeeSeulvely';
+    font-size: 1.75rem;
+
+    svg {
+      color: #9e9e9e;
+    }
+
+    .prev-keyword {
+      color: #9e9e9e;
+    }
+
+    .next-keyword {
+      color: #9e9e9e;
+    }
+  }
+`;
+
+const Wish = styled.div`
+  margin-top: 1.5rem;
 
   .wish {
     display: flex;
