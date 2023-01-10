@@ -30,7 +30,6 @@ const MainBackground = () => {
           {introPass && <img src={pocket} className='lines-pocket' />}
         </>
       )}
-
       <img src={hill} className='hill' />
     </MainBackgroundContainer>
   );
@@ -47,9 +46,9 @@ const MainBackgroundContainer = styled.div`
   height: 100vh;
   overflow: hidden;
   img {
-    width: 1400px;
+    height: 90vh;
     position: absolute;
-    top: 0%;
+    top: 10vh;
   }
   .sun-trees {
     animation: ${fadeIn} 1.7s;

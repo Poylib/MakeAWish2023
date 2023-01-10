@@ -49,6 +49,7 @@ const Home = () => {
   };
   return (
     <HomeContainer>
+      <MainBackground />
       <HomeArticle>
         <div className='home-header'>
           <div>
@@ -101,11 +102,9 @@ const HomeArticle = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: absolute;
-  top: 0%;
   width: 90%;
   max-width: 440px;
-  height: 720px;
+  height: 100vh;
   min-height: 590px;
   z-index: 10;
   padding: 3.5rem 0;
@@ -133,10 +132,8 @@ const HomeArticle = styled.article`
     }
   }
   .home-body {
-    position: relative;
     display: flex;
     flex-wrap: wrap;
-
     width: 100%;
     .text {
       position: absolute;
@@ -183,6 +180,7 @@ export const Button = styled.div`
   box-shadow: rgba(0, 0, 0, 0.3) 3px 3px 3px;
   background-color: ${wishButton};
   color: #fff;
+  z-index: 10;
   button {
     padding: 1rem;
     outline: none;

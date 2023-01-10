@@ -31,6 +31,7 @@ const Intro = () => {
 
   return (
     <HomeContainer>
+      <MainBackground />
       <IntroArticle>
         {fadeInHeader ? (
           <div className='header-box header-fade'>
@@ -69,6 +70,7 @@ export const HomeContainer = styled.main`
   margin: 0 auto;
   min-width: 355px;
   max-width: 450px;
+  z-index: 10;
   ${HomeButtonFont};
 `;
 const IntroArticle = styled.article`
@@ -77,8 +79,8 @@ const IntroArticle = styled.article`
   justify-content: space-between;
   width: 90%;
   max-width: 440px;
-  height: 720px;
-  z-index: 10;
+  height: 100vh;
+
   padding: 3.5rem 0 1rem 0;
   background-color: inherit;
   font-family: 'CWDangamAsac-Bold';
