@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { GiTargetDummy } from 'react-icons/gi';
 import WishList from '../../components/WishList';
 
-const MyWishList = () => {
+const MyWish = () => {
   const [myWishList, setMyWishList] = useState([]);
 
   useEffect(() => {
@@ -36,4 +36,4 @@ const MyWishListContainer = styled.div`
   background: ${({ theme }) => theme.bgColor};
 `;
 
-export default MyWishList;
+export default MyWish;

@@ -4,7 +4,7 @@ import * as theme from './theme';
 import GlobalStyle from './GlobalStyle';
 import Intro from './pages/Intro';
 import Home from './pages/Home';
-import MyWishList from './pages/MyWishList';
+import MyWish from './pages/MyWish';
 // import MyLikeList
 // import Keyword from
 import MainBackground from './components/MainBackground';
@@ -17,7 +17,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Intro />} />
           <Route path='/home' element={<Home />} />
-          <Route path='/wish' element={<MyWishList />} />
+          <Route path='/wish' element={<MyWish />} />
         </Routes>
         {/* <MainBackground /> */}
       </ThemeProvider>
