@@ -35,7 +35,7 @@ const WishList = ({ title, icon, wishList }) => {
         {wishList.map(wish => {
           return (
             <Wish key={wish._id}>
-              <div className='name'>{wish.nickName}</div>
+              {location.pathname === '/like' && <span className='name'>{wish.nickName}</span>}
               <div className='wish'>
                 <div className='text'>{wish.comment}</div>
                 <div className='like-wrapper'>
@@ -109,6 +109,16 @@ const WishListContainer = styled.div`
 const Wish = styled.div`
   margin-top: 1.5rem;
 
+  .name {
+    width: auto;
+    padding: 0 10px;
+    background: #cc3333;
+    color: #fff;
+    ${({ theme }) => theme.textFont2};
+    font-family: 'UhBeeRice';
+    font-size: 1.25rem;
+  }
+
   .wish {
     display: flex;
     flex-direction: column;
@@ -121,10 +131,10 @@ const Wish = styled.div`
 
     .text {
       color: ${({ theme }) => theme.contentFontColor};
+      ${({ theme }) => theme.textFont2};
       line-height: 2;
       font-family: 'UhBeeRice';
       font-size: 1.25rem;
-      ${({ theme }) => theme.textFont2};
     }
 
     .like-wrapper {
