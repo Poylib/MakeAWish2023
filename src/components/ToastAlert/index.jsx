@@ -7,6 +7,8 @@ const ToastAlert = () => {
 };
 
 const Toast = styled(ToastContainer)`
+  bottom: 22%;
+
   .Toastify__toast {
     width: 90%;
     margin: 0 auto;

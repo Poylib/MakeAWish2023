@@ -33,7 +33,9 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal, getWish, setIsLimitMo
         setIsMakeWish(false);
         setIsLimitModal(true);
       } else if (message === '비속어는 사용 금지입니다.') {
-        toast.warn(message);
+        toast(message);
+      } else if (message === '특수문자 제외 한글 또는 영문 숫자를 포함한 8글자 이내여야 합니다.' || '200글자 이하로 작성해주십시오') {
+        toast('작성란을 확인해주세요.');
       }
     }
   };
@@ -91,7 +93,6 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal, getWish, setIsLimitMo
                   }}
                   closeText='닫기'
                   confirmText='작성 완료'
-                  disabled={!(isName && isWish)}
                 />
               </div>
             </div>
