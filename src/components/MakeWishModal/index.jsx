@@ -11,8 +11,6 @@ import moon from '../../assets/makewish/wish-moon.png';
 const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal, getWish, setIsLimitModal }) => {
   const [name, setName] = useState('');
   const [wish, setWish] = useState('');
-  const [isName, setIsName] = useState(false);
-  const [isWish, setIsWish] = useState(false);
   const wishLength = `${wish.length}`;
 
   const makeWish = async () => {
@@ -43,21 +41,11 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal, getWish, setIsLimitMo
   const handleName = e => {
     const nameCurrent = e.target.value;
     setName(nameCurrent);
-    if (nameCurrent.length < 1) {
-      setIsName(false);
-    } else {
-      setIsName(true);
-    }
   };
 
   const handleWish = e => {
     const wishCurrent = e.target.value;
     setWish(wishCurrent);
-    if (wishCurrent.length < 1) {
-      setIsWish(false);
-    } else {
-      setIsWish(true);
-    }
   };
 
   return (
