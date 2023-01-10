@@ -15,6 +15,7 @@ import pocket from '../../assets/main/pockets/004.png';
 import wishText from '../../assets/main/pockets/wish-text.png';
 import { bell } from '../../utils/Animation';
 import { BsArrowCounterclockwise } from 'react-icons/bs';
+import MenuButton from '../../components/MenuButton';
 
 const Home = () => {
   const [pocketCounts, setPocketCounts] = useState(200000);
@@ -45,19 +46,20 @@ const Home = () => {
       console.log(error);
     }
   };
-  console.log(wroteWish);
   return (
     <HomeContainer>
       <HomeArticle>
         <div className='home-header'>
-          <div className='font-box'>
-            <h2 className='header-color'>{pocketCounts.toLocaleString()}</h2>
-            <h2>개의</h2>
+          <div>
+            <div className='font-box'>
+              <h2 className='header-color'>{pocketCounts.toLocaleString()}</h2>
+              <h2>개의</h2>
+            </div>
+            <h2>소원이 달렸어요</h2>
           </div>
-          <h2>소원이 달렸어요</h2>
+          <MenuButton />
         </div>
         <div className='home-body'>
-          {/* <div className='home-img'> */}
           <div className='column wish-btn' onClick={() => setIsMakeWish(true)}>
             <img src={onePocket} />
             <img className='text' src={wishText} />
@@ -77,7 +79,6 @@ const Home = () => {
               </div>
             );
           })}
-          {/* </div> */}
         </div>
         <Button>
           <BsArrowCounterclockwise size='1.4rem' />
@@ -97,12 +98,12 @@ const HomeArticle = styled.article`
   flex-direction: column;
   justify-content: space-between;
   position: absolute;
-  bottom: 0%;
+  top: 0%;
   width: 90%;
   max-width: 440px;
   height: 720px;
   min-height: 590px;
-  z-index: 100;
+  z-index: 10;
   padding: 3.5rem 0;
   background-color: inherit;
   ${HomeButtonFont};
@@ -111,8 +112,9 @@ const HomeArticle = styled.article`
   .home-header {
     display: flex;
     padding-left: 5%;
-    justify-content: center;
-    flex-direction: column;
+    justify-content: space-between;
+
+    flex-direction: row;
     .font-box {
       display: flex;
       padding-bottom: 7px;
@@ -146,8 +148,8 @@ const HomeArticle = styled.article`
       padding: 5px;
     }
     img {
-      width: 70px;
-      margin: 0.4rem 1rem;
+      width: 75px;
+      margin: 0.8rem 1rem;
     }
 
     .wish-btn {
@@ -156,7 +158,7 @@ const HomeArticle = styled.article`
     }
     .wish-num {
       position: absolute;
-      bottom: 23px;
+      bottom: 28px;
       left: 70px;
       font-size: 1.4rem;
       color: ${redButton};
@@ -170,7 +172,7 @@ export const Button = styled.div`
   align-items: center;
   -webkit-box-pack: center;
   justify-content: center;
-  padding: 5px;
+  padding: 2px;
   margin: 0 auto;
   width: 80%;
   border-radius: 17px;
