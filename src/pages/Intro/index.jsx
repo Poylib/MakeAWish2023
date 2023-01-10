@@ -69,7 +69,7 @@ export const HomeContainer = styled.main`
   margin: 0 auto;
   min-width: 355px;
   max-width: 450px;
-  /* max-height: 720px; */
+  max-height: 720px;
   overflow-y: scroll;
   ${HomeButtonFont};
   ::-webkit-scrollbar {

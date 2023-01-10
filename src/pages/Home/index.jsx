@@ -51,27 +51,27 @@ const Home = () => {
           <h2>소원이 달렸어요</h2>
         </div>
         <div className='home-body'>
-          <div className='home-img'>
-            <div className='column wish-btn' onClick={() => setIsMakeWish(true)}>
-              <img src={onePocket} />
-              <img className='text' src={wishText} />
-            </div>
-            {wroteWish.map((wish, index) => {
-              return (
-                <div
-                  className='column'
-                  key={index}
-                  onClick={() => {
-                    setWishId(wish._id);
-                    setIsReadWish(true);
-                  }}
-                >
-                  <img src={pocket} />
-                  <p className='wish-num'>1</p>
-                </div>
-              );
-            })}
+          {/* <div className='home-img'> */}
+          <div className='column wish-btn' onClick={() => setIsMakeWish(true)}>
+            <img src={onePocket} />
+            <img className='text' src={wishText} />
           </div>
+          {wroteWish.map((wish, index) => {
+            return (
+              <div
+                className='column'
+                key={index}
+                onClick={() => {
+                  setWishId(wish._id);
+                  setIsReadWish(true);
+                }}
+              >
+                <img src={pocket} />
+                <p className='wish-num'>1</p>
+              </div>
+            );
+          })}
+          {/* </div> */}
         </div>
         <Button>
           <BsArrowCounterclockwise size='1.4rem' />
@@ -122,8 +122,10 @@ const HomeArticle = styled.article`
   }
   .home-body {
     position: relative;
+    display: flex;
+    flex-wrap: wrap;
+
     width: 100%;
-    margin: 0 auto;
     .text {
       position: absolute;
       top: -1.5rem;
@@ -131,9 +133,9 @@ const HomeArticle = styled.article`
     }
     .column {
       position: relative;
-      float: left;
       text-align: center;
-      width: 33.33%;
+      margin: 0 auto;
+      width: 30%;
       padding: 5px;
     }
     img {
