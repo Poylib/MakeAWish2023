@@ -118,6 +118,7 @@ const Positioner = styled.div`
 const WishModalContainer = styled.div`
   width: 100%;
   height: 100%;
+  min-height: 667px;
 
   .content-wrapper {
     display: flex;
@@ -152,7 +153,7 @@ const WishModalContainer = styled.div`
         flex-direction: column;
         justify-content: space-between;
         width: 100%;
-        height: 50vh;
+        height: 40vh;
         margin: 0.5rem 0;
         padding: 0.75rem 1rem;
         background: #fff;
@@ -164,6 +165,7 @@ const WishModalContainer = styled.div`
           min-height: 15rem;
           margin: 0;
           padding: 0;
+          background: transparent;
           border: none;
           outline: none;
           overflow: auto;
