@@ -1,14 +1,12 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import { blackcolor } from '../../theme';
 
-const MenuButton = () => {
-  const [openSide, setOpenSide] = useState(false);
+const MenuButton = ({ isSideBar, setIsSideBar }) => {
   const BtnChange = () => {
-    setOpenSide(!openSide);
+    setIsSideBar(!isSideBar);
   };
   return (
-    <MenuContainer className={openSide && 'change'} onClick={BtnChange}>
+    <MenuContainer className={isSideBar && 'change'} onClick={BtnChange}>
       <div className='bar1'></div>
       <div className='bar2'></div>
       <div className='bar3'></div>
@@ -19,6 +17,9 @@ const MenuButton = () => {
 export default MenuButton;
 
 const MenuContainer = styled.div`
+  position: absolute;
+  right: 20px;
+  top: 30px;
   z-index: 30;
   div {
     border-radius: 5px;
@@ -34,16 +35,16 @@ const MenuContainer = styled.div`
   }
   &.change {
     .bar1 {
-      background-color: #fff;
+      /* background-color: #fff; */
       -webkit-transform: rotate(-45deg) translate(-8px, 8px);
       transform: rotate(-45deg) translate(-8px, 8px);
     }
     .bar2 {
-      background-color: #fff;
+      /* background-color: #fff; */
       opacity: 0;
     }
     .bar3 {
-      background-color: #fff;
+      /* background-color: #fff; */
       -webkit-transform: rotate(45deg) translate(-8px, -8px);
       transform: rotate(45deg) translate(-8px, -8px);
     }
