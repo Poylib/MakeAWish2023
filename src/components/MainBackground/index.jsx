@@ -45,7 +45,7 @@ const MainBackgroundContainer = styled.div`
   min-width: 375px;
   position: absolute;
   bottom: 0%;
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
   img {
     width: 1200px;
