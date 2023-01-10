@@ -64,12 +64,13 @@ export const HomeContainer = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: scroll;
   width: 100%;
   height: 100vh;
   margin: 0 auto;
-  min-width: 375px;
-  max-width: 430px;
+  min-width: 355px;
+  max-width: 450px;
+  /* max-height: 720px; */
+  overflow-y: scroll;
   ${HomeButtonFont};
   ::-webkit-scrollbar {
     display: none;

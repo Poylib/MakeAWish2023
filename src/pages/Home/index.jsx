@@ -95,6 +95,7 @@ const HomeArticle = styled.article`
   width: 90%;
   max-width: 440px;
   height: 720px;
+  min-height: 590px;
   z-index: 100;
   padding: 3.5rem 0;
   background-color: inherit;
@@ -126,7 +127,7 @@ const HomeArticle = styled.article`
     .text {
       position: absolute;
       top: -1.5rem;
-      left: 1.2rem;
+      left: 0.8rem;
     }
     .column {
       position: relative;
@@ -147,7 +148,7 @@ const HomeArticle = styled.article`
     .wish-num {
       position: absolute;
       bottom: 23px;
-      left: 75px;
+      left: 70px;
       color: ${redButton};
     }
   }
