@@ -4,31 +4,35 @@ import { FiArrowLeft } from 'react-icons/fi';
 import luckOn from '../../assets/readwish/bok-on.png';
 import luckOff from '../../assets/readwish/bok-off.png';
 
-const WishList = () => {
+const WishList = ({ title, icon, wishList }) => {
   const [isLike, setIsLike] = useState(false);
-
-  console.log(isLike);
 
   return (
     <WishListContainer>
       <div className='title-wrapper'>
         <FiArrowLeft />
-        <h3>내가 빈 소원</h3>
+        <h3>
+          {title}&nbsp;{icon}
+        </h3>
       </div>
       <div className='list-wrapper'>
-        <div className='wish'>
-          <div className='text'>2023년 계묘년에는 여자친구도 생기고 좋은 직장에 취업도 해서 얼른 결혼하고 싶다! 그리고 서비스 대박나서 떼돈 벌고 싶ㄴ다</div>
-          <div className='like-wrapper'>
-            <p className={isLike ? 'bok' : 'bok-off'}>100</p>
-            <img
-              alt='복'
-              src={isLike ? luckOn : luckOff}
-              onClick={() => {
-                setIsLike(!isLike);
-              }}
-            />
-          </div>
-        </div>
+        {wishList.map(wish => {
+          return (
+            <div className='wish' key={wish._id}>
+              <div className='text'>{wish.comment}</div>
+              <div className='like-wrapper'>
+                <p className={isLike ? 'bok' : 'bok-off'}>{wish.likes}</p>
+                <img
+                  alt='복'
+                  src={isLike ? luckOn : luckOff}
+                  onClick={() => {
+                    setIsLike(!isLike);
+                  }}
+                />
+              </div>
+            </div>
+          );
+        })}
       </div>
     </WishListContainer>
   );
@@ -56,6 +60,8 @@ const WishListContainer = styled.div`
     font-size: 2.5rem;
 
     h3 {
+      display: flex;
+      justify-content: center;
       ${({ theme }) => theme.HomeButtonFont};
       font-family: 'CWDangamAsac-Bold';
     }
