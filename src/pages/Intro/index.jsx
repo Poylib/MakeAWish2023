@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { api } from '../../api';
-import Button from '../../components/Button';
 import { mainColor, contentFontColor, wishButton, HomeButtonFont } from '../../theme';
 import MainBackground from '../../components/MainBackground';
 import useStore from '../../context/store';
 import { fadeIn } from '../../utils/Animation';
+import { Button } from '../Home';
 
 const Intro = () => {
   const navigate = useNavigate();
@@ -41,6 +41,7 @@ const Intro = () => {
         ) : (
           <div className='header-box'></div>
         )}
+
         <div className='footer-box'>
           <Button
             onClick={() => {
@@ -49,9 +50,9 @@ const Intro = () => {
                 !localStorage.getItem('uuid') && getUuid();
               }
             }}
-            text='소원 빌러가기'
-            className='head-font'
-          />
+          >
+            <button>소원 빌러가기</button>
+          </Button>
           <h4>DEOK MANI BADA</h4>
         </div>
       </IntroArticle>
@@ -63,12 +64,16 @@ export const HomeContainer = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: scroll;
   width: 100%;
   height: 100vh;
   margin: 0 auto;
   min-width: 375px;
   max-width: 430px;
   ${HomeButtonFont};
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 const IntroArticle = styled.article`
   display: flex;
@@ -76,11 +81,11 @@ const IntroArticle = styled.article`
   justify-content: space-between;
   position: absolute;
   bottom: 0%;
-  width: 100%;
-  height: 100vh;
-  max-height: 800px;
+  width: 80%;
+  max-width: 440px;
+  height: 100%;
   z-index: 100;
-  padding: 2rem 1rem 1rem 1rem;
+  padding: 3.5rem 0 1rem 0;
   background-color: inherit;
   font-family: 'CWDangamAsac-Bold';
   color: ${contentFontColor};
@@ -115,15 +120,11 @@ const IntroArticle = styled.article`
     margin: 15px 0;
     button {
       font-family: 'CWDangamAsac-Bold';
-      background-color: ${wishButton};
-      padding: 1rem 3rem;
       font-size: 2rem;
-      border-radius: 24px;
-      box-shadow: rgba(0, 0, 0, 0.3) 3px 3px 3px;
     }
     h4 {
       font-size: 10px;
-      margin: 20px 0 0 0;
+      margin-top: 20px;
       font-family: 'Noto Sans KR', sans-serif;
       font-weight: bold;
     }

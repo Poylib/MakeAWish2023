@@ -9,11 +9,12 @@ import LimitModal from '../../components/LimitModal';
 import Button from '../../components/Button';
 import MainBackground from '../../components/MainBackground';
 import { HomeContainer } from '../Intro';
-import { contentFontColor, headercolor, HomeButtonFont, wishButton } from '../../theme';
+import { contentFontColor, headercolor, HomeButtonFont, mainColor, maincolor, redButton, wishButton } from '../../theme';
 import onePocket from '../../assets/main/pockets/shadow.png';
 import pocket from '../../assets/main/pockets/004.png';
 import wishText from '../../assets/main/pockets/wish-text.png';
 import { bell } from '../../utils/Animation';
+import { BsArrowCounterclockwise } from 'react-icons/bs';
 
 const Home = () => {
   const [pocketCounts, setPocketCounts] = useState(200000);
@@ -50,12 +51,10 @@ const Home = () => {
           <h2>소원이 달렸어요</h2>
         </div>
         <div className='home-body'>
-          <div className='text'>
-            <img src={wishText} />
-          </div>
           <div className='home-img'>
             <div className='column wish-btn' onClick={() => setIsMakeWish(true)}>
               <img src={onePocket} />
+              <img className='text' src={wishText} />
             </div>
             {wroteWish.map((wish, index) => {
               return (
@@ -68,14 +67,16 @@ const Home = () => {
                   }}
                 >
                   <img src={pocket} />
+                  <p className='wish-num'>1</p>
                 </div>
               );
             })}
           </div>
         </div>
-        <div className='home-footer'>
-          <Button text='다른 소원들 보기' />
-        </div>
+        <Button>
+          <BsArrowCounterclockwise size='1.4rem' />
+          <button>다른 소원들 보기</button>
+        </Button>
       </HomeArticle>
       {isMakeWish && <MakeWishModal setIsMakeWish={setIsMakeWish} setIsCreatedModal={setIsCreatedModal} setIsLimitModal={setIsLimitModal} />}
       {isCreatedModal && <CreatedModal setIsCreatedModal={setIsCreatedModal} />}
@@ -91,11 +92,11 @@ const HomeArticle = styled.article`
   justify-content: space-between;
   position: absolute;
   bottom: 0%;
-  width: 100%;
+  width: 80%;
   max-width: 440px;
-  height: 45rem;
+  height: 720px;
   z-index: 100;
-  padding: 3.5rem 0 1rem 0;
+  padding: 3.5rem 0;
   background-color: inherit;
   ${HomeButtonFont};
   font-family: 'CWDangamAsac-Bold';
@@ -114,7 +115,7 @@ const HomeArticle = styled.article`
       }
     }
     h2 {
-      font-size: 30px;
+      font-size: 2.3rem;
       color: ${contentFontColor};
     }
   }
@@ -124,13 +125,11 @@ const HomeArticle = styled.article`
     margin: 0 auto;
     .text {
       position: absolute;
-      top: -5%;
-      left: 3%;
-      img {
-        width: 70px;
-      }
+      top: -1.5rem;
+      left: 1.2rem;
     }
     .column {
+      position: relative;
       float: left;
       text-align: center;
       width: 33.33%;
@@ -145,21 +144,37 @@ const HomeArticle = styled.article`
       transform-origin: center;
       animation: ${bell} 2s infinite linear;
     }
-  }
-  .home-footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 10px 0 30px 0;
-    button {
-      font-family: 'CWDangamAsac-Bold';
-      background-color: ${wishButton};
-      padding: 1rem 3rem;
-      font-size: 2rem;
-      border-radius: 24px;
-      box-shadow: rgba(0, 0, 0, 0.3) 3px 3px 3px;
+    .wish-num {
+      position: absolute;
+      bottom: 23px;
+      left: 75px;
+      color: ${redButton};
     }
+  }
+`;
+
+export const Button = styled.div`
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding: 5px;
+  margin: 0 auto;
+  width: 80%;
+  border-radius: 17px;
+  box-shadow: rgba(0, 0, 0, 0.3) 3px 3px 3px;
+  background-color: ${wishButton};
+  color: #fff;
+  button {
+    padding: 1rem 1rem;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    font-family: 'mainFont600';
+    background-color: inherit;
+    font-size: 1.2rem;
+    color: #fff;
   }
 `;
 
