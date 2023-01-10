@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const MultiButton = ({ onClose, onConfirm, closeText, confirmText, disabled }) => {
   return (
-    <MultuButtonContainer>
+    <ButtonContainer>
       <button className='close-button' onClick={onClose}>
         {closeText}
       </button>
@@ -10,11 +10,11 @@ const MultiButton = ({ onClose, onConfirm, closeText, confirmText, disabled }) =
       <button className='confirm-button' onClick={onConfirm} disabled={disabled}>
         {confirmText}
       </button>
-    </MultuButtonContainer>
+    </ButtonContainer>
   );
 };
 
-const MultuButtonContainer = styled.div`
+export const ButtonContainer = styled.div`
   display: flex;
   -webkit-box-align: center;
   align-items: center;
@@ -27,7 +27,6 @@ const MultuButtonContainer = styled.div`
   border: none;
   border-radius: 17px;
   background: ${({ theme }) => theme.mainColor};
-  color: #fff;
 
   .border {
     width: 1px;
