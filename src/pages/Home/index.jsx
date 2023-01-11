@@ -50,6 +50,10 @@ const Home = () => {
     }
   };
 
+  const changeWish = () => {
+    getWish();
+  };
+
   return (
     <HomeContainer>
       <HomeArticle>
