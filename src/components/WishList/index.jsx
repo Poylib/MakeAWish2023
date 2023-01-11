@@ -1,14 +1,30 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { api } from '../../api';
 import styled from 'styled-components';
 import { TiArrowLeftThick, TiArrowRightThick } from 'react-icons/ti';
 import { FiArrowLeft } from 'react-icons/fi';
 import luckOn from '../../assets/readwish/bok-on.png';
 import luckOff from '../../assets/readwish/bok-off.png';
 
-const WishList = ({ title, icon, wishList, keyword }) => {
+const WishList = ({ title, icon, wishList, keyword, loader }) => {
   const navigate = useNavigate();
   const [isLike, setIsLike] = useState(false);
+
+  const handleLike = async (id, isLike) => {
+    const body = {
+      id,
+      uuid: localStorage.getItem('uuid'),
+      like: isLike,
+    };
+    try {
+      const { data } = await api.post('like', body);
+      console.log(data);
+      loader();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <WishListContainer>
@@ -39,14 +55,31 @@ const WishList = ({ title, icon, wishList, keyword }) => {
               <div className='wish'>
                 <div className='text'>{wish.comment}</div>
                 <div className='like-wrapper'>
-                  <p className={isLike ? 'bok' : 'bok-off'}>{wish.likes}</p>
-                  <img
-                    alt='복'
-                    src={isLike ? luckOn : luckOff}
-                    onClick={() => {
-                      setIsLike(!isLike);
-                    }}
-                  />
+                  {/* 임시 */}
+                  {location.pathname === '/like' && (
+                    <>
+                      <p className={wish.isLike ? 'bok' : 'bok-off'}>{wish.likes}</p>
+                      <img
+                        alt='복'
+                        src={wish.isLike ? luckOn : luckOff}
+                        onClick={() => {
+                          handleLike(wish._id, false);
+                        }}
+                      />
+                    </>
+                  )}
+                  {location.pathname !== '/like' && (
+                    <>
+                      <p className={isLike ? 'bok' : 'bok-off'}>{wish.likes}</p>
+                      <img
+                        alt='복'
+                        src={isLike ? luckOn : luckOff}
+                        onClick={() => {
+                          setIsLike(!isLike);
+                        }}
+                      />
+                    </>
+                  )}
                 </div>
               </div>
             </Wish>

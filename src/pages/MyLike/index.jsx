@@ -7,21 +7,23 @@ const MyLike = () => {
   const [myLikeList, setMyLikeList] = useState([]);
 
   useEffect(() => {
-    const getLike = async () => {
-      const uuid = localStorage.getItem('uuid');
-      try {
-        const { data } = await api.get(`like?uuid=${uuid}&skip=1&limit=5`);
-        setMyLikeList(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
     getLike();
   }, []);
 
+  const getLike = async () => {
+    const uuid = localStorage.getItem('uuid');
+    try {
+      const { data } = await api.get(`like?uuid=${uuid}&skip=1&limit=5`);
+      console.log(data);
+      setMyLikeList(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <MyLikeContainer>
-      <WishList title='내가 응원한 소원' wishList={myLikeList} />
+      <WishList title='내가 응원한 소원' wishList={myLikeList} loader={getLike} />
     </MyLikeContainer>
   );
 };
