@@ -1,29 +1,90 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import background from '../../assets/makewish/wish-background.png';
+import { blackcolor, mainFont600 } from '../../theme';
+import onePocket from '../../assets/main/pockets/shadow.png';
 const SideBar = ({ isSideBar }) => {
-  console.log(isSideBar);
+  const [wishCheck, setWishCheck] = useState(0);
   return (
     <SideBarContainer isSideBar={isSideBar}>
       <header>
-        <h3></h3>
+        <h1>오늘 소원</h1>
+        <h1>작성 완료</h1>
+        <h1>{wishCheck}/1</h1>
       </header>
+      <div className='side-body'>
+        <div className='side-wish-view'>
+          <img src={onePocket} />
+          <p>내가 작성한 소원보기</p>
+        </div>
+        <div className='side-wish-view'>
+          <img src={onePocket} />
+          <p>내가 응원한 소원보기</p>
+        </div>
+        <DotLine />
+        <div className='side-board'></div>
+        <DotLine />
+      </div>
     </SideBarContainer>
   );
 };
 
 const SideBarContainer = styled.div`
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   left: 100%;
   top: 0;
   width: 70%;
   height: 100vh;
   max-height: 1100px;
+  padding: 20px;
   background: url(${background});
   background-repeat: no-repeat;
   z-index: 30;
   transform: translateX(${({ isSideBar }) => (isSideBar ? '-100%' : '0%')});
   transition: 0.4s ease;
-  .header {
+  font-family: 'textFont1';
+  overflow: scroll;
+  header {
+    width: 100%;
+    margin-top: 7vh;
+    font-size: 25px;
+    font-weight: 900;
+    h1 {
+      margin: 6px 0;
+    }
+  }
+  .side-body {
+    margin-top: 25px;
+    width: 100%;
+    .side-wish-view {
+      margin: 15px 0;
+      display: flex;
+      align-items: center;
+      img {
+        width: 30px;
+        margin-right: 10px;
+      }
+    }
+    .side-board {
+      margin: 20px 0;
+      width: 100%;
+      height: 20vh;
+      background-color: white;
+      border-radius: 15px;
+    }
   }
 `;
+
+const DotLine = styled.hr`
+  border: none;
+  border-top: 3px dotted ${blackcolor};
+  color: #fff;
+  background-color: #fff;
+  height: 1px;
+  width: 100%;
+`;
+
 export default SideBar;
