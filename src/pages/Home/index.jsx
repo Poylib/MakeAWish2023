@@ -6,12 +6,12 @@ import MakeWishModal from '../../components/MakeWishModal';
 import CreatedModal from '../../components/CreatedModal';
 import ReadWishModal from '../../components/ReadWishModal';
 import LimitModal from '../../components/LimitModal';
-import Button from '../../components/Button';
 import MainBackground from '../../components/MainBackground';
 import { HomeContainer } from '../Intro';
 import { contentFontColor, headercolor, HomeButtonFont, mainColor, maincolor, redButton, wishButton } from '../../theme';
 import onePocket from '../../assets/main/pockets/shadow.png';
 import pocket from '../../assets/main/pockets/004.png';
+import { imgArr } from '../../constant/bok';
 import wishText from '../../assets/main/pockets/wish-text.png';
 import { bell } from '../../utils/Animation';
 import { BsArrowCounterclockwise } from 'react-icons/bs';
@@ -48,6 +48,7 @@ const Home = () => {
       console.log(error);
     }
   };
+
   return (
     <HomeContainer>
       <HomeArticle>
@@ -67,6 +68,7 @@ const Home = () => {
             <img className='text' src={wishText} />
           </div>
           {wroteWish.map((wish, index) => {
+            const randomNumber = Math.floor(Math.random() * 8) + 1;
             return (
               <div
                 className='column'
@@ -76,7 +78,7 @@ const Home = () => {
                   setIsReadWish(true);
                 }}
               >
-                <img src={pocket} />
+                <img src={imgArr[randomNumber]} />
                 <p className='wish-num'>{wish.likes}</p>
               </div>
             );
@@ -89,15 +91,11 @@ const Home = () => {
         <SideBar isSideBar={isSideBar} />
         <MenuButton isSideBar={isSideBar} setIsSideBar={setIsSideBar} />
       </HomeArticle>
-<<<<<<< HEAD
       {isMakeWish && <MakeWishModal setIsMakeWish={setIsMakeWish} setIsCreatedModal={setIsCreatedModal} setIsLimitModal={setIsLimitModal} />}
-=======
       {/* <Blur /> */}
-
       <MainBackground />
 
       {isMakeWish && <MakeWishModal setIsMakeWish={setIsMakeWish} setIsCreatedModal={setIsCreatedModal} />}
->>>>>>> 7d7553d (feature: side-menu UI)
       {isCreatedModal && <CreatedModal setIsCreatedModal={setIsCreatedModal} />}
       {isReadWish && <ReadWishModal id={wishId} setIsReadWish={setIsReadWish} />}
       {isLimitModal && <LimitModal isLimitModal={isLimitModal} setIsLimitModal={setIsLimitModal} />}
@@ -127,7 +125,7 @@ const HomeArticle = styled.article`
     padding-left: 5%;
     justify-content: space-between;
 
-    flex-direction: row;
+    flex-direction: column;
     .font-box {
       display: flex;
       padding-bottom: 7px;
