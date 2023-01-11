@@ -3,7 +3,11 @@ import styled from 'styled-components';
 import background from '../../assets/makewish/wish-background.png';
 import { blackcolor, mainFont600 } from '../../theme';
 import onePocket from '../../assets/main/pockets/shadow.png';
+import { useNavigate } from 'react-router-dom';
+import { RxPerson } from 'react-icons/rx';
+import { BsTelephone, BsChatLeftDots } from 'react-icons/bs';
 const SideBar = ({ isSideBar }) => {
+  const navigate = useNavigate();
   const [wishCheck, setWishCheck] = useState(0);
   return (
     <SideBarContainer isSideBar={isSideBar}>
@@ -17,7 +21,7 @@ const SideBar = ({ isSideBar }) => {
           <img src={onePocket} />
           <p>내가 작성한 소원보기</p>
         </div>
-        <div className='side-wish-view'>
+        <div className='side-wish-view' onClick={() => navigate('/like')}>
           <img src={onePocket} />
           <p>내가 응원한 소원보기</p>
         </div>
@@ -25,6 +29,23 @@ const SideBar = ({ isSideBar }) => {
         <div className='side-board'></div>
         <DotLine />
       </div>
+      <div className='side-bottom'>
+        <div className='side-bottom-row'>
+          <RxPerson className='side-icon' />
+          <p>개발자 어쩌구 보기</p>
+        </div>
+        <div className='side-bottom-row'>
+          <BsTelephone className='side-icon' />
+          <p>문의하기</p>
+        </div>
+        <div className='side-bottom-row'>
+          <BsChatLeftDots className='side-icon' />
+          <p>자주 묻는 질문</p>
+        </div>
+      </div>
+      <footer>
+        <p>&copy; copyright.deokmani</p>
+      </footer>
     </SideBarContainer>
   );
 };
@@ -34,6 +55,7 @@ const SideBarContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   left: 100%;
   top: 0;
   width: 70%;
@@ -75,6 +97,25 @@ const SideBarContainer = styled.div`
       background-color: white;
       border-radius: 15px;
     }
+  }
+  .side-bottom {
+    margin-top: 10px;
+    font-size: 24px;
+
+    width: 100%;
+    .side-icon {
+      font-size: 28px;
+      margin-right: 10px;
+    }
+    .side-bottom-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin: 20px 0;
+    }
+  }
+  footer {
+    width: 100%;
   }
 `;
 
