@@ -2,7 +2,13 @@ import styled from 'styled-components';
 import background from '../../assets/makewish/wish-background.png';
 const SideBar = ({ isSideBar }) => {
   console.log(isSideBar);
-  return <SideBarContainer isSideBar={isSideBar}></SideBarContainer>;
+  return (
+    <SideBarContainer isSideBar={isSideBar}>
+      <header>
+        <h3></h3>
+      </header>
+    </SideBarContainer>
+  );
 };
 
 const SideBarContainer = styled.div`
@@ -17,5 +23,7 @@ const SideBarContainer = styled.div`
   z-index: 30;
   transform: translateX(${({ isSideBar }) => (isSideBar ? '-100%' : '0%')});
   transition: 0.4s ease;
+  .header {
+  }
 `;
 export default SideBar;
