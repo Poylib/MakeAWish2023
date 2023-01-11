@@ -38,7 +38,7 @@ const Home = () => {
       } = await api.get('wish-count');
       setPocketCounts(wishes);
     })();
-  }, []);
+  }, [isReadWish]);
 
   const getWish = async () => {
     try {
@@ -96,13 +96,13 @@ const Home = () => {
         </div>
         <SideBar isSideBar={isSideBar} />
         <MenuButton isSideBar={isSideBar} setIsSideBar={setIsSideBar} />
-        <Blur />
+        <Blur isSideBar={isSideBar} onClick={() => setIsSideBar(false)} />
       </HomeArticle>
       <MainBackground />
       {isMakeWish && <MakeWishModal setIsMakeWish={setIsMakeWish} setIsCreatedModal={setIsCreatedModal} setIsLimitModal={setIsLimitModal} />}
       {isMakeWish && <MakeWishModal setIsMakeWish={setIsMakeWish} setIsCreatedModal={setIsCreatedModal} />}
       {isCreatedModal && <CreatedModal setIsCreatedModal={setIsCreatedModal} />}
-      {isReadWish && <ReadWishModal id={wishId} setIsReadWish={setIsReadWish} />}
+      {isReadWish && <ReadWishModal id={wishId} setIsReadWish={setIsReadWish} getWish={getWish} />}
       {isLimitModal && <LimitModal isLimitModal={isLimitModal} setIsLimitModal={setIsLimitModal} />}
     </HomeContainer>
   );
@@ -210,7 +210,7 @@ export const Blur = styled.div`
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.4);
   visibility: ${({ isSideBar }) => (isSideBar ? 'visible' : 'hidden')};
   transition: 0.3s;
   z-index: 2;
