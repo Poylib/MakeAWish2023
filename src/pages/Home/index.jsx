@@ -167,8 +167,8 @@ const HomeArticle = styled.article`
     }
     .wish-num {
       position: absolute;
-      bottom: 28px;
-      left: 70px;
+      bottom: 24%;
+      left: 54%;
       font-size: 1.4rem;
       color: ${redButton};
     }
