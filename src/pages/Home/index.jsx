@@ -92,9 +92,9 @@ const Home = () => {
         </Button>
         <SideBar isSideBar={isSideBar} />
         <MenuButton isSideBar={isSideBar} setIsSideBar={setIsSideBar} />
+        <Blur isSideBar={isSideBar} />
       </HomeArticle>
       {isMakeWish && <MakeWishModal setIsMakeWish={setIsMakeWish} setIsCreatedModal={setIsCreatedModal} setIsLimitModal={setIsLimitModal} />}
-      {/* <Blur /> */}
       <MainBackground />
 
       {isMakeWish && <MakeWishModal setIsMakeWish={setIsMakeWish} setIsCreatedModal={setIsCreatedModal} />}
@@ -202,12 +202,14 @@ export const Button = styled.div`
 export const Blur = styled.div`
   display: flex;
   justify-content: flex-end;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
+  visibility: ${({ isSideBar }) => (isSideBar ? 'visible' : 'hidden')};
+  transition: 0.3s;
   z-index: 2;
 `;
 
