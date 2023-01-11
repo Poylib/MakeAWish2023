@@ -8,11 +8,9 @@ import MultiButton from '../MultiButton';
 import background from '../../assets/makewish/wish-background.png';
 import moon from '../../assets/makewish/wish-moon.png';
 
-const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
+const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal, getWish, setIsLimitModal }) => {
   const [name, setName] = useState('');
   const [wish, setWish] = useState('');
-  const [isName, setIsName] = useState(false);
-  const [isWish, setIsWish] = useState(false);
   const wishLength = `${wish.length}`;
 
   const makeWish = async () => {
@@ -25,13 +23,17 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
       await api.post('/wishes', body);
       setIsMakeWish(false);
       setIsCreatedModal(true);
+      getWish();
     } catch (error) {
       console.log(error);
       const message = error.response.data;
       if (message === 'Already created') {
-        toast.info('오늘 소원을 이미 작성하셨어요');
+        setIsMakeWish(false);
+        setIsLimitModal(true);
       } else if (message === '비속어는 사용 금지입니다.') {
-        toast.warn(message);
+        toast(message);
+      } else if (message === '특수문자 제외 한글 또는 영문 숫자를 포함한 8글자 이내여야 합니다.' || '200글자 이하로 작성해주십시오') {
+        toast('작성란을 확인해주세요.');
       }
     }
   };
@@ -39,21 +41,11 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
   const handleName = e => {
     const nameCurrent = e.target.value;
     setName(nameCurrent);
-    if (nameCurrent.length < 1) {
-      setIsName(false);
-    } else {
-      setIsName(true);
-    }
   };
 
   const handleWish = e => {
     const wishCurrent = e.target.value;
     setWish(wishCurrent);
-    if (wishCurrent.length < 1) {
-      setIsWish(false);
-    } else {
-      setIsWish(true);
-    }
   };
 
   return (
@@ -89,7 +81,6 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
                   }}
                   closeText='닫기'
                   confirmText='작성 완료'
-                  disabled={!(isName && isWish)}
                 />
               </div>
             </div>
@@ -117,6 +108,7 @@ const Positioner = styled.div`
 const WishModalContainer = styled.div`
   width: 100%;
   height: 100%;
+  min-height: 667px;
 
   .content-wrapper {
     display: flex;
@@ -151,7 +143,7 @@ const WishModalContainer = styled.div`
         flex-direction: column;
         justify-content: space-between;
         width: 100%;
-        height: 50vh;
+        height: 40vh;
         margin: 0.5rem 0;
         padding: 0.75rem 1rem;
         background: #fff;
@@ -163,6 +155,7 @@ const WishModalContainer = styled.div`
           min-height: 15rem;
           margin: 0;
           padding: 0;
+          background: transparent;
           border: none;
           outline: none;
           overflow: auto;
