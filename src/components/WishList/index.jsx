@@ -6,7 +6,7 @@ import { FiArrowLeft } from 'react-icons/fi';
 import luckOn from '../../assets/readwish/bok-on.png';
 import luckOff from '../../assets/readwish/bok-off.png';
 
-const WishList = ({ title, icon, wishList }) => {
+const WishList = ({ title, icon, wishList, keyword }) => {
   const navigate = useNavigate();
   const [isLike, setIsLike] = useState(false);
 
@@ -26,7 +26,7 @@ const WishList = ({ title, icon, wishList }) => {
         <div className='keyword-wrapper'>
           <div className='prev-keyword'>#건강</div>
           <TiArrowLeftThick />
-          <div className='keyword'>#돈</div>
+          <div className='keyword'>#{keyword}</div>
           <TiArrowRightThick />
           <div className='next-keyword'>#행복</div>
         </div>

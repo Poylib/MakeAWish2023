@@ -1,9 +1,12 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../Button';
 import stamp from '../../assets/created/tokki-stamp.png';
 import { mainFont700 } from '../../theme';
 
 const CreatedModal = ({ setIsCreatedModal }) => {
+  const navigate = useNavigate();
+
   return (
     <>
       <Background />
@@ -17,7 +20,13 @@ const CreatedModal = ({ setIsCreatedModal }) => {
             <img alt='tokki-stamp' src={stamp} />
           </div>
           <div className='bottom-wrapper'>
-            <Button color='main' text='내가 빈 소원 모두 보기' />
+            <Button
+              color='main'
+              text='내가 빈 소원 모두 보기'
+              onClick={() => {
+                navigate('/wish');
+              }}
+            />
             <Button
               color='transparent'
               onClick={() => {

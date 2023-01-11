@@ -12,6 +12,7 @@ const MyWish = () => {
       const uuid = localStorage.getItem('uuid');
       try {
         const { data } = await api.get(`mywish?uuid=${uuid}&skip=1&limit=3`);
+        console.log(data);
         setMyWishList(data);
       } catch (error) {
         console.log(error);
@@ -22,7 +23,7 @@ const MyWish = () => {
 
   return (
     <MyWishContainer>
-      <WishList title='내가 빈 소원' icon={<GiTargetDummy />} wishList={myWishList} />;
+      <WishList title='내가 빈 소원' icon={<GiTargetDummy />} wishList={myWishList} />
     </MyWishContainer>
   );
 };

@@ -33,7 +33,7 @@ const Keyword = () => {
 
   return (
     <KeywordContainer>
-      <WishList title='인기 키워드' wishList={keywordList} />
+      <WishList title='인기 키워드' wishList={keywordList} keyword={keyword} />
     </KeywordContainer>
   );
 };
