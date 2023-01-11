@@ -69,6 +69,9 @@ const SideBarContainer = styled.div`
   transition: 0.4s ease;
   font-family: 'textFont1';
   overflow: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
   header {
     width: 100%;
     margin-top: 7vh;
