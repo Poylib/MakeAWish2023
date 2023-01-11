@@ -17,7 +17,7 @@ const SideBar = ({ isSideBar }) => {
         <h1>{wishCheck}/1</h1>
       </header>
       <div className='side-body'>
-        <div className='side-wish-view'>
+        <div className='side-wish-view' onClick={() => navigate('/wish')}>
           <img src={onePocket} />
           <p>내가 작성한 소원보기</p>
         </div>
