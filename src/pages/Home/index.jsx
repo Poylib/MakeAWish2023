@@ -10,7 +10,6 @@ import MainBackground from '../../components/MainBackground';
 import { HomeContainer } from '../Intro';
 import { contentFontColor, headercolor, HomeButtonFont, mainColor, maincolor, redButton, wishButton } from '../../theme';
 import onePocket from '../../assets/main/pockets/shadow.png';
-import pocket from '../../assets/main/pockets/004.png';
 import { imgArr } from '../../constant/bok';
 import wishText from '../../assets/main/pockets/wish-text.png';
 import { bell } from '../../utils/Animation';
@@ -66,7 +65,6 @@ const Home = () => {
             <h2>소원이 달렸어요</h2>
           </div>
         </div>
-
         <div className='home-body'>
           <div className='column wish-btn' onClick={() => setIsMakeWish(true)}>
             <img src={onePocket} />
