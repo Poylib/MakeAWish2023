@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import background from '../../assets/makewish/wish-background.png';
 import { blackcolor, mainFont600 } from '../../theme';
@@ -6,15 +6,19 @@ import onePocket from '../../assets/main/pockets/shadow.png';
 import { useNavigate } from 'react-router-dom';
 import { RxPerson } from 'react-icons/rx';
 import { BsTelephone, BsChatLeftDots } from 'react-icons/bs';
-const SideBar = ({ isSideBar }) => {
+const SideBar = ({ isSideBar, wishCheck }) => {
   const navigate = useNavigate();
-  const [wishCheck, setWishCheck] = useState(0);
+  const [wishCounts, setWishCounts] = useState(0);
+  useEffect(() => {
+    if (wishCheck === 'Already created') setWishCounts(1);
+    else setWishCounts(0);
+  }, [wishCheck]);
   return (
     <SideBarContainer isSideBar={isSideBar}>
       <header>
         <h1>오늘 소원</h1>
         <h1>작성 완료</h1>
-        <h1>{wishCheck}/1</h1>
+        <h1>{wishCounts}/1</h1>
       </header>
       <div className='side-body'>
         <div className='side-wish-view' onClick={() => navigate('/wish')}>

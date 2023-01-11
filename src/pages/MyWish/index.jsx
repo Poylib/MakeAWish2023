@@ -12,7 +12,6 @@ const MyWish = () => {
       const uuid = localStorage.getItem('uuid');
       try {
         const { data } = await api.get(`mywish?uuid=${uuid}&skip=1&limit=3`);
-        console.log(data);
         setMyWishList(data);
       } catch (error) {
         console.log(error);

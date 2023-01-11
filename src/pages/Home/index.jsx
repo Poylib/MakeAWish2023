@@ -22,6 +22,7 @@ const Home = () => {
   const [pocketCounts, setPocketCounts] = useState(0);
   const [wroteWish, setWroteWish] = useState([0, 1, 2, 3, 4, 5, 6, 7]);
   const [wishId, setWishId] = useState();
+  const [wishCheck, setWishCheck] = useState('');
   const [isMakeWish, setIsMakeWish] = useState(false);
   const [isCreatedModal, setIsCreatedModal] = useState(false);
   const [isReadWish, setIsReadWish] = useState(false);
@@ -32,12 +33,8 @@ const Home = () => {
   useEffect(() => {
     falseIntroPass();
     getWish();
-    (async () => {
-      const {
-        data: { wishes },
-      } = await api.get('wish-count');
-      setPocketCounts(wishes);
-    })();
+    getWishCheck();
+    getWishCounts();
   }, [isReadWish, isCreatedModal]);
 
   const getWish = async () => {
@@ -49,8 +46,32 @@ const Home = () => {
     }
   };
 
-  const changeWish = () => {
-    getWish();
+  const getWishCheck = async () => {
+    try {
+      let uuid = localStorage.getItem('uuid');
+      const {
+        data: { message },
+      } = await api.get(`wish-check?uuid=${uuid}`);
+      setWishCheck(message);
+    } catch (error) {
+      setWishCheck(error.response.data);
+    }
+  };
+
+  const getWishCounts = async () => {
+    try {
+      const {
+        data: { wishes },
+      } = await api.get('wish-count');
+      setPocketCounts(wishes);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const makeWish = () => {
+    if (wishCheck === 'Nothing Duplication') setIsMakeWish(true);
+    else setIsLimitModal(true);
   };
 
   return (
@@ -66,7 +87,7 @@ const Home = () => {
           </div>
         </div>
         <div className='home-body'>
-          <div className='column wish-btn' onClick={() => setIsMakeWish(true)}>
+          <div className='column wish-btn' onClick={makeWish}>
             <img src={onePocket} />
             <img className='text' src={wishText} />
           </div>
@@ -94,7 +115,7 @@ const Home = () => {
             <button>다른 소원들 보기</button>
           </Button>
         </div>
-        <SideBar isSideBar={isSideBar} />
+        <SideBar isSideBar={isSideBar} wishCheck={wishCheck} />
         <MenuButton isSideBar={isSideBar} setIsSideBar={setIsSideBar} />
         <Blur isSideBar={isSideBar} onClick={() => setIsSideBar(false)} />
       </HomeArticle>
