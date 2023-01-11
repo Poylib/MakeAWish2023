@@ -49,6 +49,10 @@ const Home = () => {
     }
   };
 
+  const changeWish = () => {
+    getWish();
+  };
+
   return (
     <HomeContainer>
       <HomeArticle>
@@ -84,7 +88,7 @@ const Home = () => {
             );
           })}
         </div>
-        <Button>
+        <Button onClick={changeWish}>
           <BsArrowCounterclockwise size='1.4rem' />
           <button>다른 소원들 보기</button>
         </Button>
