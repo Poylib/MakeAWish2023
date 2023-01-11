@@ -88,6 +88,7 @@ const SideBarContainer = styled.div`
   .side-body {
     margin-top: 25px;
     width: 100%;
+    font-size: 19px;
     .side-wish-view {
       margin: 15px 0;
       display: flex;
