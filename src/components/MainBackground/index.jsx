@@ -7,6 +7,7 @@ import lines from '../../assets/main/main-clothesline.png';
 import pocket from '../../assets/main/pocket-shadow.png';
 import { useEffect, useState } from 'react';
 import { fadeIn } from '../../utils/Animation/index.jsx';
+import { Blur } from '../../pages/Home';
 
 const MainBackground = () => {
   const { introPass } = useStore();
@@ -22,6 +23,7 @@ const MainBackground = () => {
   });
   return (
     <MainBackgroundContainer>
+      {/* <Blur /> */}
       <img src={sun} className='sun-trees' />
       <img src={trees} className='sun-trees' />
       {openFade && (
@@ -30,7 +32,6 @@ const MainBackground = () => {
           {introPass && <img src={pocket} className='lines-pocket' />}
         </>
       )}
-
       <img src={hill} className='hill' />
     </MainBackgroundContainer>
   );
@@ -38,19 +39,22 @@ const MainBackground = () => {
 export default MainBackground;
 
 const MainBackgroundContainer = styled.div`
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  min-width: 375px;
-  position: absolute;
-  bottom: 0%;
-  height: 100%;
+  min-width: 355px;
+  top: 0;
+  height: 100vh;
+  min-height: 707px;
   overflow: hidden;
   img {
-    width: 1200px;
+    height: 100vh;
+    min-height: 667px;
+    max-height: 1100px;
     position: absolute;
-    bottom: 0%;
+    /* top: 10%; */
   }
   .sun-trees {
     animation: ${fadeIn} 1.7s;
