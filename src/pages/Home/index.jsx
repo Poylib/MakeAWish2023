@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { api } from '../../api';
 import styled from 'styled-components';
+import { BsArrowCounterclockwise } from 'react-icons/bs';
+import { api } from '../../api';
 import useStore from '../../context/store';
 import MakeWishModal from '../../components/MakeWishModal';
 import CreatedModal from '../../components/CreatedModal';
@@ -10,10 +11,9 @@ import MainBackground from '../../components/MainBackground';
 import { HomeContainer } from '../Intro';
 import { contentFontColor, headercolor, HomeButtonFont, mainColor, maincolor, redButton, wishButton } from '../../theme';
 import onePocket from '../../assets/main/pockets/shadow.png';
-import { imgArr } from '../../constant/bok';
 import wishText from '../../assets/main/pockets/wish-text.png';
+import { imgArr } from '../../constant/bok';
 import { bell } from '../../utils/Animation';
-import { BsArrowCounterclockwise } from 'react-icons/bs';
 import MenuButton from '../../components/MenuButton';
 import SideBar from '../../components/SideBar';
 
@@ -131,24 +131,23 @@ const HomeArticle = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 3.5rem 1rem;
   width: 100%;
   max-width: 440px;
   height: 100vh;
   min-height: 700px;
   max-height: 1100px;
-  z-index: 2;
-  padding: 3.5rem 1rem;
   background-color: inherit;
   overflow-x: hidden;
+  z-index: 2;
   ${HomeButtonFont};
   font-family: 'CWDangamAsac-Bold';
   color: ${contentFontColor};
   .home-header {
     display: flex;
-    padding-left: 5%;
     justify-content: space-between;
-
     flex-direction: column;
+    padding-left: 5%;
     .font-box {
       display: flex;
       padding-bottom: 7px;
@@ -173,13 +172,13 @@ const HomeArticle = styled.article`
     }
     .column {
       position: relative;
-      text-align: center;
       margin: 0 auto;
       width: 30%;
+      text-align: center;
     }
     img {
-      width: 75px;
       margin: 0.8rem 1rem;
+      width: 75px;
     }
 
     .wish-btn {
