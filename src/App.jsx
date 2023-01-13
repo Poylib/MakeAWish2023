@@ -7,7 +7,6 @@ import Home from './pages/Home';
 import MyWish from './pages/MyWish';
 import MyLike from './pages/MyLike';
 import Keyword from './pages/Keyword';
-import MainBackground from './components/MainBackground';
 
 const App = () => {
   return (

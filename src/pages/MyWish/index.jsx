@@ -1,28 +1,31 @@
 import { useState, useEffect } from 'react';
 import { api } from '../../api';
 import styled from 'styled-components';
-import { GiTargetDummy } from 'react-icons/gi';
 import WishList from '../../components/WishList';
+import pocket from '../../assets/main/pockets/shadow.png';
 
 const MyWish = () => {
   const [myWishList, setMyWishList] = useState([]);
+  const [isNoWish, setIsNoWish] = useState(false);
+
+  const getMyWish = async () => {
+    const uuid = localStorage.getItem('uuid');
+    try {
+      const { data } = await api.get(`mywish?uuid=${uuid}&skip=1&limit=3`);
+      !data.length && setIsNoWish(true);
+      setMyWishList(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    const getMyWish = async () => {
-      const uuid = localStorage.getItem('uuid');
-      try {
-        const { data } = await api.get(`mywish?uuid=${uuid}&skip=1&limit=3`);
-        setMyWishList(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
     getMyWish();
   }, []);
 
   return (
     <MyWishContainer>
-      <WishList title='내가 빈 소원' icon={<GiTargetDummy />} wishList={myWishList} />
+      <WishList title='내가 빈 소원' icon={pocket} wishList={myWishList} loader={getMyWish} isNoWish={isNoWish} />
     </MyWishContainer>
   );
 };

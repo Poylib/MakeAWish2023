@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { api } from '../../api';
 import styled from 'styled-components';
+import { BsArrowCounterclockwise } from 'react-icons/bs';
+import { api } from '../../api';
 import useStore from '../../context/store';
 import MakeWishModal from '../../components/MakeWishModal';
 import CreatedModal from '../../components/CreatedModal';
@@ -10,8 +11,8 @@ import MainBackground from '../../components/MainBackground';
 import { HomeContainer } from '../Intro';
 import { contentFontColor, headercolor, HomeButtonFont, mainColor, maincolor, redButton, wishButton } from '../../theme';
 import onePocket from '../../assets/main/pockets/shadow.png';
-import { imgArr } from '../../constant/bok';
 import wishText from '../../assets/main/pockets/wish-text.png';
+import { imgArr } from '../../constant/bok';
 import { bell } from '../../utils/Animation';
 import TopKeyword from '../../components/TopKeyword';
 import { BsArrowCounterclockwise } from 'react-icons/bs';
@@ -28,6 +29,7 @@ const Home = () => {
   const [isReadWish, setIsReadWish] = useState(false);
   const [isLimitModal, setIsLimitModal] = useState(false);
   const [isSideBar, setIsSideBar] = useState(false);
+  const [keywords, setKeywords] = useState();
   const { falseIntroPass } = useStore();
 
   useEffect(() => {
@@ -35,6 +37,7 @@ const Home = () => {
     getWish();
     getWishCheck();
     getWishCounts();
+    getKeywords();
   }, [isReadWish, isCreatedModal]);
 
   const getWish = async () => {
@@ -74,6 +77,15 @@ const Home = () => {
     else setIsLimitModal(true);
   };
 
+  const getKeywords = async () => {
+    try {
+      const { data } = await api.get(`keyword`);
+      setKeywords(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <HomeContainer>
       <HomeArticle>
@@ -108,9 +120,9 @@ const Home = () => {
             );
           })}
         </div>
-        <div className='home-footer'>
-          <TopKeyword />
-          <Button>
+        <div className='home-bottom'>
+          <TopKeyword data={keywords} />
+          <Button onClick={() => getWish()}>
             <BsArrowCounterclockwise size='1.4rem' />
             <button>다른 소원들 보기</button>
           </Button>
@@ -134,24 +146,23 @@ const HomeArticle = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 3.5rem 1rem;
   width: 100%;
   max-width: 440px;
   height: 100vh;
   min-height: 700px;
   max-height: 1100px;
-  z-index: 2;
-  padding: 3.5rem 1rem;
   background-color: inherit;
   overflow-x: hidden;
+  z-index: 2;
   ${HomeButtonFont};
   font-family: 'CWDangamAsac-Bold';
   color: ${contentFontColor};
   .home-header {
     display: flex;
-    padding-left: 5%;
     justify-content: space-between;
-
     flex-direction: column;
+    padding-left: 5%;
     .font-box {
       display: flex;
       padding-bottom: 7px;
@@ -176,13 +187,13 @@ const HomeArticle = styled.article`
     }
     .column {
       position: relative;
-      text-align: center;
       margin: 0 auto;
       width: 30%;
+      text-align: center;
     }
     img {
-      width: 75px;
       margin: 0.8rem 1rem;
+      width: 75px;
     }
 
     .wish-btn {
@@ -207,7 +218,7 @@ export const Button = styled.div`
   justify-content: center;
   padding: 2px;
   margin: 0 auto;
-  width: 80%;
+  width: 90%;
   border-radius: 17px;
   box-shadow: rgba(0, 0, 0, 0.3) 3px 3px 3px;
   background-color: ${wishButton};
