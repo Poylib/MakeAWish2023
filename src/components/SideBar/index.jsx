@@ -56,16 +56,16 @@ const SideBar = ({ isSideBar, wishCheck }) => {
 
 const SideBarContainer = styled.div`
   position: absolute;
+  left: 100%;
+  top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  left: 100%;
-  top: 0;
+  padding: 20px;
   width: 70%;
   height: 100vh;
   max-height: 1100px;
-  padding: 20px;
   background: url(${background});
   background-repeat: no-repeat;
   z-index: 30;
@@ -77,8 +77,8 @@ const SideBarContainer = styled.div`
     display: none;
   }
   header {
-    width: 100%;
     margin-top: 7vh;
+    width: 100%;
     font-size: 25px;
     font-weight: 900;
     h1 {
@@ -90,12 +90,12 @@ const SideBarContainer = styled.div`
     width: 100%;
     font-size: 19px;
     .side-wish-view {
-      margin: 15px 0;
       display: flex;
       align-items: center;
+      margin: 15px 0;
       img {
-        width: 30px;
         margin-right: 10px;
+        width: 30px;
       }
     }
     .side-board {
@@ -108,12 +108,11 @@ const SideBarContainer = styled.div`
   }
   .side-bottom {
     margin-top: 10px;
-    font-size: 24px;
-
     width: 100%;
+    font-size: 20px;
     .side-icon {
-      font-size: 28px;
       margin-right: 10px;
+      font-size: 28px;
     }
     .side-bottom-row {
       display: flex;
@@ -128,12 +127,12 @@ const SideBarContainer = styled.div`
 `;
 
 const DotLine = styled.hr`
-  border: none;
-  border-top: 3px dotted ${blackcolor};
-  color: #fff;
-  background-color: #fff;
   height: 1px;
   width: 100%;
+  border: none;
+  border-top: 3px dotted ${blackcolor};
+  background-color: #fff;
+  color: #fff;
 `;
 
 export default SideBar;

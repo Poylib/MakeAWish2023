@@ -61,13 +61,12 @@ const Intro = () => {
 };
 
 export const HomeContainer = styled.main`
-  /* position: relative; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
   margin: 0 auto;
+  width: 100%;
   min-width: 355px;
   max-width: 450px;
   z-index: 10;
@@ -77,10 +76,10 @@ const IntroArticle = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 3.5rem 0 1rem 0;
   width: 90%;
   max-width: 440px;
   height: 90vh;
-  padding: 3.5rem 0 1rem 0;
   background-color: inherit;
   font-family: 'CWDangamAsac-Bold';
   color: ${contentFontColor};
@@ -118,8 +117,8 @@ const IntroArticle = styled.article`
       font-size: 2rem;
     }
     h4 {
-      font-size: 10px;
       margin-top: 20px;
+      font-size: 10px;
       font-family: 'Noto Sans KR', sans-serif;
       font-weight: bold;
     }
