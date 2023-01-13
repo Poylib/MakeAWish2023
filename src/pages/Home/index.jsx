@@ -14,6 +14,7 @@ import onePocket from '../../assets/main/pockets/shadow.png';
 import pocket from '../../assets/main/pockets/004.png';
 import wishText from '../../assets/main/pockets/wish-text.png';
 import { bell } from '../../utils/Animation';
+import TopKeyword from '../../components/TopKeyword';
 
 const Home = () => {
   const [pocketCounts, setPocketCounts] = useState(200000);
@@ -74,6 +75,7 @@ const Home = () => {
           </div>
         </div>
         <div className='home-footer'>
+          <TopKeyword />
           <Button text='다른 소원들 보기' />
         </div>
       </HomeArticle>
