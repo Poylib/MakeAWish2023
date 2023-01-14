@@ -1,10 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../Button';
 import pocket from '../../assets/nodata/empty-pocket.png';
 
 const NoWish = () => {
+  const navigate = useNavigate();
+
   const message = '응원한';
-  const text = '소원 작성하기';
+  const text = '소원 작성하러가기';
 
   return (
     <NoWishContainer>
@@ -15,7 +18,13 @@ const NoWish = () => {
           <br />
           복주머니를 채워볼까요?
         </div>
-        <Button text={text} color='main' />
+        <Button
+          text={text}
+          color='main'
+          onClick={() => {
+            navigate('/home');
+          }}
+        />
       </div>
     </NoWishContainer>
   );
