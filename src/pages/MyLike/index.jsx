@@ -7,26 +7,20 @@ const MyLike = () => {
   const [myLikeList, setMyLikeList] = useState([]);
   const [isNoWish, setIsNoWish] = useState(false);
 
-  useEffect(() => {
-    getLike();
-  }, []);
-
-  console.log(isNoWish);
-
   const getLike = async () => {
     const uuid = localStorage.getItem('uuid');
     try {
       const { data } = await api.get(`like?uuid=${uuid}&skip=1&limit=5`);
-      !data && setIsNoWish(true);
-      console.log(data);
-      console.log('데이터', Boolean(data));
+      !data.length && setIsNoWish(true);
       setMyLikeList(data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  console.log('d', isNoWish);
+  useEffect(() => {
+    getLike();
+  }, []);
 
   return (
     <MyLikeContainer>

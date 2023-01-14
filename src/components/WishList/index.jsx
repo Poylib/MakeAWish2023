@@ -19,8 +19,7 @@ const WishList = ({ title, icon, wishList, keyword, loader, isNoWish }) => {
       like: isLike,
     };
     try {
-      const { data } = await api.post('like', body);
-      console.log(data);
+      await api.post('like', body);
       loader();
     } catch (error) {
       console.log(error);
@@ -36,7 +35,8 @@ const WishList = ({ title, icon, wishList, keyword, loader, isNoWish }) => {
           }}
         />
         <h3>
-          {title}&nbsp;{icon}
+          {title}
+          {location.pathname === '/wish' && <img src={icon} />}
         </h3>
       </div>
       {location.pathname === '/keyword' && (
@@ -116,6 +116,11 @@ const WishListContainer = styled.div`
       justify-content: center;
       ${({ theme }) => theme.HomeButtonFont};
       font-family: 'CWDangamAsac-Bold';
+
+      img {
+        width: 40px;
+        margin-left: 10px;
+      }
     }
   }
 
