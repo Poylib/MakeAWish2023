@@ -143,7 +143,7 @@ const WishModalContainer = styled.div`
         flex-direction: column;
         justify-content: space-between;
         width: 100%;
-        height: 40vh;
+        height: 45vh;
         margin: 0.5rem 0;
         padding: 0.75rem 1rem;
         background: #fff;
