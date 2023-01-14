@@ -48,7 +48,7 @@ const WishList = ({ title, icon, wishList, keyword, loader, isNoWish }) => {
           <div className='next-keyword'>#행복</div>
         </div>
       )}
-      {wishList && isNoWish && (
+      {wishList && !isNoWish && (
         <>
           {wishList.map(wish => {
             return (
@@ -89,7 +89,7 @@ const WishList = ({ title, icon, wishList, keyword, loader, isNoWish }) => {
           })}
         </>
       )}
-      {!isNoWish && <NoWish />}
+      {isNoWish && <NoWish />}
     </WishListContainer>
   );
 };

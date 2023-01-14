@@ -1,34 +1,40 @@
 import { useEffect, useState } from 'react';
-import { api } from '../../api';
 import styled from 'styled-components';
+import { BsArrowCounterclockwise } from 'react-icons/bs';
+import { api } from '../../api';
 import useStore from '../../context/store';
 import MakeWishModal from '../../components/MakeWishModal';
 import CreatedModal from '../../components/CreatedModal';
 import ReadWishModal from '../../components/ReadWishModal';
 import LimitModal from '../../components/LimitModal';
-import Button from '../../components/Button';
 import MainBackground from '../../components/MainBackground';
 import { HomeContainer } from '../Intro';
-import { contentFontColor, headercolor, HomeButtonFont, wishButton } from '../../theme';
+import { contentFontColor, headercolor, HomeButtonFont, mainColor, maincolor, redButton, wishButton } from '../../theme';
 import onePocket from '../../assets/main/pockets/shadow.png';
-import pocket from '../../assets/main/pockets/004.png';
 import wishText from '../../assets/main/pockets/wish-text.png';
+import { imgArr } from '../../constant/bok';
 import { bell } from '../../utils/Animation';
+import MenuButton from '../../components/MenuButton';
+import SideBar from '../../components/SideBar';
 
 const Home = () => {
-  const [pocketCounts, setPocketCounts] = useState(200000);
+  const [pocketCounts, setPocketCounts] = useState(0);
   const [wroteWish, setWroteWish] = useState([0, 1, 2, 3, 4, 5, 6, 7]);
   const [wishId, setWishId] = useState();
+  const [wishCheck, setWishCheck] = useState('');
   const [isMakeWish, setIsMakeWish] = useState(false);
   const [isCreatedModal, setIsCreatedModal] = useState(false);
   const [isReadWish, setIsReadWish] = useState(false);
   const [isLimitModal, setIsLimitModal] = useState(false);
+  const [isSideBar, setIsSideBar] = useState(false);
   const { falseIntroPass } = useStore();
 
   useEffect(() => {
     falseIntroPass();
     getWish();
-  }, []);
+    getWishCheck();
+    getWishCounts();
+  }, [isReadWish, isCreatedModal]);
 
   const getWish = async () => {
     try {
@@ -39,45 +45,80 @@ const Home = () => {
     }
   };
 
+  const getWishCheck = async () => {
+    try {
+      let uuid = localStorage.getItem('uuid');
+      const {
+        data: { message },
+      } = await api.get(`wish-check?uuid=${uuid}`);
+      setWishCheck(message);
+    } catch (error) {
+      setWishCheck(error.response.data);
+    }
+  };
+
+  const getWishCounts = async () => {
+    try {
+      const {
+        data: { wishes },
+      } = await api.get('wish-count');
+      setPocketCounts(wishes);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const makeWish = () => {
+    if (wishCheck === 'Nothing Duplication') setIsMakeWish(true);
+    else setIsLimitModal(true);
+  };
+
   return (
     <HomeContainer>
       <HomeArticle>
         <div className='home-header'>
-          <div className='font-box'>
-            <h2 className='header-color'>{pocketCounts.toLocaleString()}</h2>
-            <h2>개의</h2>
+          <div>
+            <div className='font-box'>
+              <h2 className='header-color'>{pocketCounts.toLocaleString()}</h2>
+              <h2>개의</h2>
+            </div>
+            <h2>소원이 달렸어요</h2>
           </div>
-          <h2>소원이 달렸어요</h2>
         </div>
         <div className='home-body'>
-          <div className='text'>
-            <img src={wishText} />
+          <div className='column wish-btn' onClick={makeWish}>
+            <img src={onePocket} />
+            <img className='text' src={wishText} />
           </div>
-          <div className='home-img'>
-            <div className='column wish-btn' onClick={() => setIsMakeWish(true)}>
-              <img src={onePocket} />
-            </div>
-            {wroteWish.map((wish, index) => {
-              return (
-                <div
-                  className='column'
-                  key={index}
-                  onClick={() => {
-                    setWishId(wish._id);
-                    setIsReadWish(true);
-                  }}
-                >
-                  <img src={pocket} />
-                </div>
-              );
-            })}
-          </div>
+          {wroteWish.map((wish, index) => {
+            const randomNumber = Math.floor(Math.random() * 8) + 1;
+            return (
+              <div
+                className='column'
+                key={index}
+                onClick={() => {
+                  setWishId(wish._id);
+                  setIsReadWish(true);
+                }}
+              >
+                <img src={imgArr[randomNumber]} />
+                <p className='wish-num'>{wish.likes}</p>
+              </div>
+            );
+          })}
         </div>
-        <div className='home-footer'>
-          <Button text='다른 소원들 보기' />
-        </div>
+        <Button onClick={() => getWish()}>
+          <BsArrowCounterclockwise size='1.4rem' />
+          <button>다른 소원들 보기</button>
+        </Button>
+        <SideBar isSideBar={isSideBar} wishCheck={wishCheck} />
+        <MenuButton isSideBar={isSideBar} setIsSideBar={setIsSideBar} />
+        <Blur isSideBar={isSideBar} onClick={() => setIsSideBar(false)} />
       </HomeArticle>
       {isMakeWish && <MakeWishModal setIsMakeWish={setIsMakeWish} setIsCreatedModal={setIsCreatedModal} setIsLimitModal={setIsLimitModal} />}
+      <MainBackground />
+
+      {isMakeWish && <MakeWishModal setIsMakeWish={setIsMakeWish} setIsCreatedModal={setIsCreatedModal} />}
       {isCreatedModal && <CreatedModal setIsCreatedModal={setIsCreatedModal} />}
       {isReadWish && <ReadWishModal id={wishId} setIsReadWish={setIsReadWish} />}
       {isLimitModal && <LimitModal isLimitModal={isLimitModal} setIsLimitModal={setIsLimitModal} />}
@@ -86,25 +127,27 @@ const Home = () => {
 };
 
 const HomeArticle = styled.article`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: absolute;
-  bottom: 0%;
+  padding: 3.5rem 1rem;
   width: 100%;
   max-width: 440px;
-  height: 45rem;
-  z-index: 100;
-  padding: 3.5rem 0 1rem 0;
+  height: 100vh;
+  min-height: 700px;
+  max-height: 1100px;
   background-color: inherit;
+  overflow-x: hidden;
+  z-index: 2;
   ${HomeButtonFont};
   font-family: 'CWDangamAsac-Bold';
   color: ${contentFontColor};
   .home-header {
     display: flex;
-    padding-left: 5%;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: column;
+    padding-left: 5%;
     .font-box {
       display: flex;
       padding-bottom: 7px;
@@ -114,53 +157,80 @@ const HomeArticle = styled.article`
       }
     }
     h2 {
-      font-size: 30px;
+      font-size: 2.3rem;
       color: ${contentFontColor};
     }
   }
   .home-body {
-    position: relative;
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
-    margin: 0 auto;
     .text {
       position: absolute;
-      top: -5%;
-      left: 3%;
-      img {
-        width: 70px;
-      }
+      top: -1.5rem;
+      left: 0.8rem;
     }
     .column {
-      float: left;
+      position: relative;
+      margin: 0 auto;
+      width: 30%;
       text-align: center;
-      width: 33.33%;
-      padding: 5px;
     }
     img {
-      width: 70px;
-      margin: 0.4rem 1rem;
+      margin: 0.8rem 1rem;
+      width: 75px;
     }
 
     .wish-btn {
       transform-origin: center;
       animation: ${bell} 2s infinite linear;
     }
-  }
-  .home-footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 10px 0 30px 0;
-    button {
-      font-family: 'CWDangamAsac-Bold';
-      background-color: ${wishButton};
-      padding: 1rem 3rem;
-      font-size: 2rem;
-      border-radius: 24px;
-      box-shadow: rgba(0, 0, 0, 0.3) 3px 3px 3px;
+    .wish-num {
+      position: absolute;
+      bottom: 24%;
+      left: 54%;
+      font-size: 1.4rem;
+      color: ${redButton};
     }
   }
+`;
+
+export const Button = styled.div`
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding: 2px;
+  margin: 0 auto;
+  width: 80%;
+  border-radius: 17px;
+  box-shadow: rgba(0, 0, 0, 0.3) 3px 3px 3px;
+  background-color: ${wishButton};
+  color: #fff;
+  button {
+    padding: 1rem;
+    outline: none;
+    border: none;
+    font-family: 'mainFont600';
+    background-color: inherit;
+    font-size: 1.3rem;
+    color: #fff;
+  }
+`;
+
+export const Blur = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  visibility: ${({ isSideBar }) => (isSideBar ? 'visible' : 'hidden')};
+  transition: 0.3s;
+  z-index: 2;
 `;
 
 export default Home;

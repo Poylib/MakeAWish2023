@@ -6,6 +6,7 @@ export const mainColor = '#EA7048';
 export const contentFontColor = '#2D2D2D';
 export const bgColor = '#F6EFE5';
 export const wishButton = '#FD8A69';
+export const redButton = '#CC3333';
 
 export const mainFont = `@font-face {
   font-family: 'Pretendard-Regular';

@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../Button';
@@ -5,9 +6,18 @@ import pocket from '../../assets/nodata/empty-pocket.png';
 
 const NoWish = () => {
   const navigate = useNavigate();
+  const [message, setMessage] = useState('');
+  const [text, setText] = useState('');
 
-  const message = '응원한';
-  const text = '소원 작성하러가기';
+  useEffect(() => {
+    if (location.pathname === '/wish') {
+      setMessage('작성한');
+      setText('소원 작성하러 가기');
+    } else if (location.pathname === '/like') {
+      setMessage('응원한');
+      setText('소원 응원하러 가기');
+    }
+  }, []);
 
   return (
     <NoWishContainer>
