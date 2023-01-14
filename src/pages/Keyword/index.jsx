@@ -11,27 +11,31 @@ const Keyword = () => {
 
   useEffect(() => {
     //임시 keyword GET
-    const loader = async () => {
-      try {
-        const { data } = await api.get(`/keyword`);
-        console.log(data);
-        setKeyword(data[0].keyword);
-      } catch (error) {
-        console.log(error);
-      }
-    };
     loader();
-
-    const getKeywordList = async () => {
-      try {
-        const { data } = await api.get(`/search?keyword=${keyword}&skip=1&limit=3`);
-        setKeywordList(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
     getKeywordList();
   }, []);
+
+  const loader = async () => {
+    try {
+      const { data } = await api.get(`/keyword`);
+      console.log(data);
+      console.log(data[0]?.keyword);
+      setKeyword(data[0].keyword);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  console.log('22', keyword);
+
+  const getKeywordList = async () => {
+    try {
+      const { data } = await api.get(`/search?keyword=${keyword}&skip=1&limit=10`);
+      setKeywordList(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <KeywordContainer>

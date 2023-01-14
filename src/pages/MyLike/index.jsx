@@ -5,6 +5,7 @@ import WishList from '../../components/WishList';
 
 const MyLike = () => {
   const [myLikeList, setMyLikeList] = useState([]);
+  const [isNoWish, setIsNoWish] = useState(false);
 
   useEffect(() => {
     getLike();
@@ -14,7 +15,7 @@ const MyLike = () => {
     const uuid = localStorage.getItem('uuid');
     try {
       const { data } = await api.get(`like?uuid=${uuid}&skip=1&limit=5`);
-      console.log(data);
+      !data && setIsNoWish(true);
       setMyLikeList(data);
     } catch (error) {
       console.log(error);
@@ -23,7 +24,7 @@ const MyLike = () => {
 
   return (
     <MyLikeContainer>
-      <WishList title='내가 응원한 소원' wishList={myLikeList} loader={getLike} />
+      <WishList title='내가 응원한 소원' wishList={myLikeList} loader={getLike} isNoWish={isNoWish} />
     </MyLikeContainer>
   );
 };

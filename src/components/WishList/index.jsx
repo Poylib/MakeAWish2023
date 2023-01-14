@@ -4,10 +4,11 @@ import { api } from '../../api';
 import styled from 'styled-components';
 import { TiArrowLeftThick, TiArrowRightThick } from 'react-icons/ti';
 import { FiArrowLeft } from 'react-icons/fi';
+import NoWish from '../NoWish';
 import luckOn from '../../assets/readwish/bok-on.png';
 import luckOff from '../../assets/readwish/bok-off.png';
 
-const WishList = ({ title, icon, wishList, keyword, loader }) => {
+const WishList = ({ title, icon, wishList, keyword, loader, isNoWish }) => {
   const navigate = useNavigate();
   const [isLike, setIsLike] = useState(false);
 
@@ -47,45 +48,48 @@ const WishList = ({ title, icon, wishList, keyword, loader }) => {
           <div className='next-keyword'>#행복</div>
         </div>
       )}
-      <div className='list-wrapper'>
-        {wishList.map(wish => {
-          return (
-            <Wish key={wish._id}>
-              {location.pathname === '/like' && <span className='name'>{wish.nickName}</span>}
-              <div className='wish'>
-                <div className='text'>{wish.comment}</div>
-                <div className='like-wrapper'>
-                  {/* 임시 */}
-                  {location.pathname === '/like' && (
-                    <>
-                      <p className={wish.isLike ? 'bok' : 'bok-off'}>{wish.likes}</p>
-                      <img
-                        alt='복'
-                        src={wish.isLike ? luckOn : luckOff}
-                        onClick={() => {
-                          handleLike(wish._id, false);
-                        }}
-                      />
-                    </>
-                  )}
-                  {location.pathname !== '/like' && (
-                    <>
-                      <p className={isLike ? 'bok' : 'bok-off'}>{wish.likes}</p>
-                      <img
-                        alt='복'
-                        src={isLike ? luckOn : luckOff}
-                        onClick={() => {
-                          setIsLike(!isLike);
-                        }}
-                      />
-                    </>
-                  )}
+      {wishList && isNoWish && (
+        <>
+          {wishList.map(wish => {
+            return (
+              <Wish key={wish._id}>
+                {location.pathname === '/like' && <span className='name'>{wish.nickName}</span>}
+                <div className='wish'>
+                  <div className='text'>{wish.comment}</div>
+                  <div className='like-wrapper'>
+                    {/* 임시 */}
+                    {location.pathname === '/like' && (
+                      <>
+                        <p className={wish.isLike ? 'bok' : 'bok-off'}>{wish.likes}</p>
+                        <img
+                          alt='복'
+                          src={wish.isLike ? luckOn : luckOff}
+                          onClick={() => {
+                            handleLike(wish._id, false);
+                          }}
+                        />
+                      </>
+                    )}
+                    {location.pathname !== '/like' && (
+                      <>
+                        <p className={isLike ? 'bok' : 'bok-off'}>{wish.likes}</p>
+                        <img
+                          alt='복'
+                          src={isLike ? luckOn : luckOff}
+                          onClick={() => {
+                            setIsLike(!isLike);
+                          }}
+                        />
+                      </>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </Wish>
-          );
-        })}
-      </div>
+              </Wish>
+            );
+          })}
+        </>
+      )}
+      {!isNoWish && <NoWish />}
     </WishListContainer>
   );
 };
