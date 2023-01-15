@@ -15,15 +15,15 @@ import wishText from '../../assets/main/pockets/wish-text.png';
 import { imgArr } from '../../constant/bok';
 import { bell } from '../../utils/Animation';
 import TopKeyword from '../../components/TopKeyword';
-import { BsArrowCounterclockwise } from 'react-icons/bs';
 import MenuButton from '../../components/MenuButton';
 import SideBar from '../../components/SideBar';
 
 const Home = () => {
   const [pocketCounts, setPocketCounts] = useState(0);
-  const [wroteWish, setWroteWish] = useState([0, 1, 2, 3, 4, 5, 6, 7]);
+  const [wroteWish, setWroteWish] = useState([]);
   const [wishId, setWishId] = useState();
   const [wishCheck, setWishCheck] = useState('');
+  const [otherWish, setOtherWish] = useState([]);
   const [isMakeWish, setIsMakeWish] = useState(false);
   const [isCreatedModal, setIsCreatedModal] = useState(false);
   const [isReadWish, setIsReadWish] = useState(false);
@@ -38,7 +38,7 @@ const Home = () => {
     getWishCheck();
     getWishCounts();
     getKeywords();
-  }, [isReadWish, isCreatedModal]);
+  }, []);
 
   const getWish = async () => {
     try {
@@ -85,7 +85,6 @@ const Home = () => {
       console.log(error);
     }
   };
-
   return (
     <HomeContainer>
       <HomeArticle>
@@ -105,13 +104,15 @@ const Home = () => {
           </div>
           {wroteWish.map((wish, index) => {
             const randomNumber = Math.floor(Math.random() * 8) + 1;
+            const other = wroteWish.filter(el => el._id !== wish._id);
             return (
               <div
                 className='column'
-                key={index}
+                key={`${index}${wish._id}`}
                 onClick={() => {
                   setWishId(wish._id);
                   setIsReadWish(true);
+                  setOtherWish(other);
                 }}
               >
                 <img src={imgArr[randomNumber]} />
@@ -135,7 +136,7 @@ const Home = () => {
       {isMakeWish && <MakeWishModal setIsMakeWish={setIsMakeWish} setIsCreatedModal={setIsCreatedModal} setIsLimitModal={setIsLimitModal} />}
       {isMakeWish && <MakeWishModal setIsMakeWish={setIsMakeWish} setIsCreatedModal={setIsCreatedModal} />}
       {isCreatedModal && <CreatedModal setIsCreatedModal={setIsCreatedModal} />}
-      {isReadWish && <ReadWishModal id={wishId} setIsReadWish={setIsReadWish} />}
+      {isReadWish && <ReadWishModal id={wishId} setIsReadWish={setIsReadWish} otherWish={otherWish} />}
       {isLimitModal && <LimitModal isLimitModal={isLimitModal} setIsLimitModal={setIsLimitModal} />}
     </HomeContainer>
   );
