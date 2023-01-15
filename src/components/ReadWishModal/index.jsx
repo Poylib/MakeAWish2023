@@ -8,13 +8,14 @@ import luckOn from '../../assets/readwish/bok-on.png';
 import luckOff from '../../assets/readwish/bok-off.png';
 import { mainColor } from '../../theme';
 
-const ReadWishModal = ({ id, setIsReadWish }) => {
+const ReadWishModal = ({ id, setIsReadWish, otherWish }) => {
   const [wish, setWish] = useState();
+  const [wishRenderId, setWishRenderId] = useState(id);
+  const [wishListCount, setWishListCount] = useState(0);
   const uuid = localStorage.getItem('uuid');
-
   const loader = async () => {
     try {
-      const { data } = await api.get(`wishes?id=${id}&uuid=${uuid}`);
+      const { data } = await api.get(`wishes?id=${wishRenderId}&uuid=${uuid}`);
       setWish(data);
     } catch (error) {
       console.log(error);
@@ -23,7 +24,7 @@ const ReadWishModal = ({ id, setIsReadWish }) => {
 
   useEffect(() => {
     loader();
-  }, []);
+  }, [wishListCount]);
 
   const handleLike = async isLike => {
     const body = {
@@ -38,7 +39,12 @@ const ReadWishModal = ({ id, setIsReadWish }) => {
       console.log(error);
     }
   };
-
+  const nextWish = () => {
+    if (wishListCount !== otherWish.length) {
+      setWishRenderId(otherWish[wishListCount]._id);
+      setWishListCount(wishListCount + 1);
+    } else alert('새로운 소원을 불러와주세요!');
+  };
   return (
     wish && (
       <Positioner>
@@ -81,9 +87,7 @@ const ReadWishModal = ({ id, setIsReadWish }) => {
               onClose={() => {
                 setIsReadWish(false);
               }}
-              onConfirm={() => {
-                setIsReadWish(false);
-              }}
+              onConfirm={nextWish}
               closeText='닫기'
               confirmText='다음'
               disabled={false}
@@ -174,7 +178,7 @@ const ReadWishModalContainer = styled.div`
         border: none;
         outline: none;
         resize: none;
-        ${({ theme }) => theme.text2};
+        ${({ theme }) => theme.textFont2};
         color: ${({ theme }) => theme.contentFontColor};
         font-family: 'UhBeeRice';
         font-size: 1.25rem;
