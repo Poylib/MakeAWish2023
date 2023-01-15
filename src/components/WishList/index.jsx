@@ -25,7 +25,6 @@ const WishList = ({ title, icon, wishList, keyword, loader, isNoWish }) => {
       console.log(error);
     }
   };
-
   return (
     <WishListContainer>
       <div className='title-wrapper'>

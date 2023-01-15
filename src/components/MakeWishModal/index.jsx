@@ -25,7 +25,6 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal, getWish, setIsLimitMo
       setIsCreatedModal(true);
       getWish();
     } catch (error) {
-      console.log(error);
       const message = error.response.data;
       if (message === 'Already created') {
         setIsMakeWish(false);

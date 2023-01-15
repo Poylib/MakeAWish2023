@@ -7,7 +7,7 @@ const Keyword = () => {
   const [keywordList, setKeywordList] = useState([]);
 
   //임시
-  const [keyword, setKeyword] = useState('');
+  const [keyword, setKeyword] = useState('로또');
 
   useEffect(() => {
     //임시 keyword GET
@@ -19,7 +19,7 @@ const Keyword = () => {
     try {
       const { data } = await api.get(`/keyword`);
       console.log(data);
-      console.log(data[0]?.keyword);
+      // console.log(data[0]?.keyword);
       setKeyword(data[0].keyword);
     } catch (error) {
       console.log(error);
@@ -31,7 +31,7 @@ const Keyword = () => {
   const getKeywordList = async () => {
     try {
       const { data } = await api.get(`/search?keyword=${keyword}&skip=1&limit=10`);
-      setKeywordList(data);
+      setKeywordList([data]);
     } catch (error) {
       console.log(error);
     }
