@@ -20,7 +20,6 @@ const LimitModal = ({ isLimitModal, setIsLimitModal }) => {
 
   const notify = () => {
     toast('앗! 복주머니가 아니라 만두?');
-    console.log('toast');
   };
 
   return (
