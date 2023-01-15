@@ -4,10 +4,11 @@ import { api } from '../../api';
 import styled from 'styled-components';
 import { TiArrowLeftThick, TiArrowRightThick } from 'react-icons/ti';
 import { FiArrowLeft } from 'react-icons/fi';
+import NoWish from '../NoWish';
 import luckOn from '../../assets/readwish/bok-on.png';
 import luckOff from '../../assets/readwish/bok-off.png';
 
-const WishList = ({ title, icon, wishList, keyword, loader }) => {
+const WishList = ({ title, icon, wishList, keyword, loader, isNoWish }) => {
   const navigate = useNavigate();
   const [isLike, setIsLike] = useState(false);
 
@@ -18,8 +19,7 @@ const WishList = ({ title, icon, wishList, keyword, loader }) => {
       like: isLike,
     };
     try {
-      const { data } = await api.post('like', body);
-      console.log(data);
+      await api.post('like', body);
       loader();
     } catch (error) {
       console.log(error);
@@ -35,7 +35,8 @@ const WishList = ({ title, icon, wishList, keyword, loader }) => {
           }}
         />
         <h3>
-          {title}&nbsp;{icon}
+          {title}
+          {location.pathname === '/wish' && <img src={icon} />}
         </h3>
       </div>
       {location.pathname === '/keyword' && (
@@ -47,45 +48,48 @@ const WishList = ({ title, icon, wishList, keyword, loader }) => {
           <div className='next-keyword'>#행복</div>
         </div>
       )}
-      <div className='list-wrapper'>
-        {wishList.map(wish => {
-          return (
-            <Wish key={wish._id}>
-              {location.pathname === '/like' && <span className='name'>{wish.nickName}</span>}
-              <div className='wish'>
-                <div className='text'>{wish.comment}</div>
-                <div className='like-wrapper'>
-                  {/* 임시 */}
-                  {location.pathname === '/like' && (
-                    <>
-                      <p className={wish.isLike ? 'bok' : 'bok-off'}>{wish.likes}</p>
-                      <img
-                        alt='복'
-                        src={wish.isLike ? luckOn : luckOff}
-                        onClick={() => {
-                          handleLike(wish._id, false);
-                        }}
-                      />
-                    </>
-                  )}
-                  {location.pathname !== '/like' && (
-                    <>
-                      <p className={isLike ? 'bok' : 'bok-off'}>{wish.likes}</p>
-                      <img
-                        alt='복'
-                        src={isLike ? luckOn : luckOff}
-                        onClick={() => {
-                          setIsLike(!isLike);
-                        }}
-                      />
-                    </>
-                  )}
+      {wishList && !isNoWish && (
+        <>
+          {wishList.map(wish => {
+            return (
+              <Wish key={wish._id}>
+                {location.pathname === '/like' && <span className='name'>{wish.nickName}</span>}
+                <div className='wish'>
+                  <div className='text'>{wish.comment}</div>
+                  <div className='like-wrapper'>
+                    {/* 임시 */}
+                    {location.pathname === '/like' && (
+                      <>
+                        <p className={wish.isLike ? 'bok' : 'bok-off'}>{wish.likes}</p>
+                        <img
+                          alt='복'
+                          src={wish.isLike ? luckOn : luckOff}
+                          onClick={() => {
+                            handleLike(wish._id, false);
+                          }}
+                        />
+                      </>
+                    )}
+                    {location.pathname !== '/like' && (
+                      <>
+                        <p className={isLike ? 'bok' : 'bok-off'}>{wish.likes}</p>
+                        <img
+                          alt='복'
+                          src={isLike ? luckOn : luckOff}
+                          onClick={() => {
+                            setIsLike(!isLike);
+                          }}
+                        />
+                      </>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </Wish>
-          );
-        })}
-      </div>
+              </Wish>
+            );
+          })}
+        </>
+      )}
+      {isNoWish && <NoWish />}
     </WishListContainer>
   );
 };
@@ -112,6 +116,11 @@ const WishListContainer = styled.div`
       justify-content: center;
       ${({ theme }) => theme.HomeButtonFont};
       font-family: 'CWDangamAsac-Bold';
+
+      img {
+        width: 40px;
+        margin-left: 10px;
+      }
     }
   }
 
