@@ -77,7 +77,7 @@ const SideBarContainer = styled.div`
     display: none;
   }
   header {
-    margin-top: 7vh;
+    margin-top: 1vh;
     width: 100%;
     font-size: 25px;
     font-weight: 900;
