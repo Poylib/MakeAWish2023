@@ -180,10 +180,16 @@ const HomeArticle = styled.article`
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    @media screen and (min-height: 810px) {
+      margin-bottom: 20px;
+    }
+    @media screen and (min-height: 900px) {
+      margin-bottom: 40px;
+    }
     .text {
       position: absolute;
       top: -1.5rem;
-      left: 0.8rem;
+      left: 0.4rem;
     }
     .column {
       position: relative;
@@ -192,8 +198,14 @@ const HomeArticle = styled.article`
       text-align: center;
     }
     img {
-      margin: 0.8rem 1rem;
+      margin: 1rem;
       width: 75px;
+      @media screen and (min-height: 810px) {
+        margin: 1.6rem 1rem;
+      }
+      @media screen and (min-height: 900px) {
+        margin: 2.4rem 1rem;
+      }
     }
 
     .wish-btn {

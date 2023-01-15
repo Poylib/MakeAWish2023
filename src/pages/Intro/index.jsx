@@ -34,7 +34,7 @@ const Intro = () => {
       <IntroArticle>
         {fadeInHeader ? (
           <div className='header-box header-fade'>
-            <h2>2023 새해</h2>
+            <h2>2023 계묘년</h2>
             <h1>소원을 빌어보세요</h1>
             <h4>Make a wish for 2023</h4>
           </div>
