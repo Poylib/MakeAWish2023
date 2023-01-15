@@ -174,7 +174,7 @@ const ReadWishModalContainer = styled.div`
         border: none;
         outline: none;
         resize: none;
-        ${({ theme }) => theme.textFont2};
+        ${({ theme }) => theme.text2};
         color: ${({ theme }) => theme.contentFontColor};
         font-family: 'UhBeeRice';
         font-size: 1.25rem;

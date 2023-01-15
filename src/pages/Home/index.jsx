@@ -14,6 +14,7 @@ import onePocket from '../../assets/main/pockets/shadow.png';
 import wishText from '../../assets/main/pockets/wish-text.png';
 import { imgArr } from '../../constant/bok';
 import { bell } from '../../utils/Animation';
+import TopKeyword from '../../components/TopKeyword';
 import MenuButton from '../../components/MenuButton';
 import SideBar from '../../components/SideBar';
 
@@ -27,6 +28,7 @@ const Home = () => {
   const [isReadWish, setIsReadWish] = useState(false);
   const [isLimitModal, setIsLimitModal] = useState(false);
   const [isSideBar, setIsSideBar] = useState(false);
+  const [keywords, setKeywords] = useState();
   const { falseIntroPass } = useStore();
 
   useEffect(() => {
@@ -34,6 +36,7 @@ const Home = () => {
     getWish();
     getWishCheck();
     getWishCounts();
+    getKeywords();
   }, [isReadWish, isCreatedModal]);
 
   const getWish = async () => {
@@ -73,6 +76,15 @@ const Home = () => {
     else setIsLimitModal(true);
   };
 
+  const getKeywords = async () => {
+    try {
+      const { data } = await api.get(`keyword`);
+      setKeywords(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <HomeContainer>
       <HomeArticle>
@@ -107,10 +119,13 @@ const Home = () => {
             );
           })}
         </div>
-        <Button onClick={() => getWish()}>
-          <BsArrowCounterclockwise size='1.4rem' />
-          <button>다른 소원들 보기</button>
-        </Button>
+        <div className='home-bottom'>
+          <TopKeyword data={keywords} />
+          <Button onClick={() => getWish()}>
+            <BsArrowCounterclockwise size='1.4rem' />
+            <button>다른 소원들 보기</button>
+          </Button>
+        </div>
         <SideBar isSideBar={isSideBar} wishCheck={wishCheck} />
         <MenuButton isSideBar={isSideBar} setIsSideBar={setIsSideBar} />
         <Blur isSideBar={isSideBar} onClick={() => setIsSideBar(false)} />
@@ -203,7 +218,7 @@ export const Button = styled.div`
   justify-content: center;
   padding: 2px;
   margin: 0 auto;
-  width: 80%;
+  width: 90%;
   border-radius: 17px;
   box-shadow: rgba(0, 0, 0, 0.3) 3px 3px 3px;
   background-color: ${wishButton};
