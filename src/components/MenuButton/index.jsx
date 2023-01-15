@@ -18,7 +18,7 @@ export default MenuButton;
 
 const MenuContainer = styled.div`
   position: absolute;
-  right: 20px;
+  right: 8%;
   top: 30px;
   z-index: 30;
   div {
@@ -27,17 +27,17 @@ const MenuContainer = styled.div`
   .bar1,
   .bar2,
   .bar3 {
-    margin: 6px 0;
-    width: 35px;
-    height: 5px;
+    margin: 4px 0;
+    width: 25px;
+    height: 3px;
     background-color: ${blackcolor};
     transition: 0.4s;
   }
   &.change {
     .bar1 {
       /* background-color: #fff; */
-      -webkit-transform: rotate(-45deg) translate(-8px, 8px);
-      transform: rotate(-45deg) translate(-8px, 8px);
+      -webkit-transform: rotate(-45deg) translate(-7px, 7px);
+      transform: rotate(-45deg) translate(-7px, 7px);
     }
     .bar2 {
       /* background-color: #fff; */
@@ -45,8 +45,8 @@ const MenuContainer = styled.div`
     }
     .bar3 {
       /* background-color: #fff; */
-      -webkit-transform: rotate(45deg) translate(-8px, -8px);
-      transform: rotate(45deg) translate(-8px, -8px);
+      -webkit-transform: rotate(45deg) translate(-3px, -3px);
+      transform: rotate(45deg) translate(-3px, -3px);
     }
   }
 `;
