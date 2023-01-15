@@ -33,7 +33,6 @@ const ReadWishModal = ({ id, setIsReadWish, otherWish }) => {
       uuid,
       like: isLike,
     };
-    console.log(body);
     try {
       await api.post('like', body);
       await loader();
@@ -205,7 +204,7 @@ const ReadWishModalContainer = styled.div`
         padding: 1rem;
 
         .luck {
-          padding: 0.25rem;
+          padding: 0.4rem;
           background: ${({ theme }) => theme.bgColor};
           border-radius: 15px;
           color: ${({ theme }) => theme.mainColor};
@@ -217,7 +216,7 @@ const ReadWishModalContainer = styled.div`
         .image-wrapper {
           display: flex;
           justify-content: center;
-
+          align-items: center;
           .bok {
             width: 70px;
           }
@@ -231,10 +230,6 @@ const ReadWishModalContainer = styled.div`
             color: ${({ theme }) => theme.mainColor};
             font-size: 2rem;
             font-weight: 600;
-
-            svg {
-              margin-bottom: 0.3rem;
-            }
           }
         }
 
