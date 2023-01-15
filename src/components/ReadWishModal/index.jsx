@@ -27,14 +27,16 @@ const ReadWishModal = ({ id, setIsReadWish, otherWish }) => {
   }, [wishListCount]);
 
   const handleLike = async isLike => {
+    const id = wishRenderId;
     const body = {
       id,
       uuid,
       like: isLike,
     };
+    console.log(body);
     try {
       await api.post('like', body);
-      loader();
+      await loader();
     } catch (error) {
       console.log(error);
     }
