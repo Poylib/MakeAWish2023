@@ -25,7 +25,7 @@ const LimitModal = ({ isLimitModal, setIsLimitModal }) => {
 
   return (
     <Overlay>
-      <ToastContainer position='top-center' autoClose={1000} hideProgressBar newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss={false} draggable={false} pauseOnHover={false} theme='light' />
+      <ToastContainer position='top-center' autoClose={1500} hideProgressBar newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss={false} draggable={false} pauseOnHover={false} theme='light' />
       <ModalWrap>
         <Contents>
           <img className='dumpling' src={dumpling} />
@@ -67,6 +67,7 @@ const Overlay = styled.div`
 
       .Toastify__toast-body {
         margin: 5px 10px;
+        padding: 0 6px;
         font-weight: 600;
         font-size: 18px;
         color: white;
