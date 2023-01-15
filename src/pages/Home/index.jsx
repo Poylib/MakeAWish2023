@@ -242,7 +242,7 @@ export const Blur = styled.div`
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.8);
   visibility: ${({ isSideBar }) => (isSideBar ? 'visible' : 'hidden')};
   transition: 0.3s;
   z-index: 2;

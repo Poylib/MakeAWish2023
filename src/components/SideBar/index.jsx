@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import background from '../../assets/makewish/wish-background.png';
-import { blackcolor, mainFont600 } from '../../theme';
+import { blackcolor, mainFont600, mainFont900 } from '../../theme';
 import onePocket from '../../assets/main/pockets/shadow.png';
 import { useNavigate } from 'react-router-dom';
 import { RxPerson } from 'react-icons/rx';
@@ -16,9 +16,19 @@ const SideBar = ({ isSideBar, wishCheck }) => {
   return (
     <SideBarContainer isSideBar={isSideBar}>
       <header>
-        <h1>오늘 소원</h1>
-        <h1>작성 완료</h1>
-        <h1>{wishCounts}/1</h1>
+        {wishCounts === 1 ? (
+          <>
+            <h1>오늘 소원 </h1>
+            <h1>작성 완료 </h1>
+          </>
+        ) : (
+          <>
+            <h1>오늘 소원을</h1>
+            <h1>작성해주세요 </h1>
+          </>
+        )}
+
+        <h1 className='wishCounts'>{wishCounts}/1</h1>
       </header>
       <div className='side-body'>
         <div className='side-wish-view' onClick={() => navigate('/wish')}>
@@ -71,33 +81,45 @@ const SideBarContainer = styled.div`
   z-index: 30;
   transform: translateX(${({ isSideBar }) => (isSideBar ? '-100%' : '0%')});
   transition: 0.4s ease;
-  font-family: 'textFont1';
+  font-family: 'Pretendard';
   overflow: scroll;
+
   ::-webkit-scrollbar {
     display: none;
   }
+
   header {
-    margin-top: 7vh;
+    margin-top: 5vh;
     width: 100%;
     font-size: 25px;
-    font-weight: 900;
+
     h1 {
       margin: 6px 0;
+      font-weight: 900;
+    }
+
+    .wishCounts {
+      font-size: 30px;
     }
   }
+
   .side-body {
     margin-top: 25px;
     width: 100%;
-    font-size: 19px;
+    font-size: 17px;
+    font-weight: 600;
+
     .side-wish-view {
       display: flex;
       align-items: center;
       margin: 15px 0;
+
       img {
-        margin-right: 10px;
-        width: 30px;
+        margin-right: 15px;
+        width: 20px;
       }
     }
+
     .side-board {
       margin: 20px 0;
       width: 100%;
@@ -106,23 +128,29 @@ const SideBarContainer = styled.div`
       border-radius: 15px;
     }
   }
+
   .side-bottom {
-    margin-top: 10px;
+    margin-bottom: 25px;
     width: 100%;
-    font-size: 20px;
+    font-size: 17px;
+    font-weight: 600;
+
     .side-icon {
-      margin-right: 10px;
-      font-size: 28px;
+      margin-right: 15px;
+      font-size: 18px;
     }
+
     .side-bottom-row {
       display: flex;
       flex-direction: row;
       align-items: center;
-      margin: 20px 0;
+      margin-bottom: 20px;
     }
   }
+
   footer {
     width: 100%;
+    font-size: 12px;
   }
 `;
 
