@@ -89,7 +89,7 @@ const SideBarContainer = styled.div`
   }
 
   header {
-    margin-top: 5vh;
+    margin-top: 1vh;
     width: 100%;
     font-size: 25px;
 
