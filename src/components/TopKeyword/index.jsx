@@ -54,7 +54,7 @@ export const CardSlier = ({ data }) => {
 
 const Font = css`
   font-family: 'Pretendard';
-  font-weight: 500;
+  font-weight: 600;
 `;
 
 const Container = styled.div`
@@ -62,17 +62,17 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 0 auto 10px;
-  padding: 15px 30px;
+  padding: 15px 30px 15px 20px;
   width: 90%;
   height: 50px;
-  border-radius: 20px;
+  border-radius: 25px;
   background-color: rgb(246, 239, 229, 0.4);
   ${Font}
 `;
 
 const Title = styled.div`
-  /* color: ${({ theme }) => theme.contentFontColor}; */
-  color: rgba(0, 0, 0, 0.6);
+  color: ${({ theme }) => theme.contentFontColor};
+  opacity: 0.9;
 `;
 
 const StyledSlider = styled(Slider)`
