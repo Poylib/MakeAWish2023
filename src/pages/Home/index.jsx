@@ -9,7 +9,7 @@ import ReadWishModal from '../../components/ReadWishModal';
 import LimitModal from '../../components/LimitModal';
 import MainBackground from '../../components/MainBackground';
 import { HomeContainer } from '../Intro';
-import { contentFontColor, headercolor, HomeButtonFont, mainColor, maincolor, redButton, wishButton } from '../../theme';
+import { contentFontColor, headercolor, HomeButtonFont, redButton, wishButton } from '../../theme';
 import onePocket from '../../assets/main/pockets/shadow.png';
 import wishText from '../../assets/main/pockets/wish-text.png';
 import { imgArr } from '../../constant/bok';
@@ -217,6 +217,11 @@ const HomeArticle = styled.article`
       position: absolute;
       bottom: 24%;
       left: 54%;
+      @media screen and (min-height: 810px) {
+        bottom: 27%;
+      }
+      font-family: 'Pretendard';
+      font-weight: 800;
       font-size: 1.4rem;
       color: ${redButton};
     }
@@ -240,9 +245,10 @@ export const Button = styled.div`
     padding: 1rem;
     outline: none;
     border: none;
-    font-family: 'mainFont600';
+    font-family: 'Pretendard';
     background-color: inherit;
     font-size: 1.3rem;
+    font-weight: 500;
     color: #fff;
   }
 `;
