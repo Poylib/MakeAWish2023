@@ -27,6 +27,7 @@ const ReadWishModal = ({ id, setIsReadWish, otherWish }) => {
   }, [wishListCount]);
 
   const handleLike = async isLike => {
+    const id = wishRenderId;
     const body = {
       id,
       uuid,
@@ -34,7 +35,7 @@ const ReadWishModal = ({ id, setIsReadWish, otherWish }) => {
     };
     try {
       await api.post('like', body);
-      loader();
+      await loader();
     } catch (error) {
       console.log(error);
     }
@@ -203,7 +204,7 @@ const ReadWishModalContainer = styled.div`
         padding: 1rem;
 
         .luck {
-          padding: 0.25rem;
+          padding: 0.4rem;
           background: ${({ theme }) => theme.bgColor};
           border-radius: 15px;
           color: ${({ theme }) => theme.mainColor};
@@ -215,7 +216,7 @@ const ReadWishModalContainer = styled.div`
         .image-wrapper {
           display: flex;
           justify-content: center;
-
+          align-items: center;
           .bok {
             width: 70px;
           }
@@ -229,10 +230,6 @@ const ReadWishModalContainer = styled.div`
             color: ${({ theme }) => theme.mainColor};
             font-size: 2rem;
             font-weight: 600;
-
-            svg {
-              margin-bottom: 0.3rem;
-            }
           }
         }
 
