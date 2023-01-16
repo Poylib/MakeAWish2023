@@ -83,7 +83,7 @@ const WishList = ({
           {wishList.map((wish, index) => {
             let listArr = wishList;
             return (
-              <Wish key={wish._id} ref={wishList.length - 1 === index ? setLastLi : null}>
+              <Wish key={`${wish._id}${index}`} ref={wishList.length - 1 === index ? setLastLi : null}>
                 {location.pathname === '/like' && <span className='name'>{wish.nickName}</span>}
                 <div className='wish'>
                   <div className='text'>{wish.comment}</div>

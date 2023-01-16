@@ -54,7 +54,8 @@ const Keyword = () => {
   const getKeywordList = async () => {
     try {
       const { data } = await api.get(`search?keyword=${keyword}&skip=1&limit=3`);
-      setKeywordList(data);
+      console.log(data);
+      if (data.length || keywordList.length) setKeywordList([...keywordList, ...data]);
     } catch (error) {
       console.log(error);
     }
