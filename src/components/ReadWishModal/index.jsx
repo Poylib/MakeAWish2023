@@ -8,11 +8,12 @@ import luckOn from '../../assets/readwish/bok-on.png';
 import luckOff from '../../assets/readwish/bok-off.png';
 import { mainColor } from '../../theme';
 
-const ReadWishModal = ({ id, setIsReadWish, otherWish }) => {
+const ReadWishModal = ({ id, setIsReadWishModal, otherWish }) => {
   const [wish, setWish] = useState();
   const [wishRenderId, setWishRenderId] = useState(id);
   const [wishListCount, setWishListCount] = useState(0);
   const uuid = localStorage.getItem('uuid');
+
   const loader = async () => {
     try {
       const { data } = await api.get(`wishes?id=${wishRenderId}&uuid=${uuid}`);
@@ -40,12 +41,14 @@ const ReadWishModal = ({ id, setIsReadWish, otherWish }) => {
       console.log(error);
     }
   };
+
   const nextWish = () => {
     if (wishListCount !== otherWish.length) {
       setWishRenderId(otherWish[wishListCount]._id);
       setWishListCount(wishListCount + 1);
     } else alert('새로운 소원을 불러와주세요!');
   };
+
   return (
     wish && (
       <Positioner>
@@ -86,7 +89,7 @@ const ReadWishModal = ({ id, setIsReadWish, otherWish }) => {
           <div className='button-wrapper'>
             <MultiButton
               onClose={() => {
-                setIsReadWish(false);
+                setIsReadWishModal(false);
               }}
               onConfirm={nextWish}
               closeText='닫기'

@@ -8,7 +8,7 @@ import MultiButton from '../MultiButton';
 import background from '../../assets/makewish/wish-background.png';
 import moon from '../../assets/makewish/wish-moon.png';
 
-const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal, getWish, setIsLimitModal }) => {
+const MakeWishModal = ({ setIsMakeWishModal, setIsCreatedModal, getWish, setIsLimitModal }) => {
   const [name, setName] = useState('');
   const [wish, setWish] = useState('');
   const wishLength = `${wish.length}`;
@@ -21,13 +21,13 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal, getWish, setIsLimitMo
     };
     try {
       await api.post('/wishes', body);
-      setIsMakeWish(false);
+      setIsMakeWishModal(false);
       setIsCreatedModal(true);
       getWish();
     } catch (error) {
       const message = error.response.data;
       if (message === 'Already created') {
-        setIsMakeWish(false);
+        setIsMakeWishModal(false);
         setIsLimitModal(true);
       } else if (message === '비속어는 사용 금지입니다.') {
         toast(message);
@@ -73,7 +73,7 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal, getWish, setIsLimitMo
               <div className='button-wrapper'>
                 <MultiButton
                   onClose={() => {
-                    setIsMakeWish(false);
+                    setIsMakeWishModal(false);
                   }}
                   onConfirm={() => {
                     makeWish();

@@ -1,22 +1,22 @@
 import { useEffect, useState } from 'react';
+import { api } from '../../api';
 import styled from 'styled-components';
 import { BsArrowCounterclockwise } from 'react-icons/bs';
-import { api } from '../../api';
 import useStore from '../../context/store';
 import MakeWishModal from '../../components/MakeWishModal';
 import CreatedModal from '../../components/CreatedModal';
 import ReadWishModal from '../../components/ReadWishModal';
 import LimitModal from '../../components/LimitModal';
 import MainBackground from '../../components/MainBackground';
+import TopKeyword from '../../components/TopKeyword';
+import MenuButton from '../../components/MenuButton';
+import SideBar from '../../components/SideBar';
 import { HomeContainer } from '../Intro';
-import { contentFontColor, headercolor, HomeButtonFont, redButton, wishButton } from '../../theme';
 import onePocket from '../../assets/main/pockets/shadow.png';
 import wishText from '../../assets/main/pockets/wish-text.png';
 import { imgArr } from '../../constant/bok';
 import { bell } from '../../utils/Animation';
-import TopKeyword from '../../components/TopKeyword';
-import MenuButton from '../../components/MenuButton';
-import SideBar from '../../components/SideBar';
+import { contentFontColor, headercolor, HomeButtonFont, redButton, wishButton } from '../../theme';
 
 const Home = () => {
   const [pocketCounts, setPocketCounts] = useState(0);
@@ -24,9 +24,9 @@ const Home = () => {
   const [wishId, setWishId] = useState();
   const [wishCheck, setWishCheck] = useState('');
   const [otherWish, setOtherWish] = useState([]);
-  const [isMakeWish, setIsMakeWish] = useState(false);
+  const [isMakeWishModal, setIsMakeWishModal] = useState(false);
   const [isCreatedModal, setIsCreatedModal] = useState(false);
-  const [isReadWish, setIsReadWish] = useState(false);
+  const [isReadWishModal, setIsReadWishModal] = useState(false);
   const [isLimitModal, setIsLimitModal] = useState(false);
   const [isSideBar, setIsSideBar] = useState(false);
   const [keywords, setKeywords] = useState();
@@ -73,7 +73,7 @@ const Home = () => {
   };
 
   const makeWish = () => {
-    if (wishCheck === 'Nothing Duplication') setIsMakeWish(true);
+    if (wishCheck === 'Nothing Duplication') setIsMakeWishModal(true);
     else setIsLimitModal(true);
   };
 
@@ -112,7 +112,7 @@ const Home = () => {
                 key={`${index}${wish._id}`}
                 onClick={() => {
                   setWishId(wish._id);
-                  setIsReadWish(true);
+                  setIsReadWishModal(true);
                   setOtherWish(other);
                 }}
               >
@@ -134,9 +134,9 @@ const Home = () => {
         <Blur isSideBar={isSideBar} onClick={() => setIsSideBar(false)} />
       </HomeArticle>
       <MainBackground />
-      {isMakeWish && <MakeWishModal setIsMakeWish={setIsMakeWish} setIsCreatedModal={setIsCreatedModal} />}
+      {isMakeWishModal && <MakeWishModal setIsMakeWishModal={setIsMakeWishModal} setIsCreatedModal={setIsCreatedModal} />}
       {isCreatedModal && <CreatedModal setIsCreatedModal={setIsCreatedModal} />}
-      {isReadWish && <ReadWishModal id={wishId} setIsReadWish={setIsReadWish} otherWish={otherWish} />}
+      {isReadWishModal && <ReadWishModal id={wishId} setIsReadWishModal={setIsReadWishModal} otherWish={otherWish} />}
       {isLimitModal && <LimitModal isLimitModal={isLimitModal} setIsLimitModal={setIsLimitModal} />}
     </HomeContainer>
   );
