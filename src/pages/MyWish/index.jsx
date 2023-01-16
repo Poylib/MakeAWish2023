@@ -11,7 +11,7 @@ const MyWish = () => {
   const getMyWish = async () => {
     const uuid = localStorage.getItem('uuid');
     try {
-      const { data } = await api.get(`mywish?uuid=${uuid}&skip=${page}&limit=4`);
+      const { data } = await api.get(`mywish?uuid=${uuid}&skip=${page}&limit=3`);
       if (data.length || myWishList.length) setMyWishList([...myWishList, ...data]);
       else setIsNoWish(true);
     } catch (error) {

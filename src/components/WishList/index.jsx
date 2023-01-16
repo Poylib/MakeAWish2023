@@ -95,11 +95,11 @@ const WishList = ({
                       onClick={() => {
                         if (wish.isLike) {
                           listArr[index].isLike = false;
-                          listArr[index].likes -= 1;
+                          listArr[index].likes--;
                           handleLike(wish._id, false, listArr);
                         } else {
                           listArr[index].isLike = true;
-                          listArr[index].likes += 1;
+                          listArr[index].likes++;
                           handleLike(wish._id, true, listArr);
                         }
                       }}
