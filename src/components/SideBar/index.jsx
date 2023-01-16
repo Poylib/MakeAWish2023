@@ -33,11 +33,11 @@ const SideBar = ({ isSideBar, wishCheck }) => {
       <div className='side-body'>
         <div className='side-wish-view' onClick={() => navigate('/wish')}>
           <img src={onePocket} />
-          <p>내가 작성한 소원보기</p>
+          <p>내가 빈 소원보기</p>
         </div>
         <div className='side-wish-view' onClick={() => navigate('/like')}>
           <img src={onePocket} />
-          <p>내가 응원한 소원보기</p>
+          <p>내가 복 준 소원보기</p>
         </div>
         <DotLine />
         <div className='side-board'></div>

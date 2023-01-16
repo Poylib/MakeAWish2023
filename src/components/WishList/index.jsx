@@ -122,11 +122,13 @@ const WishListContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    font-size: 2.5rem;
+    font-size: 1.9rem;
+    color: ${({ theme }) => theme.contentFontColor};
 
     h3 {
       display: flex;
       justify-content: center;
+      align-items: center;
       ${({ theme }) => theme.HomeButtonFont};
       font-family: 'CWDangamAsac-Bold';
 
