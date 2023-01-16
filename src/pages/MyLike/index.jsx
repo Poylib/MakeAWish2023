@@ -26,7 +26,7 @@ const MyLike = () => {
   return (
     <MyLikeContainer>
       <WishList //
-        title='내가 응원한 소원'
+        title='내가 복 준 소원'
         wishList={myLikeList}
         setWishList={setMyLikeList}
         isNoWish={isNoWish}

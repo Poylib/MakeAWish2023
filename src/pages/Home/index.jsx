@@ -126,7 +126,7 @@ const Home = () => {
         </div>
         <div className='home-bottom'>
           <TopKeyword data={keywords} />
-          <Button onClick={() => getWish()}>
+          <Button home onClick={() => getWish()}>
             <BsArrowCounterclockwise size='1.4rem' />
             <button>다른 소원들 보기</button>
           </Button>
@@ -240,7 +240,7 @@ export const Button = styled.div`
   margin: 0 auto;
   width: 90%;
   border-radius: 17px;
-  box-shadow: rgba(0, 0, 0, 0.3) 3px 3px 3px;
+  box-shadow: ${props => (props.home ? 'none' : 'rgba(0, 0, 0, 0.3) 3px 3px 3px')};
   background-color: ${wishButton};
   color: #fff;
   button {
