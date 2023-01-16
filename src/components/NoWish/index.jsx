@@ -31,7 +31,7 @@ const NoWish = () => {
           <div className='message-wrapper'>
             {message} 소원이 아직 없어요
             <br />
-            복주머니를 채워볼까요?
+            복주머니를 채워볼까요 ?
           </div>
         </div>
       </Notice>
@@ -89,7 +89,7 @@ const Notice = styled.div`
     .message-wrapper {
       text-align: center;
       margin: 2rem 0;
-      color: rgba(0, 0, 0, 0.7);
+      color: ${({ theme }) => theme.contentFontColor};
       font-family: 'Pretendard';
       font-weight: 400;
       font-size: 1.1rem;
