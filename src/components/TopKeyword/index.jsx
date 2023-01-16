@@ -19,7 +19,8 @@ const TopKeyword = ({ data }) => {
 export const CardSlier = ({ data }) => {
   const navigate = useNavigate();
   const goToKeywordDetail = (item, idx) => {
-    navigate(`/search?index=${idx + 1}&keyword=${item.keyword}`);
+    console.log(item);
+    navigate(`/search?index=${idx}&keyword=${item.keyword}`);
   };
   const settings = {
     infinite: true,

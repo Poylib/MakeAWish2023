@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import background from '../../assets/makewish/wish-background.png';
 import { blackcolor, mainFont600, mainFont900 } from '../../theme';
 import onePocket from '../../assets/main/pockets/shadow.png';
-import { useNavigate } from 'react-router-dom';
 import { RxPerson } from 'react-icons/rx';
 import { BsTelephone, BsChatLeftDots } from 'react-icons/bs';
 const SideBar = ({ isSideBar, wishCheck }) => {
@@ -27,7 +27,6 @@ const SideBar = ({ isSideBar, wishCheck }) => {
             <h1>작성해주세요 </h1>
           </>
         )}
-
         <h1 className='wishCounts'>{wishCounts}/1</h1>
       </header>
       <div className='side-body'>
