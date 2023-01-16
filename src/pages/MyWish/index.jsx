@@ -29,6 +29,7 @@ const MyWish = () => {
         title='내가 빈 소원'
         icon={pocket}
         wishList={myWishList}
+        setWishList={setMyWishList}
         loader={getMyWish}
         isNoWish={isNoWish}
         page={page}

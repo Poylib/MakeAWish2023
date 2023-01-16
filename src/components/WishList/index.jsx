@@ -8,7 +8,18 @@ import NoWish from '../NoWish';
 import luckOn from '../../assets/readwish/bok-on.png';
 import luckOff from '../../assets/readwish/bok-off.png';
 
-const WishList = ({ title, icon, wishList, setWishList, keyword, loader, isNoWish, page, setPage }) => {
+const WishList = ({
+  //
+  title,
+  icon,
+  wishList,
+  setWishList,
+  keyword,
+  loader,
+  isNoWish,
+  page,
+  setPage,
+}) => {
   const navigate = useNavigate();
   const [isLike, setIsLike] = useState(false);
   const [lastLi, setLastLi] = useState(null);
@@ -62,46 +73,28 @@ const WishList = ({ title, icon, wishList, setWishList, keyword, loader, isNoWis
         <>
           {wishList.map((wish, index) => {
             let listArr = wishList;
-
             return (
               <Wish key={wish._id} ref={wishList.length - 1 === index ? setLastLi : null}>
                 {location.pathname === '/like' && <span className='name'>{wish.nickName}</span>}
                 <div className='wish'>
                   <div className='text'>{wish.comment}</div>
                   <div className='like-wrapper'>
-                    {/* 임시 */}
-                    {location.pathname === '/like' && (
-                      <>
-                        <p className={wish.isLike ? 'bok' : 'bok-off'}>{wish.likes}</p>
-                        <img
-                          alt='복'
-                          src={wish.isLike ? luckOn : luckOff}
-                          onClick={() => {
-                            if (wish.isLike) {
-                              listArr[index].isLike = false;
-                              listArr[index].likes -= 1;
-                              handleLike(wish._id, false, listArr);
-                            } else {
-                              listArr[index].isLike = true;
-                              listArr[index].likes += 1;
-                              handleLike(wish._id, true, listArr);
-                            }
-                          }}
-                        />
-                      </>
-                    )}
-                    {location.pathname !== '/like' && (
-                      <>
-                        <p className={isLike ? 'bok' : 'bok-off'}>{wish.likes}</p>
-                        <img
-                          alt='복'
-                          src={isLike ? luckOn : luckOff}
-                          onClick={() => {
-                            setIsLike(!isLike);
-                          }}
-                        />
-                      </>
-                    )}
+                    <p className={wish.isLike ? 'bok' : 'bok-off'}>{wish.likes}</p>
+                    <img
+                      alt='복'
+                      src={wish.isLike ? luckOn : luckOff}
+                      onClick={() => {
+                        if (wish.isLike) {
+                          listArr[index].isLike = false;
+                          listArr[index].likes -= 1;
+                          handleLike(wish._id, false, listArr);
+                        } else {
+                          listArr[index].isLike = true;
+                          listArr[index].likes += 1;
+                          handleLike(wish._id, true, listArr);
+                        }
+                      }}
+                    />
                   </div>
                 </div>
               </Wish>
