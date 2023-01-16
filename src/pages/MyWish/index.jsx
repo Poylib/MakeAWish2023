@@ -7,13 +7,14 @@ import pocket from '../../assets/main/pockets/shadow.png';
 const MyWish = () => {
   const [myWishList, setMyWishList] = useState([]);
   const [isNoWish, setIsNoWish] = useState(false);
+  const [page, setPage] = useState(1);
 
   const getMyWish = async () => {
     const uuid = localStorage.getItem('uuid');
     try {
-      const { data } = await api.get(`mywish?uuid=${uuid}&skip=1&limit=4`);
-      !data.length && setIsNoWish(true);
-      setMyWishList(data);
+      const { data } = await api.get(`mywish?uuid=${uuid}&skip=${page}&limit=4`);
+      if (data.length || myWishList.length) setMyWishList([...myWishList, ...data]);
+      else setIsNoWish(true);
     } catch (error) {
       console.log(error);
     }
@@ -21,11 +22,19 @@ const MyWish = () => {
 
   useEffect(() => {
     getMyWish();
-  }, []);
+  }, [page]);
 
   return (
     <MyWishContainer>
-      <WishList title='내가 빈 소원' icon={pocket} wishList={myWishList} loader={getMyWish} isNoWish={isNoWish} />
+      <WishList //
+        title='내가 빈 소원'
+        icon={pocket}
+        wishList={myWishList}
+        setWishList={setMyWishList}
+        isNoWish={isNoWish}
+        page={page}
+        setPage={setPage}
+      />
     </MyWishContainer>
   );
 };

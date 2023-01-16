@@ -77,7 +77,7 @@ const ReadWishModal = ({ id, setIsReadWish, otherWish }) => {
                   />
                   <span className='count'>
                     <FiX />
-                    {wish.likes}
+                    <span className='count-number'>{wish.likes}</span>
                   </span>
                 </div>
               </div>
@@ -121,6 +121,7 @@ const Background = styled.img`
   height: 100%;
 
   min-width: 1200px;
+  max-width: 2000px;
   object-fit: cover;
 `;
 
@@ -146,10 +147,16 @@ const ReadWishModalContainer = styled.div`
     .user-name {
       margin-right: 0.5rem;
       color: ${mainColor};
+      @media screen and (min-width: 1500px) {
+        padding-bottom: 70px;
+      }
     }
 
     .user-wish {
       color: #fff;
+      @media screen and (min-width: 1500px) {
+        padding-bottom: 70px;
+      }
     }
   }
 
@@ -179,7 +186,7 @@ const ReadWishModalContainer = styled.div`
         border: none;
         outline: none;
         resize: none;
-        ${({ theme }) => theme.textFont2};
+        ${({ theme }) => theme.text2};
         color: ${({ theme }) => theme.contentFontColor};
         font-family: 'UhBeeRice';
         font-size: 1.25rem;
@@ -217,6 +224,7 @@ const ReadWishModalContainer = styled.div`
           display: flex;
           justify-content: center;
           align-items: center;
+
           .bok {
             width: 70px;
           }
@@ -227,9 +235,15 @@ const ReadWishModalContainer = styled.div`
             justify-content: center;
             align-items: center;
             text-align: center;
+
             color: ${({ theme }) => theme.mainColor};
             font-size: 2rem;
             font-weight: 600;
+
+            .count-number {
+              text-align: left;
+              width: 30px;
+            }
           }
         }
 
