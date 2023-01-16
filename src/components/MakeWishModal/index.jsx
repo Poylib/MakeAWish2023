@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { toast } from 'react-toastify';
 import { api } from '../../api';
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import { TiWarningOutline } from 'react-icons/ti';
 import ToastAlert from '../ToastAlert';

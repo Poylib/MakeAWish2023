@@ -3,7 +3,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import styled from 'styled-components';
 
 const ToastAlert = () => {
-  return <Toast position='center' autoClose={2000} closeButton={false} limit={1} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss hideProgressBar draggable={false} theme='dark' />;
+  return <Toast position={'bottom-center'} autoClose={2000} closeButton={false} limit={1} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss hideProgressBar draggable={false} theme='dark' />;
 };
 
 const Toast = styled(ToastContainer)`
