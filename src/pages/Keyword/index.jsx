@@ -73,6 +73,7 @@ const Keyword = () => {
       <WishList //
         title='인기 키워드'
         wishList={keywordList}
+        setWishList={setKeywordList}
         keyword={keyword}
         prev={getPrevKeywordList}
         next={getNextKeywordList}
