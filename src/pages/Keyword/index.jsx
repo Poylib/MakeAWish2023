@@ -75,6 +75,7 @@ const Keyword = () => {
         wishList={keywordList}
         setWishList={setKeywordList}
         keyword={keyword}
+        index={index}
         prev={getPrevKeywordList}
         next={getNextKeywordList}
         prevKeyword={prevKeyword}
