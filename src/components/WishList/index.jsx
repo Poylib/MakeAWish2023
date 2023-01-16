@@ -25,6 +25,7 @@ const WishList = ({
   prev,
   next,
   prevKeyword,
+  keyword,
   nextKeyword,
 }) => {
   const navigate = useNavigate();
@@ -66,7 +67,7 @@ const WishList = ({
         />
         <h3>
           {title}
-          {location.pathname === '/wish' && <img src={icon} />}
+          {location.pathname === '/wish' && <img alt='복주머니' src={icon} />}
         </h3>
       </div>
       {location.pathname === '/search' && (

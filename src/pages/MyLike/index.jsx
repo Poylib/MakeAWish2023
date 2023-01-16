@@ -7,6 +7,7 @@ const MyLike = () => {
   const [myLikeList, setMyLikeList] = useState([]);
   const [isNoWish, setIsNoWish] = useState(false);
   const [page, setPage] = useState(1);
+
   const getLike = async () => {
     const uuid = localStorage.getItem('uuid');
     try {
@@ -28,7 +29,6 @@ const MyLike = () => {
         title='내가 복 준 소원'
         wishList={myLikeList}
         setWishList={setMyLikeList}
-        loader={getLike}
         isNoWish={isNoWish}
         page={page}
         setPage={setPage}
