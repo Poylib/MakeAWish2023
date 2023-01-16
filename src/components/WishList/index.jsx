@@ -31,7 +31,7 @@ const WishList = ({ title, icon, wishList, setWishList, keyword, loader, isNoWis
     };
     try {
       await api.post('like', body);
-      loader('inLike', listArr);
+      setWishList([...listArr]);
     } catch (error) {
       console.log(error);
     }
