@@ -15,14 +15,17 @@ const WishList = ({
   wishList,
   setWishList,
   keyword,
-  loader,
   isNoWish,
   page,
   setPage,
+  prev,
+  next,
+  prevKeyword,
+  nextKeyword,
 }) => {
   const navigate = useNavigate();
-  const [isLike, setIsLike] = useState(false);
   const [lastLi, setLastLi] = useState(null);
+
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -34,6 +37,7 @@ const WishList = ({
     });
     lastLi && observer.observe(lastLi);
   }, [lastLi]);
+
   const handleLike = async (id, isLike, listArr) => {
     const body = {
       id,
@@ -47,6 +51,7 @@ const WishList = ({
       console.log(error);
     }
   };
+
   return (
     <WishListContainer>
       <div className='title-wrapper'>
@@ -60,13 +65,17 @@ const WishList = ({
           {location.pathname === '/wish' && <img src={icon} />}
         </h3>
       </div>
-      {location.pathname === '/keyword' && (
+      {location.pathname === '/search' && (
         <div className='keyword-wrapper'>
-          <div className='prev-keyword'>#건강</div>
+          <div className='prev-keyword' onClick={prev}>
+            #{prevKeyword}
+          </div>
           <TiArrowLeftThick />
           <div className='keyword'>#{keyword}</div>
           <TiArrowRightThick />
-          <div className='next-keyword'>#행복</div>
+          <div className='next-keyword' onClick={next}>
+            #{nextKeyword}
+          </div>
         </div>
       )}
       {wishList && !isNoWish && (
@@ -140,21 +149,20 @@ const WishListContainer = styled.div`
   .keyword-wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     margin-top: 1.5rem;
+    font-size: 1.25rem;
 
-    ${({ theme }) => theme.textFont1};
-    font-family: 'UhBeeSeulvely';
-    font-size: 1.75rem;
-
-    svg {
-      color: #9e9e9e;
+    .prev-keyword,
+    .next-keyword,
+    .keyword {
+      width: calc(100% / 3);
+      text-align: center;
+      ${({ theme }) => theme.textFont1};
+      font-family: 'UhBeeSeulvely';
     }
 
-    .prev-keyword {
-      color: #9e9e9e;
-    }
-
+    svg,
+    .prev-keyword,
     .next-keyword {
       color: #9e9e9e;
     }

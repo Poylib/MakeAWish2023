@@ -18,7 +18,7 @@ const App = () => {
           <Route path='/home' element={<Home />} />
           <Route path='/wish' element={<MyWish />} />
           <Route path='/like' element={<MyLike />} />
-          <Route path='/keyword' element={<Keyword />} />
+          <Route path='/search' element={<Keyword />} />
         </Routes>
       </ThemeProvider>
     </>
