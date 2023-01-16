@@ -7,6 +7,9 @@ import { FiArrowLeft } from 'react-icons/fi';
 import NoWish from '../NoWish';
 import luckOn from '../../assets/readwish/bok-on.png';
 import luckOff from '../../assets/readwish/bok-off.png';
+import { PocketImg } from '../TopKeyword';
+import { RankingPocket } from '../TopKeyword';
+import { Ellipsis } from '../TopKeyword';
 
 const WishList = ({
   //
@@ -15,6 +18,7 @@ const WishList = ({
   wishList,
   setWishList,
   keyword,
+  index,
   isNoWish,
   page,
   setPage,
@@ -68,13 +72,18 @@ const WishList = ({
       {location.pathname === '/search' && (
         <div className='keyword-wrapper'>
           <div className='prev-keyword' onClick={prev}>
-            #{prevKeyword}
+            <RankingPocket ranking={index - 1} bool={false} />
+            <span>{prevKeyword}</span>
           </div>
           <TiArrowLeftThick />
-          <div className='keyword'>#{keyword}</div>
+          <div className='keyword'>
+            <RankingPocket ranking={index} bool={false} />
+            <span>{keyword}</span>
+          </div>
           <TiArrowRightThick />
           <div className='next-keyword' onClick={next}>
-            #{nextKeyword}
+            <RankingPocket ranking={index + 1} bool={false} />
+            <span>{nextKeyword}</span>
           </div>
         </div>
       )}
@@ -157,10 +166,15 @@ const WishListContainer = styled.div`
     .prev-keyword,
     .next-keyword,
     .keyword {
+      display: flex;
+      justify-content: center;
       width: calc(100% / 3);
-      text-align: center;
       ${({ theme }) => theme.textFont1};
       font-family: 'UhBeeSeulvely';
+
+      span {
+        ${Ellipsis};
+      }
     }
 
     svg,
