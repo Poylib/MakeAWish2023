@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../api';
 import styled from 'styled-components';
@@ -8,11 +8,22 @@ import NoWish from '../NoWish';
 import luckOn from '../../assets/readwish/bok-on.png';
 import luckOff from '../../assets/readwish/bok-off.png';
 
-const WishList = ({ title, icon, wishList, keyword, loader, isNoWish }) => {
+const WishList = ({ title, icon, wishList, setWishList, keyword, loader, isNoWish, page, setPage }) => {
   const navigate = useNavigate();
   const [isLike, setIsLike] = useState(false);
-
-  const handleLike = async (id, isLike) => {
+  const [lastLi, setLastLi] = useState(null);
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.intersectionRatio > 0 && entry.isIntersecting) {
+          observer.disconnect();
+          setPage(page + 1);
+        }
+      });
+    });
+    lastLi && observer.observe(lastLi);
+  }, [lastLi]);
+  const handleLike = async (id, isLike, listArr) => {
     const body = {
       id,
       uuid: localStorage.getItem('uuid'),
@@ -20,7 +31,7 @@ const WishList = ({ title, icon, wishList, keyword, loader, isNoWish }) => {
     };
     try {
       await api.post('like', body);
-      loader();
+      loader('inLike', listArr);
     } catch (error) {
       console.log(error);
     }
@@ -49,9 +60,11 @@ const WishList = ({ title, icon, wishList, keyword, loader, isNoWish }) => {
       )}
       {wishList && !isNoWish && (
         <>
-          {wishList.map(wish => {
+          {wishList.map((wish, index) => {
+            let listArr = wishList;
+
             return (
-              <Wish key={wish._id}>
+              <Wish key={wish._id} ref={wishList.length - 1 === index ? setLastLi : null}>
                 {location.pathname === '/like' && <span className='name'>{wish.nickName}</span>}
                 <div className='wish'>
                   <div className='text'>{wish.comment}</div>
@@ -64,7 +77,15 @@ const WishList = ({ title, icon, wishList, keyword, loader, isNoWish }) => {
                           alt='복'
                           src={wish.isLike ? luckOn : luckOff}
                           onClick={() => {
-                            handleLike(wish._id, false);
+                            if (wish.isLike) {
+                              listArr[index].isLike = false;
+                              listArr[index].likes -= 1;
+                              handleLike(wish._id, false, listArr);
+                            } else {
+                              listArr[index].isLike = true;
+                              listArr[index].likes += 1;
+                              handleLike(wish._id, true, listArr);
+                            }
                           }}
                         />
                       </>

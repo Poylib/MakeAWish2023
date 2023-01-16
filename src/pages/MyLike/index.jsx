@@ -6,24 +6,37 @@ import WishList from '../../components/WishList';
 const MyLike = () => {
   const [myLikeList, setMyLikeList] = useState([]);
   const [isNoWish, setIsNoWish] = useState(false);
-  const getLike = async () => {
+  const [page, setPage] = useState(1);
+  const getLike = async (func, listArr) => {
     const uuid = localStorage.getItem('uuid');
-    try {
-      const { data } = await api.get(`like?uuid=${uuid}&skip=1&limit=5`);
-      !data.length && setIsNoWish(true);
-      setMyLikeList(data);
-    } catch (error) {
-      console.log(error);
+    if (func === 'inLike') {
+      setMyLikeList([...listArr]);
+    } else {
+      try {
+        const { data } = await api.get(`like?uuid=${uuid}&skip=${page}&limit=5`);
+        if (data.length || myLikeList.length) setMyLikeList([...myLikeList, ...data]);
+        else setIsNoWish(true);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
   useEffect(() => {
     getLike();
-  }, []);
+  }, [page]);
 
   return (
     <MyLikeContainer>
-      <WishList title='내가 응원한 소원' wishList={myLikeList} loader={getLike} isNoWish={isNoWish} />
+      <WishList //
+        title='내가 응원한 소원'
+        wishList={myLikeList}
+        setWishList={setMyLikeList}
+        loader={getLike}
+        isNoWish={isNoWish}
+        page={page}
+        setPage={setPage}
+      />
     </MyLikeContainer>
   );
 };
