@@ -25,7 +25,6 @@ const WishList = ({
   prev,
   next,
   prevKeyword,
-  keyword,
   nextKeyword,
 }) => {
   const navigate = useNavigate();
