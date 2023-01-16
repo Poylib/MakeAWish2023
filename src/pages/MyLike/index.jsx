@@ -10,7 +10,7 @@ const MyLike = () => {
   const getLike = async () => {
     const uuid = localStorage.getItem('uuid');
     try {
-      const { data } = await api.get(`like?uuid=${uuid}&skip=1&limit=5`);
+      const { data } = await api.get(`like?uuid=${uuid}&skip=1&limit=3`);
       !data.length && setIsNoWish(true);
       setMyLikeList(data);
     } catch (error) {

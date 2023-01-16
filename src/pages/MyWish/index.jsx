@@ -13,6 +13,7 @@ const MyWish = () => {
     try {
       const { data } = await api.get(`mywish?uuid=${uuid}&skip=1&limit=3`);
       !data.length && setIsNoWish(true);
+      console.log(data);
       setMyWishList(data);
     } catch (error) {
       console.log(error);

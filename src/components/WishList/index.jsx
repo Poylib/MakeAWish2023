@@ -10,7 +10,7 @@ import luckOff from '../../assets/readwish/bok-off.png';
 
 const WishList = ({ title, icon, wishList, keyword, loader, isNoWish, prev, next, prevKeyword, nextKeyword }) => {
   const navigate = useNavigate();
-  const [isLike, setIsLike] = useState(false);
+  // const [isLike, setIsLike] = useState(false);
 
   const handleLike = async (id, isLike) => {
     const body = {
@@ -61,20 +61,15 @@ const WishList = ({ title, icon, wishList, keyword, loader, isNoWish, prev, next
                 <div className='wish'>
                   <div className='text'>{wish.comment}</div>
                   <div className='like-wrapper'>
-                    {/* 임시 */}
-                    {location.pathname === '/like' && (
-                      <>
-                        <p className={wish.isLike ? 'bok' : 'bok-off'}>{wish.likes}</p>
-                        <img
-                          alt='복'
-                          src={wish.isLike ? luckOn : luckOff}
-                          onClick={() => {
-                            handleLike(wish._id, false);
-                          }}
-                        />
-                      </>
-                    )}
-                    {location.pathname !== '/like' && (
+                    <p className={wish.isLike ? 'bok' : 'bok-off'}>{wish.likes}</p>
+                    <img
+                      alt='복'
+                      src={wish.isLike ? luckOn : luckOff}
+                      onClick={() => {
+                        handleLike(wish._id, false);
+                      }}
+                    />
+                    {/* {location.pathname !== '/like' && (
                       <>
                         <p className={isLike ? 'bok' : 'bok-off'}>{wish.likes}</p>
                         <img
@@ -85,7 +80,7 @@ const WishList = ({ title, icon, wishList, keyword, loader, isNoWish, prev, next
                           }}
                         />
                       </>
-                    )}
+                    )} */}
                   </div>
                 </div>
               </Wish>
