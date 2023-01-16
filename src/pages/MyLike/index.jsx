@@ -7,18 +7,14 @@ const MyLike = () => {
   const [myLikeList, setMyLikeList] = useState([]);
   const [isNoWish, setIsNoWish] = useState(false);
   const [page, setPage] = useState(1);
-  const getLike = async (func, listArr) => {
+  const getLike = async () => {
     const uuid = localStorage.getItem('uuid');
-    if (func === 'inLike') {
-      setMyLikeList([...listArr]);
-    } else {
-      try {
-        const { data } = await api.get(`like?uuid=${uuid}&skip=${page}&limit=5`);
-        if (data.length || myLikeList.length) setMyLikeList([...myLikeList, ...data]);
-        else setIsNoWish(true);
-      } catch (error) {
-        console.log(error);
-      }
+    try {
+      const { data } = await api.get(`like?uuid=${uuid}&skip=${page}&limit=5`);
+      if (data.length || myLikeList.length) setMyLikeList([...myLikeList, ...data]);
+      else setIsNoWish(true);
+    } catch (error) {
+      console.log(error);
     }
   };
 
