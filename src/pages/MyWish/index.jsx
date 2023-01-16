@@ -8,6 +8,7 @@ const MyWish = () => {
   const [myWishList, setMyWishList] = useState([]);
   const [isNoWish, setIsNoWish] = useState(false);
   const [page, setPage] = useState(1);
+
   const getMyWish = async () => {
     const uuid = localStorage.getItem('uuid');
     try {
@@ -30,7 +31,6 @@ const MyWish = () => {
         icon={pocket}
         wishList={myWishList}
         setWishList={setMyWishList}
-        loader={getMyWish}
         isNoWish={isNoWish}
         page={page}
         setPage={setPage}
