@@ -11,12 +11,8 @@ const Keyword = () => {
   const [keywordRank, setKeywordRank] = useState([]);
   const [keywordList, setKeywordList] = useState([]);
   const [page, setPage] = useState(1);
-  const [index, setIndex] = useState();
-
-  const [prevIndex, setPrevIndex] = useState();
-  const [nextIndex, setNextIndex] = useState();
-
   const [indexArr, setIndexArr] = useState([0, indexNum, 0]);
+  const [keywordArr, setKeywordArr] = useState(['', '', '']);
   const [prevKeyword, setPrevKeyword] = useState('');
   const [nextKeyword, setNextKeyword] = useState('');
   useEffect(() => {
@@ -27,21 +23,28 @@ const Keyword = () => {
     } else if (indexNum === 9) {
       setIndexArr([indexNum - 1, indexNum, 0]);
     } else setIndexArr([indexNum - 1, indexNum, indexNum + 1]);
-  }, [keyword, keywordRank]);
+  }, [keyword]);
+
+  useEffect(() => {
+    if (keywordRank.length) {
+      setPrevKeyword(keywordRank[indexArr[0]].keyword);
+      setNextKeyword(keywordRank[indexArr[2]].keyword);
+      let arr = [];
+      for (let i = 0; i < 3; i++) {
+        arr.push(keywordRank[indexArr[i]].keyword);
+      }
+      setKeywordArr(arr);
+    }
+  }, [keywordRank]);
 
   const getKeywordRank = async () => {
     try {
       const { data } = await api.get(`keyword`);
       setKeywordRank(data);
-      if (keywordRank.length) {
-        setPrevKeyword(keywordRank[indexArr[0]].keyword);
-        setNextKeyword(keywordRank[indexArr[2]].keyword);
-      }
     } catch (error) {
       console.log(error);
     }
   };
-
   const getKeywordList = async () => {
     try {
       const { data } = await api.get(`search?keyword=${keyword}&skip=1&limit=3`);
@@ -57,10 +60,13 @@ const Keyword = () => {
     prevKeyword && navigate(`/search?index=${indexArr[0]}&keyword=${prevKeyword}`);
   };
 
-  const getNextKeywordList = () => {
-    nextKeyword && navigate(`/search?index=${indexArr[2]}&keyword=${nextKeyword}`);
+  const getNextKeywordList = idx => {
+    if (idx === 0) {
+      navigate(`/search?index=${indexArr[0]}&keyword=${keywordArr[0]}`);
+    } else if (idx === 2) {
+      navigate(`/search?index=${indexArr[2]}&keyword=${keywordArr[2]}`);
+    }
   };
-
   return (
     <KeywordContainer>
       <WishList //
@@ -68,13 +74,11 @@ const Keyword = () => {
         wishList={keywordList}
         setWishList={setKeywordList}
         keyword={keyword}
-        prev={getPrevKeywordList}
         next={getNextKeywordList}
-        prevKeyword={prevKeyword}
-        nextKeyword={nextKeyword}
         page={page}
         setPage={setPage}
         indexArr={indexArr}
+        keywordArr={keywordArr}
       />
     </KeywordContainer>
   );

@@ -21,11 +21,9 @@ const WishList = ({
   isNoWish,
   page,
   setPage,
-  prev,
   next,
-  prevKeyword,
-  nextKeyword,
   indexArr,
+  keywordArr,
 }) => {
   const navigate = useNavigate();
   const [lastLi, setLastLi] = useState(null);
@@ -54,7 +52,6 @@ const WishList = ({
       console.log(error);
     }
   };
-
   return (
     <WishListContainer>
       <div className='title-wrapper'>
@@ -70,20 +67,14 @@ const WishList = ({
       </div>
       {location.pathname === '/search' && (
         <div className='keyword-wrapper'>
-          <div className='prev-keyword' onClick={prev}>
-            <RankingPocket ranking={indexArr[0]} bool={false} />
-            <span>{prevKeyword}</span>
-          </div>
-          <TiArrowLeftThick />
-          <div className='keyword'>
-            <RankingPocket ranking={indexArr[1]} bool={false} />
-            <span>{keyword}</span>
-          </div>
-          <TiArrowRightThick />
-          <div className='next-keyword' onClick={next}>
-            <RankingPocket ranking={indexArr[2]} bool={false} />
-            <span>{nextKeyword}</span>
-          </div>
+          {keywordArr.map((keyword, idx) => {
+            return (
+              <div key={`${idx}${keyword}`} className={idx === 1 ? 'keyword' : 'prev-keyword'} onClick={() => next(idx)}>
+                {idx !== idx.length - 1 && <RankingPocket ranking={indexArr[idx]} bool={false} />}
+                <span>{keyword}</span>
+              </div>
+            );
+          })}
         </div>
       )}
       {wishList && !isNoWish && (
