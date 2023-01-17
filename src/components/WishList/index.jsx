@@ -18,7 +18,6 @@ const WishList = ({
   wishList,
   setWishList,
   keyword,
-  index,
   isNoWish,
   page,
   setPage,
@@ -26,10 +25,10 @@ const WishList = ({
   next,
   prevKeyword,
   nextKeyword,
+  indexArr,
 }) => {
   const navigate = useNavigate();
   const [lastLi, setLastLi] = useState(null);
-
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -72,17 +71,17 @@ const WishList = ({
       {location.pathname === '/search' && (
         <div className='keyword-wrapper'>
           <div className='prev-keyword' onClick={prev}>
-            <RankingPocket ranking={index - 1} bool={false} />
+            <RankingPocket ranking={indexArr[0]} bool={false} />
             <span>{prevKeyword}</span>
           </div>
           <TiArrowLeftThick />
           <div className='keyword'>
-            <RankingPocket ranking={index} bool={false} />
+            <RankingPocket ranking={indexArr[1]} bool={false} />
             <span>{keyword}</span>
           </div>
           <TiArrowRightThick />
           <div className='next-keyword' onClick={next}>
-            <RankingPocket ranking={index + 1} bool={false} />
+            <RankingPocket ranking={indexArr[2]} bool={false} />
             <span>{nextKeyword}</span>
           </div>
         </div>
