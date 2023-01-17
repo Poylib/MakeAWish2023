@@ -75,9 +75,7 @@ const MakeWishModal = ({ setIsMakeWishModal, setIsCreatedModal, getWish, setIsLi
                   onClose={() => {
                     setIsMakeWishModal(false);
                   }}
-                  onConfirm={() => {
-                    makeWish();
-                  }}
+                  onConfirm={makeWish}
                   closeText='닫기'
                   confirmText='작성 완료'
                 />
