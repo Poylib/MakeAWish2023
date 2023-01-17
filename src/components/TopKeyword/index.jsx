@@ -114,6 +114,8 @@ const StyledSlider = styled(Slider)`
 export const PocketImg = styled.div`
   margin: 0 10px;
   position: relative;
+  display: flex;
+  align-items: center;
   width: 20px;
 
   img {

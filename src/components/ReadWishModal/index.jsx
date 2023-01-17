@@ -8,11 +8,19 @@ import luckOn from '../../assets/readwish/bok-on.png';
 import luckOff from '../../assets/readwish/bok-off.png';
 import { mainColor } from '../../theme';
 
-const ReadWishModal = ({ id, setIsReadWish, otherWish }) => {
+const ReadWishModal = ({ id, setIsReadWish, otherWish, wroteWish, setWroteWish }) => {
   const [wish, setWish] = useState();
   const [wishRenderId, setWishRenderId] = useState(id);
   const [wishListCount, setWishListCount] = useState(0);
   const uuid = localStorage.getItem('uuid');
+  let changeLike = wroteWish;
+  useEffect(() => {
+    if (uuid) loader();
+    else {
+      if (confirm('잘못된 접근입니다. 새로고침 후 다시 시도해주세요')) location.reload();
+    }
+  }, [wishListCount]);
+
   const loader = async () => {
     try {
       const { data } = await api.get(`wishes?id=${wishRenderId}&uuid=${uuid}`);
@@ -21,11 +29,6 @@ const ReadWishModal = ({ id, setIsReadWish, otherWish }) => {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    loader();
-  }, [wishListCount]);
-
   const handleLike = async isLike => {
     const id = wishRenderId;
     const body = {
@@ -33,6 +36,12 @@ const ReadWishModal = ({ id, setIsReadWish, otherWish }) => {
       uuid,
       like: isLike,
     };
+    changeLike.map(el => {
+      if (el._id === id) {
+        if (isLike) el.likes++;
+        else el.likes--;
+      }
+    });
     try {
       await api.post('like', body);
       await loader();
@@ -87,11 +96,11 @@ const ReadWishModal = ({ id, setIsReadWish, otherWish }) => {
             <MultiButton
               onClose={() => {
                 setIsReadWish(false);
+                setWroteWish(changeLike);
               }}
               onConfirm={nextWish}
               closeText='닫기'
               confirmText='다음'
-              disabled={false}
             />
           </div>
         </ReadWishModalContainer>
