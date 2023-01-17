@@ -17,8 +17,10 @@ import { bell } from '../../utils/Animation';
 import TopKeyword from '../../components/TopKeyword';
 import MenuButton from '../../components/MenuButton';
 import SideBar from '../../components/SideBar';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const navigate = useNavigate();
   const [pocketCounts, setPocketCounts] = useState(0);
   const [wroteWish, setWroteWish] = useState([]);
   const [wishId, setWishId] = useState();
@@ -31,8 +33,9 @@ const Home = () => {
   const [isSideBar, setIsSideBar] = useState(false);
   const [keywords, setKeywords] = useState();
   const { falseIntroPass } = useStore();
-
+  let uuid = localStorage.getItem('uuid');
   useEffect(() => {
+    if (uuid === null) navigate('/');
     falseIntroPass();
     getWish();
     getWishCheck();
@@ -51,7 +54,6 @@ const Home = () => {
 
   const getWishCheck = async () => {
     try {
-      let uuid = localStorage.getItem('uuid');
       const {
         data: { message },
       } = await api.get(`wish-check?uuid=${uuid}`);
@@ -136,7 +138,7 @@ const Home = () => {
       <MainBackground />
       {isMakeWish && <MakeWishModal setIsMakeWish={setIsMakeWish} setIsCreatedModal={setIsCreatedModal} />}
       {isCreatedModal && <CreatedModal setIsCreatedModal={setIsCreatedModal} />}
-      {isReadWish && <ReadWishModal id={wishId} setIsReadWish={setIsReadWish} otherWish={otherWish} />}
+      {isReadWish && <ReadWishModal id={wishId} setIsReadWish={setIsReadWish} otherWish={otherWish} wroteWish={wroteWish} setWroteWish={setWroteWish} />}
       {isLimitModal && <LimitModal isLimitModal={isLimitModal} setIsLimitModal={setIsLimitModal} />}
     </HomeContainer>
   );

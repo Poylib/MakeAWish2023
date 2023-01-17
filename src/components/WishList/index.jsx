@@ -10,10 +10,22 @@ import luckOff from '../../assets/readwish/bok-off.png';
 import { RankingPocket } from '../TopKeyword';
 import { Ellipsis } from '../TopKeyword';
 
-const WishList = ({ title, icon, wishList, setWishList, keyword, index, isNoWish, page, setPage, prev, next, prevKeyword, nextKeyword }) => {
+const WishList = ({
+  //
+  title,
+  icon,
+  wishList,
+  setWishList,
+  keyword,
+  isNoWish,
+  page,
+  setPage,
+  next,
+  indexArr,
+  keywordArr,
+}) => {
   const navigate = useNavigate();
   const [lastLi, setLastLi] = useState(null);
-
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -39,7 +51,6 @@ const WishList = ({ title, icon, wishList, setWishList, keyword, index, isNoWish
       console.log(error);
     }
   };
-
   return (
     <WishListContainer>
       <div className='title-wrapper'>
@@ -55,20 +66,14 @@ const WishList = ({ title, icon, wishList, setWishList, keyword, index, isNoWish
       </div>
       {location.pathname === '/search' && (
         <div className='keyword-wrapper'>
-          <div className='prev-keyword' onClick={prev}>
-            <RankingPocket ranking={index - 1} bool={false} />
-            <span>{prevKeyword}</span>
-          </div>
-          <TiArrowLeftThick />
-          <div className='keyword'>
-            <RankingPocket ranking={index} bool={false} />
-            <span>{keyword}</span>
-          </div>
-          <TiArrowRightThick />
-          <div className='next-keyword' onClick={next}>
-            <RankingPocket ranking={index + 1} bool={false} />
-            <span>{nextKeyword}</span>
-          </div>
+          {keywordArr.map((keyword, idx) => {
+            return (
+              <div key={`${idx}${keyword}`} className={idx === 1 ? 'keyword' : 'prev-keyword'} onClick={() => next(idx)}>
+                {idx !== idx.length - 1 && <RankingPocket ranking={indexArr[idx]} bool={false} />}
+                <span>{keyword}</span>
+              </div>
+            );
+          })}
         </div>
       )}
       {wishList && !isNoWish && (
@@ -88,11 +93,11 @@ const WishList = ({ title, icon, wishList, setWishList, keyword, index, isNoWish
                       onClick={() => {
                         if (wish.isLike) {
                           listArr[index].isLike = false;
-                          listArr[index].likes -= 1;
+                          listArr[index].likes--;
                           handleLike(wish._id, false, listArr);
                         } else {
                           listArr[index].isLike = true;
-                          listArr[index].likes += 1;
+                          listArr[index].likes++;
                           handleLike(wish._id, true, listArr);
                         }
                       }}
