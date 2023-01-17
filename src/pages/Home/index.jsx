@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { api } from '../../api';
 import styled from 'styled-components';
 import { BsArrowCounterclockwise } from 'react-icons/bs';
@@ -17,8 +18,12 @@ import wishText from '../../assets/main/pockets/wish-text.png';
 import { imgArr } from '../../constant/bok';
 import { bell } from '../../utils/Animation';
 import { contentFontColor, headercolor, HomeButtonFont, redButton, wishButton } from '../../theme';
+import TopKeyword from '../../components/TopKeyword';
+import MenuButton from '../../components/MenuButton';
+import SideBar from '../../components/SideBar';
 
 const Home = () => {
+  const navigate = useNavigate();
   const [pocketCounts, setPocketCounts] = useState(0);
   const [wroteWish, setWroteWish] = useState([]);
   const [wishId, setWishId] = useState();
@@ -31,8 +36,10 @@ const Home = () => {
   const [isSideBar, setIsSideBar] = useState(false);
   const [keywords, setKeywords] = useState();
   const { falseIntroPass } = useStore();
+  let uuid = localStorage.getItem('uuid');
 
   useEffect(() => {
+    if (uuid === null) navigate('/');
     falseIntroPass();
     getWish();
     getWishCheck();
@@ -51,7 +58,6 @@ const Home = () => {
 
   const getWishCheck = async () => {
     try {
-      let uuid = localStorage.getItem('uuid');
       const {
         data: { message },
       } = await api.get(`wish-check?uuid=${uuid}`);
@@ -124,7 +130,7 @@ const Home = () => {
         </div>
         <div className='home-bottom'>
           <TopKeyword data={keywords} />
-          <Button onClick={() => getWish()}>
+          <Button home onClick={() => getWish()}>
             <BsArrowCounterclockwise size='1.4rem' />
             <button>다른 소원들 보기</button>
           </Button>
@@ -238,7 +244,7 @@ export const Button = styled.div`
   margin: 0 auto;
   width: 90%;
   border-radius: 17px;
-  box-shadow: rgba(0, 0, 0, 0.3) 3px 3px 3px;
+  box-shadow: ${props => (props.home ? 'none' : 'rgba(0, 0, 0, 0.3) 3px 3px 3px')};
   background-color: ${wishButton};
   color: #fff;
   button {

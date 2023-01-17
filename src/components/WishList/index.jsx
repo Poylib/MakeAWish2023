@@ -7,6 +7,8 @@ import { FiArrowLeft } from 'react-icons/fi';
 import NoWish from '../NoWish';
 import luckOn from '../../assets/readwish/bok-on.png';
 import luckOff from '../../assets/readwish/bok-off.png';
+import { RankingPocket } from '../TopKeyword';
+import { Ellipsis } from '../TopKeyword';
 
 const WishList = ({
   //
@@ -14,18 +16,16 @@ const WishList = ({
   icon,
   wishList,
   setWishList,
+  keyword,
   isNoWish,
   page,
   setPage,
-  prev,
   next,
-  prevKeyword,
-  keyword,
-  nextKeyword,
+  indexArr,
+  keywordArr,
 }) => {
   const navigate = useNavigate();
   const [lastLi, setLastLi] = useState(null);
-
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -51,7 +51,6 @@ const WishList = ({
       console.log(error);
     }
   };
-
   return (
     <WishListContainer>
       <div className='title-wrapper'>
@@ -67,15 +66,14 @@ const WishList = ({
       </div>
       {location.pathname === '/search' && (
         <div className='keyword-wrapper'>
-          <div className='prev-keyword' onClick={prev}>
-            #{prevKeyword}
-          </div>
-          <TiArrowLeftThick />
-          <div className='keyword'>#{keyword}</div>
-          <TiArrowRightThick />
-          <div className='next-keyword' onClick={next}>
-            #{nextKeyword}
-          </div>
+          {keywordArr.map((keyword, idx) => {
+            return (
+              <div key={`${idx}${keyword}`} className={idx === 1 ? 'keyword' : 'prev-keyword'} onClick={() => next(idx)}>
+                {idx !== idx.length - 1 && <RankingPocket ranking={indexArr[idx]} bool={false} />}
+                <span>{keyword}</span>
+              </div>
+            );
+          })}
         </div>
       )}
       {wishList && !isNoWish && (
@@ -83,7 +81,7 @@ const WishList = ({
           {wishList.map((wish, index) => {
             let listArr = wishList;
             return (
-              <Wish key={wish._id} ref={wishList.length - 1 === index ? setLastLi : null}>
+              <Wish key={wish._id} like={location.pathname === '/like'} ref={wishList.length - 1 === index ? setLastLi : null}>
                 {location.pathname === '/like' && <span className='name'>{wish.nickName}</span>}
                 <div className='wish'>
                   <div className='text'>{wish.comment}</div>
@@ -95,11 +93,11 @@ const WishList = ({
                       onClick={() => {
                         if (wish.isLike) {
                           listArr[index].isLike = false;
-                          listArr[index].likes -= 1;
+                          listArr[index].likes--;
                           handleLike(wish._id, false, listArr);
                         } else {
                           listArr[index].isLike = true;
-                          listArr[index].likes += 1;
+                          listArr[index].likes++;
                           handleLike(wish._id, true, listArr);
                         }
                       }}
@@ -131,11 +129,13 @@ const WishListContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    font-size: 2.5rem;
+    font-size: 1.9rem;
+    color: ${({ theme }) => theme.contentFontColor};
 
     h3 {
       display: flex;
       justify-content: center;
+      align-items: center;
       ${({ theme }) => theme.HomeButtonFont};
       font-family: 'CWDangamAsac-Bold';
 
@@ -155,10 +155,15 @@ const WishListContainer = styled.div`
     .prev-keyword,
     .next-keyword,
     .keyword {
+      display: flex;
+      justify-content: center;
       width: calc(100% / 3);
-      text-align: center;
       ${({ theme }) => theme.textFont1};
       font-family: 'UhBeeSeulvely';
+
+      span {
+        ${Ellipsis};
+      }
     }
 
     svg,
@@ -170,16 +175,21 @@ const WishListContainer = styled.div`
 `;
 
 const Wish = styled.div`
-  margin-top: 1.5rem;
+  margin-top: ${props => (props.like ? '2.1rem' : '1.5rem')};
+  position: relative;
 
   .name {
+    position: absolute;
+    top: -20px;
     width: auto;
-    padding: 0 10px;
-    background: #cc3333;
+    padding: 10px 15px;
+    background: ${({ theme }) => theme.redButton};
+    opacity: 0.9;
     color: #fff;
     ${({ theme }) => theme.textFont2};
     font-family: 'UhBeeRice';
     font-size: 1.25rem;
+    border-radius: 25px;
   }
 
   .wish {

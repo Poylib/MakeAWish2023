@@ -15,6 +15,11 @@ const ReadWishModal = ({ id, setIsReadWishModal, otherWish }) => {
   const [wishRenderId, setWishRenderId] = useState(id);
   const [wishListCount, setWishListCount] = useState(0);
   const uuid = localStorage.getItem('uuid');
+  let changeLike = wroteWish;
+
+  useEffect(() => {
+    loader();
+  }, [wishListCount]);
 
   const loader = async () => {
     try {
@@ -24,11 +29,6 @@ const ReadWishModal = ({ id, setIsReadWishModal, otherWish }) => {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    loader();
-  }, [wishListCount]);
-
   const handleLike = async isLike => {
     const id = wishRenderId;
     const body = {
@@ -36,6 +36,12 @@ const ReadWishModal = ({ id, setIsReadWishModal, otherWish }) => {
       uuid,
       like: isLike,
     };
+    changeLike.map(el => {
+      if (el._id === id) {
+        if (isLike) el.likes++;
+        else el.likes--;
+      }
+    });
     try {
       await api.post('like', body);
       await loader();
@@ -84,7 +90,7 @@ const ReadWishModal = ({ id, setIsReadWishModal, otherWish }) => {
                     />
                     <span className='count'>
                       <FiX />
-                      {wish.likes}
+                      <span className='count-number'>{wish.likes}</span>
                     </span>
                   </div>
                 </div>
@@ -94,11 +100,11 @@ const ReadWishModal = ({ id, setIsReadWishModal, otherWish }) => {
               <MultiButton
                 onClose={() => {
                   setIsReadWishModal(false);
+                  setWroteWish(changeLike);
                 }}
                 onConfirm={nextWish}
                 closeText='닫기'
                 confirmText='다음'
-                disabled={false}
               />
             </div>
           </ReadWishModalContainer>
@@ -129,6 +135,7 @@ const Background = styled.img`
   height: 100%;
 
   min-width: 1200px;
+  max-width: 2000px;
   object-fit: cover;
 `;
 
@@ -140,6 +147,7 @@ const ReadWishModalContainer = styled.div`
   width: 100%;
   height: 100%;
   max-width: 390px;
+  min-height: 660px;
   padding: 1.5rem;
 
   .user-wrapper {
@@ -154,10 +162,16 @@ const ReadWishModalContainer = styled.div`
     .user-name {
       margin-right: 0.5rem;
       color: ${mainColor};
+      @media screen and (min-width: 1500px) {
+        padding-bottom: 70px;
+      }
     }
 
     .user-wish {
       color: #fff;
+      @media screen and (min-width: 1500px) {
+        padding-bottom: 70px;
+      }
     }
   }
 
@@ -187,7 +201,7 @@ const ReadWishModalContainer = styled.div`
         border: none;
         outline: none;
         resize: none;
-        ${({ theme }) => theme.text2};
+        ${({ theme }) => theme.textFont2};
         color: ${({ theme }) => theme.contentFontColor};
         font-family: 'UhBeeRice';
         font-size: 1.25rem;
@@ -213,7 +227,7 @@ const ReadWishModalContainer = styled.div`
 
         .luck {
           padding: 0.4rem;
-          background: ${({ theme }) => theme.bgColor};
+          background: ${({ theme }) => theme.boxBgColor};
           border-radius: 15px;
           color: ${({ theme }) => theme.mainColor};
           font-weight: 600;
@@ -225,6 +239,7 @@ const ReadWishModalContainer = styled.div`
           display: flex;
           justify-content: center;
           align-items: center;
+
           .bok {
             width: 70px;
           }
@@ -235,9 +250,15 @@ const ReadWishModalContainer = styled.div`
             justify-content: center;
             align-items: center;
             text-align: center;
+
             color: ${({ theme }) => theme.mainColor};
             font-size: 2rem;
             font-weight: 600;
+
+            .count-number {
+              text-align: left;
+              width: 30px;
+            }
           }
         }
 

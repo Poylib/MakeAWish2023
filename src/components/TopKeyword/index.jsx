@@ -19,7 +19,6 @@ const TopKeyword = ({ data }) => {
 export const CardSlier = ({ data }) => {
   const navigate = useNavigate();
   const goToKeywordDetail = (item, idx) => {
-    console.log(item);
     navigate(`/search?index=${idx}&keyword=${item.keyword}`);
   };
   const settings = {
@@ -39,10 +38,7 @@ export const CardSlier = ({ data }) => {
           return (
             <div className='slidePage' key={idx}>
               <div className='content' onClick={() => goToKeywordDetail(item, idx)}>
-                <PocketImg>
-                  <img src={pocket} />
-                  <p className='ranking'>{idx + 1}</p>
-                </PocketImg>
+                <RankingPocket ranking={idx} bool={true} />
                 <h1 className='keyword'>{item.keyword}</h1>
               </div>
             </div>
@@ -51,6 +47,22 @@ export const CardSlier = ({ data }) => {
     </StyledSlider>
   );
 };
+
+export const RankingPocket = ({ ranking, bool }) => {
+  return (
+    <PocketImg carousel={bool}>
+      <img src={pocket} />
+      <span className='ranking'>{ranking + 1}</span>
+    </PocketImg>
+  );
+};
+
+export const Ellipsis = css`
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+`;
 
 const Font = css`
   font-family: 'Pretendard';
@@ -94,16 +106,13 @@ const StyledSlider = styled(Slider)`
       width: 100px;
       text-align: right;
       line-height: 30px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      word-break: break-all;
+      ${Ellipsis}
     }
   }
 `;
 
-const PocketImg = styled.div`
-  margin-right: 10px;
+export const PocketImg = styled.div`
+  margin: 0 10px;
   position: relative;
   width: 20px;
 
@@ -116,7 +125,8 @@ const PocketImg = styled.div`
     text-align: center;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -35%);
+    transform: ${props => (props.carousel ? 'translate(-50%, -35%)' : 'translate(-50%, -50%)')};
+
     color: white;
     font-size: 12px;
   }
