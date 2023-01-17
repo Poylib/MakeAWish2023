@@ -68,10 +68,14 @@ const WishList = ({
         <div className='keyword-wrapper'>
           {keywordArr.map((keyword, idx) => {
             return (
-              <div key={`${idx}${keyword}`} className={idx === 1 ? 'keyword' : 'prev-keyword'} onClick={() => next(idx)}>
-                {idx !== idx.length - 1 && <RankingPocket ranking={indexArr[idx]} bool={false} />}
-                <span>{keyword}</span>
-              </div>
+              <>
+                <div key={`${idx}${keyword}`} className={idx === 1 ? 'keyword' : 'prev-keyword'} onClick={() => next(idx)}>
+                  {idx !== idx.length - 1 && <RankingPocket ranking={indexArr[idx]} bool={false} />}
+                  <span>{keyword}</span>
+                </div>
+                {idx === 0 && <TiArrowLeftThick />}
+                {idx === 1 && <TiArrowRightThick />}
+              </>
             );
           })}
         </div>
@@ -80,6 +84,7 @@ const WishList = ({
         <>
           {wishList.map((wish, index) => {
             let listArr = wishList;
+            console.log(wishList);
             return (
               <Wish key={wish._id} like={location.pathname === '/like'} ref={wishList.length - 1 === index ? setLastLi : null}>
                 {location.pathname === '/like' && <span className='name'>{wish.nickName}</span>}
@@ -162,6 +167,7 @@ const WishListContainer = styled.div`
       font-family: 'UhBeeSeulvely';
 
       span {
+        line-height: 25px;
         ${Ellipsis};
       }
     }

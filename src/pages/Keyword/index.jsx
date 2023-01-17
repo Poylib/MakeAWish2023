@@ -45,7 +45,7 @@ const Keyword = () => {
     try {
       const { data } = await api.get(`search?keyword=${keyword}&skip=1&limit=3`);
       // console.log(data);
-      // if (data.length || keywordList.length) setKeywordList([...keywordList, ...data]); 다음 키워드 반영 안됨
+      // if (data.length || keywordList.length) setKeywordList([...keywordList, ...data]);
       setKeywordList(data);
     } catch (error) {
       console.log(error);
