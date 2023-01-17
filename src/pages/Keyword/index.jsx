@@ -15,6 +15,7 @@ const Keyword = () => {
   const [keywordArr, setKeywordArr] = useState(['', '', '']);
   const [prevKeyword, setPrevKeyword] = useState('');
   const [nextKeyword, setNextKeyword] = useState('');
+
   useEffect(() => {
     getKeywordRank();
     getKeywordList();
