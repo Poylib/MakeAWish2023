@@ -7,7 +7,6 @@ import { FiArrowLeft } from 'react-icons/fi';
 import NoWish from '../NoWish';
 import luckOn from '../../assets/readwish/bok-on.png';
 import luckOff from '../../assets/readwish/bok-off.png';
-import { PocketImg } from '../TopKeyword';
 import { RankingPocket } from '../TopKeyword';
 import { Ellipsis } from '../TopKeyword';
 
@@ -82,7 +81,7 @@ const WishList = ({
           {wishList.map((wish, index) => {
             let listArr = wishList;
             return (
-              <Wish key={`${wish._id}${index}`} ref={wishList.length - 1 === index ? setLastLi : null}>
+              <Wish key={wish._id} like={location.pathname === '/like'} ref={wishList.length - 1 === index ? setLastLi : null}>
                 {location.pathname === '/like' && <span className='name'>{wish.nickName}</span>}
                 <div className='wish'>
                   <div className='text'>{wish.comment}</div>
@@ -176,16 +175,21 @@ const WishListContainer = styled.div`
 `;
 
 const Wish = styled.div`
-  margin-top: 1.5rem;
+  margin-top: ${props => (props.like ? '2.1rem' : '1.5rem')};
+  position: relative;
 
   .name {
+    position: absolute;
+    top: -20px;
     width: auto;
-    padding: 0 10px;
-    background: #cc3333;
+    padding: 10px 15px;
+    background: ${({ theme }) => theme.redButton};
+    opacity: 0.9;
     color: #fff;
     ${({ theme }) => theme.textFont2};
     font-family: 'UhBeeRice';
     font-size: 1.25rem;
+    border-radius: 25px;
   }
 
   .wish {

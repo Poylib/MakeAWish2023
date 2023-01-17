@@ -139,6 +139,7 @@ const ReadWishModalContainer = styled.div`
   width: 100%;
   height: 100%;
   max-width: 390px;
+  min-height: 660px;
   padding: 1.5rem;
 
   .user-wrapper {
@@ -192,7 +193,7 @@ const ReadWishModalContainer = styled.div`
         border: none;
         outline: none;
         resize: none;
-        ${({ theme }) => theme.text2};
+        ${({ theme }) => theme.textFont2};
         color: ${({ theme }) => theme.contentFontColor};
         font-family: 'UhBeeRice';
         font-size: 1.25rem;
@@ -218,7 +219,7 @@ const ReadWishModalContainer = styled.div`
 
         .luck {
           padding: 0.4rem;
-          background: ${({ theme }) => theme.bgColor};
+          background: ${({ theme }) => theme.boxBgColor};
           border-radius: 15px;
           color: ${({ theme }) => theme.mainColor};
           font-weight: 600;
