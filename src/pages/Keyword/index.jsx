@@ -13,9 +13,6 @@ const Keyword = () => {
   const [page, setPage] = useState(1);
   const [indexArr, setIndexArr] = useState([0, indexNum, 0]);
   const [keywordArr, setKeywordArr] = useState(['', '', '']);
-  const [prevKeyword, setPrevKeyword] = useState('');
-  const [nextKeyword, setNextKeyword] = useState('');
-
   useEffect(() => {
     getKeywordRank();
     getKeywordList();
@@ -28,8 +25,6 @@ const Keyword = () => {
 
   useEffect(() => {
     if (keywordRank.length) {
-      setPrevKeyword(keywordRank[indexArr[0]].keyword);
-      setNextKeyword(keywordRank[indexArr[2]].keyword);
       let arr = [];
       for (let i = 0; i < 3; i++) {
         arr.push(keywordRank[indexArr[i]].keyword);
@@ -55,10 +50,6 @@ const Keyword = () => {
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const getPrevKeywordList = () => {
-    prevKeyword && navigate(`/search?index=${indexArr[0]}&keyword=${prevKeyword}`);
   };
 
   const getNextKeywordList = idx => {
