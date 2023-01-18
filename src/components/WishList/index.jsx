@@ -46,6 +46,7 @@ const WishList = ({
     };
     try {
       await api.post('like', body);
+      console.log('like');
       setWishList([...listArr]);
     } catch (error) {
       console.log(error);
@@ -69,7 +70,7 @@ const WishList = ({
           {keywordArr.map((keyword, idx) => {
             return (
               <>
-                <div key={`${idx}${keyword}`} className={idx === 1 ? 'keyword' : 'prev-keyword'} onClick={() => next(idx)}>
+                <div key={idx} className={idx === 1 ? 'keyword' : 'prev-keyword'} onClick={() => next(idx)}>
                   {idx !== idx.length - 1 && <RankingPocket ranking={indexArr[idx]} bool={false} />}
                   <span>{keyword}</span>
                 </div>
@@ -84,9 +85,8 @@ const WishList = ({
         <>
           {wishList.map((wish, index) => {
             let listArr = wishList;
-            console.log(wishList);
             return (
-              <Wish key={wish._id} like={location.pathname === '/like'} ref={wishList.length - 1 === index ? setLastLi : null}>
+              <Wish key={`${index}_${wish._id}`} like={location.pathname === '/like'} ref={wishList.length - 1 === index ? setLastLi : null}>
                 {location.pathname === '/like' && <span className='name'>{wish.nickName}</span>}
                 <div className='wish'>
                   <div className='text'>{wish.comment}</div>
