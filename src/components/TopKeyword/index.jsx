@@ -38,7 +38,7 @@ export const CardSlier = ({ data }) => {
           return (
             <div className='slidePage' key={idx}>
               <div className='content' onClick={() => goToKeywordDetail(item, idx)}>
-                <RankingPocket ranking={idx} bool={true} />
+                <RankingPocket idx={1} ranking={idx} bool={true} />
                 <h1 className='keyword'>{item.keyword}</h1>
               </div>
             </div>
@@ -48,10 +48,10 @@ export const CardSlier = ({ data }) => {
   );
 };
 
-export const RankingPocket = ({ ranking, bool }) => {
+export const RankingPocket = ({ idx, ranking, bool }) => {
   return (
     <PocketImg carousel={bool}>
-      <img src={pocket} />
+      <img src={pocket} style={{ opacity: idx === 1 ? 1 : 0.3 }} />
       <span className='ranking'>{ranking + 1}</span>
     </PocketImg>
   );
