@@ -48,10 +48,11 @@ export const CardSlier = ({ data }) => {
   );
 };
 
-export const RankingPocket = ({ ranking, bool }) => {
+export const RankingPocket = ({ idx, ranking, bool }) => {
+  console.log(idx);
   return (
     <PocketImg carousel={bool}>
-      <img src={pocket} />
+      <img src={pocket} style={{ opacity: idx === 1 ? 1 : 0.3 }} />
       <span className='ranking'>{ranking + 1}</span>
     </PocketImg>
   );
