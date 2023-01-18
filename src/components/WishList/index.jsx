@@ -70,7 +70,7 @@ const WishList = ({
             return (
               <>
                 <div key={idx} className={idx === 1 ? 'keyword' : 'prev-keyword'} onClick={() => next(idx)}>
-                  {idx !== idx.length - 1 && <RankingPocket ranking={indexArr[idx]} bool={false} />}
+                  {idx !== idx.length - 1 && <RankingPocket idx={idx} ranking={indexArr[idx]} bool={false} />}
                   <span>{keyword}</span>
                 </div>
                 {idx === 0 && <TiArrowLeftThick />}
