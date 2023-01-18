@@ -77,8 +77,14 @@ const Home = () => {
   };
 
   const makeWish = () => {
-    if (wishCheck === 'Nothing Duplication') setIsMakeWish(true);
-    else setIsLimitModal(true);
+    if (uuid) {
+      console.log(uuid);
+
+      if (wishCheck === 'Nothing Duplication') setIsMakeWish(true);
+      else setIsLimitModal(true);
+    } else {
+      if (confirm('잘못된 접근입니다. 새로고침 후 다시 시도해주세요')) location.reload();
+    }
   };
 
   const getKeywords = async () => {
