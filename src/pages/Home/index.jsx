@@ -43,6 +43,7 @@ const Home = () => {
   useEffect(() => {
     getWishCheck();
     getWishCounts();
+    if (wroteWish.length <= 7) getWish();
   }, [isMakeWish]);
 
   const getWish = async () => {
