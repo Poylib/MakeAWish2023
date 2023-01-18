@@ -6,67 +6,75 @@ import WishList from '../../components/WishList';
 
 const Keyword = () => {
   const navigate = useNavigate();
+  const keyword = new URLSearchParams(location.search).get('keyword');
+  const indexNum = Number(new URLSearchParams(location.search).get('index'));
   const [keywordRank, setKeywordRank] = useState([]);
   const [keywordList, setKeywordList] = useState([]);
-
-  //임시
-  const [keyword, setKeyword] = useState('로또');
+  const [page, setPage] = useState(1);
+  const [indexArr, setIndexArr] = useState([1, indexNum, 3]);
+  const [keywordArr, setKeywordArr] = useState(['', '', '']);
 
   useEffect(() => {
-    setIndex(Number(new URLSearchParams(location.search).get('index')));
     getKeywordRank();
     getKeywordList();
-  }, [index, keyword, prevIndex, prevKeyword, nextIndex, nextKeyword]);
-
-  const getPrevKeyword = () => {
-    if (index > 0) {
-      setPrevIndex(index - 1);
-    } else if (index === 0) {
-      setPrevIndex(9);
+    if (indexNum === 0) {
+      setIndexArr([keywordRank.length - 1, indexNum, indexNum + 1]);
+    } else if (indexNum === keywordRank.length - 1) {
+      setIndexArr([indexNum - 1, indexNum, 0]);
+    } else setIndexArr([indexNum - 1, indexNum, indexNum + 1]);
+  }, [keyword]);
+  useEffect(() => {
+    if (keywordRank.length) {
+      let arr = [];
+      if (indexArr[0] === -1) indexArr[0] = keywordRank.length - 1;
+      else if (indexArr[2] === keywordRank.length) indexArr[2] = 0;
+      for (let i = 0; i < 3; i++) {
+        arr.push(keywordRank[indexArr[i]].keyword);
+      }
+      setKeywordArr(arr);
     }
-    prevIndex && setPrevKeyword(keywordRank[prevIndex].keyword);
-  };
-
-  const getNextKeyword = () => {
-    if (index < 9) {
-      setNextIndex(index + 1);
-    } else if (index === 9) {
-      setNextIndex(0);
-    }
-    nextIndex && setNextKeyword(keywordRank[nextIndex].keyword);
-  };
+  }, [keywordRank]);
 
   const getKeywordRank = async () => {
     try {
-      const { data } = await api.get(`/keyword`);
-      console.log(data);
-      // console.log(data[0]?.keyword);
-      setKeyword(data[0].keyword);
+      const { data } = await api.get(`keyword`);
+      setKeywordRank(data);
     } catch (error) {
       console.log(error);
     }
   };
-
   const getKeywordList = async () => {
+    const uuid = localStorage.getItem('uuid');
     try {
-      const { data } = await api.get(`/search?keyword=${keyword}&skip=1&limit=10`);
-      setKeywordList([data]);
+      const { data } = await api.get(`search?keyword=${keyword}&skip=1&limit=10&uuid=${uuid}`);
+      setKeywordList(data);
+      setPage(1);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const getPrevKeywordList = () => {
-    navigate(`/search?index=${prevIndex}&keyword=${prevKeyword}`);
-  };
-
-  const getNextKeywordList = () => {
-    navigate(`/search?index=${nextIndex}&keyword=${nextKeyword}`);
+  const getNextKeywordList = idx => {
+    if (idx === 0) {
+      navigate(`/search?index=${indexArr[0]}&keyword=${keywordArr[0]}`);
+    } else if (idx === 2) {
+      navigate(`/search?index=${indexArr[2]}&keyword=${keywordArr[2]}`);
+    }
   };
 
   return (
     <KeywordContainer>
-      <WishList title='인기 키워드' wishList={keywordList} keyword={keyword} prev={getPrevKeywordList} next={getNextKeywordList} prevKeyword={prevKeyword} nextKeyword={nextKeyword} />
+      <WishList //
+        title='인기 키워드'
+        wishList={keywordList}
+        setWishList={setKeywordList}
+        keyword={keyword}
+        next={getNextKeywordList}
+        page={page}
+        setPage={setPage}
+        indexArr={indexArr}
+        keywordArr={keywordArr}
+      />
     </KeywordContainer>
   );
 };

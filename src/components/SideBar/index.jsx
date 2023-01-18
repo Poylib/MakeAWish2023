@@ -40,25 +40,27 @@ const SideBar = ({ isSideBar, wishCheck }) => {
           <p>내가 복 준 소원보기</p>
         </div>
         <DotLine />
-        <div className='side-board'></div>
+        <div className='side-board'>
+          <span>개발 중 . . .</span>
+        </div>
         <DotLine />
       </div>
       <div className='side-bottom'>
-        <div className='side-bottom-row'>
+        <div className='side-bottom-row' onClick={() => window.open('https://sustaining-library-e16.notion.site/3e91dc0823ed4ed3909e92b7fb60d515')}>
           <RxPerson className='side-icon' />
-          <p>개발자 어쩌구 보기</p>
+          <p>개발자 정보</p>
         </div>
-        <div className='side-bottom-row'>
+        <div className='side-bottom-row' onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLScivna3ZuEh39GU16QNdTPr5jGYc4gcvcZZGoxix_gBEYBagw/viewform?usp=sf_link')}>
           <BsTelephone className='side-icon' />
           <p>문의하기</p>
         </div>
-        <div className='side-bottom-row'>
+        <div className='side-bottom-row' onClick={() => window.open('https://sustaining-library-e16.notion.site/f99fe426e369406da40e0a38daa5618e')}>
           <BsChatLeftDots className='side-icon' />
           <p>자주 묻는 질문</p>
         </div>
       </div>
       <footer>
-        <p>&copy; copyright.deokmani</p>
+        <p>&copy; Copyright 2023. deokmani All rights reserved.</p>
       </footer>
     </SideBarContainer>
   );
@@ -82,7 +84,7 @@ const SideBarContainer = styled.div`
   width: 70%;
   height: 100vh;
   max-height: 1100px;
-  background: url(${background});
+  background-color: ${({ theme }) => theme.boxBgColor};
   background-repeat: no-repeat;
   z-index: 30;
   transform: translateX(${({ isSideBar }) => (isSideBar ? '-100%' : '0%')});
@@ -119,6 +121,7 @@ const SideBarContainer = styled.div`
       display: flex;
       align-items: center;
       margin: 15px 0;
+      cursor: pointer;
 
       img {
         margin-right: 15px;
@@ -127,6 +130,9 @@ const SideBarContainer = styled.div`
     }
 
     .side-board {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       margin: 20px 0;
       width: 100%;
       height: 20vh;
@@ -151,12 +157,13 @@ const SideBarContainer = styled.div`
       flex-direction: row;
       align-items: center;
       margin-bottom: 20px;
+      cursor: pointer;
     }
   }
 
   footer {
     width: 100%;
-    font-size: 12px;
+    font-size: 10px;
   }
 `;
 

@@ -54,7 +54,9 @@ const MainBackgroundContainer = styled.div`
     min-height: 667px;
     max-height: 1100px;
     position: absolute;
-    /* top: 10%; */
+    @media screen and (max-height: 707px) {
+      height: 105vh;
+    }
   }
   .sun-trees {
     animation: ${fadeIn} 1.7s;

@@ -21,6 +21,7 @@ const MenuContainer = styled.div`
   right: 8%;
   top: 30px;
   z-index: 30;
+  cursor: pointer;
   div {
     border-radius: 5px;
   }
