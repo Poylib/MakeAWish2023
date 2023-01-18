@@ -7,8 +7,23 @@ import Home from './pages/Home';
 import MyWish from './pages/MyWish';
 import MyLike from './pages/MyLike';
 import Keyword from './pages/Keyword';
+import { useEffect } from 'react';
+import { api } from './api';
 
 const App = () => {
+  let uuid = localStorage.getItem('uuid');
+  useEffect(() => {
+    if (!uuid) {
+      (async () => {
+        try {
+          const { data } = await api.get('id');
+          localStorage.setItem('uuid', data.uuid);
+        } catch (error) {
+          console.log(error);
+        }
+      })();
+    }
+  }, []);
   return (
     <>
       <ThemeProvider theme={theme}>

@@ -20,15 +20,6 @@ const Intro = () => {
     }, 1500);
   }, []);
 
-  const getUuid = async () => {
-    try {
-      const { data } = await api.get('id');
-      localStorage.setItem('uuid', data.uuid);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <HomeContainer>
       <IntroArticle>
@@ -45,9 +36,6 @@ const Intro = () => {
           <Button
             onClick={() => {
               navigate('/home');
-              {
-                !localStorage.getItem('uuid') && getUuid();
-              }
             }}
           >
             <button>소원 빌러가기</button>
