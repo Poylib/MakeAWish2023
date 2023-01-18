@@ -44,7 +44,7 @@ const Keyword = () => {
   const getKeywordList = async () => {
     const uuid = localStorage.getItem('uuid');
     try {
-      const { data } = await api.get(`search?keyword=${keyword}&skip=1&limit=3&uuid=${uuid}`);
+      const { data } = await api.get(`search?keyword=${keyword}&skip=1&limit=5&uuid=${uuid}`);
       // if (data.length || keywordList.length) setKeywordList([...keywordList, ...data]);
       setKeywordList(data);
       setPage(1);

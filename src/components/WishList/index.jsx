@@ -46,7 +46,6 @@ const WishList = ({
     };
     try {
       await api.post('like', body);
-      console.log('like');
       setWishList([...listArr]);
     } catch (error) {
       console.log(error);

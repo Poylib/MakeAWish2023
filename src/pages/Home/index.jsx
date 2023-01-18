@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import { BsArrowCounterclockwise } from 'react-icons/bs';
 import { api } from '../../api';
 import useStore from '../../context/store';
@@ -17,7 +18,6 @@ import { bell } from '../../utils/Animation';
 import TopKeyword from '../../components/TopKeyword';
 import MenuButton from '../../components/MenuButton';
 import SideBar from '../../components/SideBar';
-import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -35,13 +35,15 @@ const Home = () => {
   const { falseIntroPass } = useStore();
   let uuid = localStorage.getItem('uuid');
   useEffect(() => {
-    if (uuid === null) navigate('/');
     falseIntroPass();
     getWish();
-    getWishCheck();
-    getWishCounts();
     getKeywords();
   }, []);
+
+  useEffect(() => {
+    getWishCheck();
+    getWishCounts();
+  }, [isMakeWish]);
 
   const getWish = async () => {
     try {

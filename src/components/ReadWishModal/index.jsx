@@ -15,7 +15,10 @@ const ReadWishModal = ({ id, setIsReadWish, otherWish, wroteWish, setWroteWish }
   const uuid = localStorage.getItem('uuid');
   let changeLike = wroteWish;
   useEffect(() => {
-    loader();
+    if (uuid) loader();
+    else {
+      if (confirm('잘못된 접근입니다. 새로고침 후 다시 시도해주세요')) location.reload();
+    }
   }, [wishListCount]);
 
   const loader = async () => {
