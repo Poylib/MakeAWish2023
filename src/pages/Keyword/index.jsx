@@ -17,13 +17,13 @@ const Keyword = () => {
   useEffect(() => {
     getKeywordRank();
     getKeywordList();
+
     if (indexNum === 0) {
       setIndexArr([9, indexNum, indexNum + 1]);
     } else if (indexNum === 9) {
       setIndexArr([indexNum - 1, indexNum, 0]);
     } else setIndexArr([indexNum - 1, indexNum, indexNum + 1]);
   }, [keyword]);
-
   useEffect(() => {
     if (keywordRank.length) {
       let arr = [];
@@ -43,11 +43,12 @@ const Keyword = () => {
     }
   };
   const getKeywordList = async () => {
+    const uuid = localStorage.getItem('uuid');
     try {
-      const { data } = await api.get(`search?keyword=${keyword}&skip=1&limit=3`);
-      // console.log(data);
-      // if (data.length || keywordList.length) setKeywordList([...keywordList, ...data]); 다음 키워드 반영 안됨
+      const { data } = await api.get(`search?keyword=${keyword}&skip=1&limit=5&uuid=${uuid}`);
+      // if (data.length || keywordList.length) setKeywordList([...keywordList, ...data]);
       setKeywordList(data);
+      setPage(1);
     } catch (error) {
       console.log(error);
     }

@@ -8,29 +8,34 @@ import MultiButton from '../MultiButton';
 import background from '../../assets/makewish/wish-background.png';
 import moon from '../../assets/makewish/wish-moon.png';
 
-const MakeWishModal = ({ setIsMakeWishModal, setIsCreatedModal, getWish, setIsLimitModal }) => {
+const MakeWishModal = ({ setIsMakeWishModal, setIsCreatedModal, getWish }) => {
   const [name, setName] = useState('');
   const [wish, setWish] = useState('');
   const wishLength = `${wish.length}`;
 
   const makeWish = async () => {
+    const uuid = localStorage.getItem('uuid');
     const body = {
-      uuid: localStorage.getItem('uuid'),
+      uuid: uuid,
       nickName: name,
       comment: wish,
     };
-    try {
-      await api.post('/wishes', body);
-      setIsMakeWishModal(false);
-      setIsCreatedModal(true);
-      getWish();
-    } catch (error) {
-      const message = error.response.data;
-      if (message === '비속어는 사용 금지입니다.') {
-        toast(message);
-      } else if (message === '특수문자 제외 한글 또는 영문 숫자를 포함한 8글자 이내여야 합니다.' || '200글자 이하로 작성해주십시오') {
-        toast('작성란을 확인해주세요.');
+    if (uuid) {
+      try {
+        await api.post('/wishes', body);
+        setIsMakeWish(false);
+        setIsCreatedModal(true);
+        getWish();
+      } catch (error) {
+        const message = error.response.data;
+        if (message === '비속어는 사용 금지입니다.') {
+          toast(message);
+        } else if (message === '특수문자 제외 한글 또는 영문 숫자를 포함한 8글자 이내여야 합니다.' || '200글자 이하로 작성해주십시오') {
+          toast('작성란을 확인해주세요.');
+        }
       }
+    } else {
+      if (confirm('잘못된 접근입니다. 새로고침 후 다시 시도해주세요')) location.reload();
     }
   };
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../api';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import { BsArrowCounterclockwise } from 'react-icons/bs';
 import useStore from '../../context/store';
 import MakeWishModal from '../../components/MakeWishModal';
@@ -36,13 +37,16 @@ const Home = () => {
   let uuid = localStorage.getItem('uuid');
 
   useEffect(() => {
-    if (uuid === null) navigate('/');
     falseIntroPass();
     getWish();
-    getWishCheck();
-    getWishCounts();
     getKeywords();
   }, []);
+
+  useEffect(() => {
+    getWishCheck();
+    getWishCounts();
+    if (wroteWish.length <= 7) getWish();
+  }, [isMakeWish]);
 
   const getWish = async () => {
     try {
@@ -76,8 +80,14 @@ const Home = () => {
   };
 
   const makeWish = () => {
-    if (wishCheck === 'Nothing Duplication') setIsMakeWishModal(true);
-    else setIsLimitModal(true);
+    if (uuid) {
+      console.log(uuid);
+
+      if (wishCheck === 'Nothing Duplication') setIsMakeWish(true);
+      else setIsLimitModal(true);
+    } else {
+      if (confirm('잘못된 접근입니다. 새로고침 후 다시 시도해주세요')) location.reload();
+    }
   };
 
   const getKeywords = async () => {
