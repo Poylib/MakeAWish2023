@@ -84,11 +84,12 @@ const WishList = ({
         <>
           {wishList.map((wish, index) => {
             let listArr = wishList;
+            let splitArr = listArr.map(el => el.comment.split(keyword).join(`<span className='test'>${keyword}</span>`));
             return (
               <Wish key={`${index}_${wish._id}`} like={location.pathname === '/like'} ref={wishList.length - 1 === index ? setLastLi : null}>
                 {location.pathname === '/like' && <span className='name'>{wish.nickName}</span>}
                 <div className='wish'>
-                  <div className='text'>{wish.comment}</div>
+                  <div className='text'>{location.pathname === '/search' ? <p dangerouslySetInnerHTML={{ __html: splitArr[index] }}></p> : wish.comment}</div>
                   <div className='like-wrapper'>
                     <p className={wish.isLike ? 'bok' : 'bok-off'}>{wish.likes}</p>
                     <img
@@ -135,6 +136,7 @@ const WishListContainer = styled.div`
     justify-content: space-between;
     font-size: 1.9rem;
     color: ${({ theme }) => theme.contentFontColor};
+    cursor: pointer;
 
     h3 {
       display: flex;
@@ -164,6 +166,7 @@ const WishListContainer = styled.div`
       width: calc(100% / 3);
       ${({ theme }) => theme.textFont1};
       font-family: 'UhBeeSeulvely';
+      cursor: pointer;
 
       span {
         line-height: 25px;
@@ -175,6 +178,7 @@ const WishListContainer = styled.div`
     .prev-keyword,
     .next-keyword {
       color: #9e9e9e;
+      cursor: pointer;
     }
   }
 `;
@@ -213,6 +217,9 @@ const Wish = styled.div`
       line-height: 2;
       font-family: 'UhBeeRice';
       font-size: 1.25rem;
+      span {
+        color: ${({ theme }) => theme.wishButton};
+      }
     }
 
     .like-wrapper {
@@ -220,6 +227,7 @@ const Wish = styled.div`
       flex-direction: row;
       justify-content: flex-end;
       align-items: flex-end;
+      cursor: pointer;
 
       img {
         width: 70px;

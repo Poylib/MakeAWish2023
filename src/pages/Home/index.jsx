@@ -211,6 +211,7 @@ const HomeArticle = styled.article`
     img {
       margin: 1rem;
       width: 75px;
+      cursor: pointer;
       @media screen and (min-height: 810px) {
         margin: 1.6rem 1rem;
       }
@@ -251,6 +252,7 @@ export const Button = styled.div`
   box-shadow: ${props => (props.home ? 'none' : 'rgba(0, 0, 0, 0.3) 3px 3px 3px')};
   background-color: ${wishButton};
   color: #fff;
+  cursor: pointer;
   button {
     padding: 1rem;
     outline: none;
@@ -260,6 +262,7 @@ export const Button = styled.div`
     font-size: 1.3rem;
     font-weight: 500;
     color: #fff;
+    cursor: pointer;
   }
 `;
 

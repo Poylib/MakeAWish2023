@@ -112,6 +112,7 @@ const SideBarContainer = styled.div`
       display: flex;
       align-items: center;
       margin: 15px 0;
+      cursor: pointer;
 
       img {
         margin-right: 15px;
@@ -144,6 +145,7 @@ const SideBarContainer = styled.div`
       flex-direction: row;
       align-items: center;
       margin-bottom: 20px;
+      cursor: pointer;
     }
   }
 
