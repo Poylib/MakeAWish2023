@@ -47,7 +47,7 @@ const SideBar = ({ isSideBar, wishCheck }) => {
           <RxPerson className='side-icon' />
           <p>개발자 어쩌구 보기</p>
         </div>
-        <div className='side-bottom-row'>
+        <div className='side-bottom-row' onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLScivna3ZuEh39GU16QNdTPr5jGYc4gcvcZZGoxix_gBEYBagw/viewform?usp=sf_link')}>
           <BsTelephone className='side-icon' />
           <p>문의하기</p>
         </div>
