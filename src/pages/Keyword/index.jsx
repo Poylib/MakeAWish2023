@@ -25,12 +25,9 @@ const Keyword = () => {
   useEffect(() => {
     if (keywordRank.length) {
       let arr = [];
-      console.log(keywordRank);
       if (indexArr[0] === -1) indexArr[0] = keywordRank.length - 1;
       else if (indexArr[2] === keywordRank.length) indexArr[2] = 0;
       for (let i = 0; i < 3; i++) {
-        console.log(indexArr);
-        console.log('undi', keywordRank[indexArr[i]]);
         arr.push(keywordRank[indexArr[i]].keyword);
       }
       setKeywordArr(arr);
