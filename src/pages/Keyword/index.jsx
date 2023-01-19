@@ -11,12 +11,11 @@ const Keyword = () => {
   const [keywordRank, setKeywordRank] = useState([]);
   const [keywordList, setKeywordList] = useState([]);
   const [page, setPage] = useState(1);
-  const [indexArr, setIndexArr] = useState([0, indexNum, 0]);
+  const [indexArr, setIndexArr] = useState([1, indexNum, 3]);
   const [keywordArr, setKeywordArr] = useState(['', '', '']);
   useEffect(() => {
     getKeywordRank();
     getKeywordList();
-
     if (indexNum === 0) {
       setIndexArr([keywordRank.length - 1, indexNum, indexNum + 1]);
     } else if (indexNum === keywordRank.length - 1) {
@@ -26,7 +25,12 @@ const Keyword = () => {
   useEffect(() => {
     if (keywordRank.length) {
       let arr = [];
+      console.log(keywordRank);
+      if (indexArr[0] === -1) indexArr[0] = keywordRank.length - 1;
+      else if (indexArr[2] === keywordRank.length) indexArr[2] = 0;
       for (let i = 0; i < 3; i++) {
+        console.log(indexArr);
+        console.log('undi', keywordRank[indexArr[i]]);
         arr.push(keywordRank[indexArr[i]].keyword);
       }
       setKeywordArr(arr);
