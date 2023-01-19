@@ -34,6 +34,7 @@ const Intro = () => {
         )}
         <div className='footer-box'>
           <Button
+            // className='btn-padding'
             onClick={() => {
               navigate('/home');
             }}
@@ -93,9 +94,11 @@ const IntroArticle = styled.article`
       font-family: 'Noto Sans KR', sans-serif;
     }
   }
+
   .header-fade {
     animation: ${fadeIn} 2s;
   }
+
   .footer-box {
     display: flex;
     flex-direction: column;
@@ -103,6 +106,7 @@ const IntroArticle = styled.article`
     align-items: center;
     margin: 15px 0;
     button {
+      padding: 0.6rem;
       font-family: 'CWDangamAsac-Bold';
       font-size: 2rem;
     }

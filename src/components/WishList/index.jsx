@@ -218,7 +218,7 @@ const Wish = styled.div`
       font-family: 'UhBeeRice';
       font-size: 1.25rem;
       span {
-        color: ${({ theme }) => theme.wishButton};
+        color: ${({ theme }) => theme.headercolor};
       }
     }
 

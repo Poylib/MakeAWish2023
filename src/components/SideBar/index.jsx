@@ -39,13 +39,15 @@ const SideBar = ({ isSideBar, wishCheck }) => {
           <p>내가 복 준 소원보기</p>
         </div>
         <DotLine />
-        <div className='side-board'></div>
+        <div className='side-board'>
+          <span>개발 중 . . .</span>
+        </div>
         <DotLine />
       </div>
       <div className='side-bottom'>
         <div className='side-bottom-row' onClick={() => window.open('https://sustaining-library-e16.notion.site/3e91dc0823ed4ed3909e92b7fb60d515')}>
           <RxPerson className='side-icon' />
-          <p>개발자 어쩌구 보기</p>
+          <p>개발자 정보</p>
         </div>
         <div className='side-bottom-row' onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLScivna3ZuEh39GU16QNdTPr5jGYc4gcvcZZGoxix_gBEYBagw/viewform?usp=sf_link')}>
           <BsTelephone className='side-icon' />
@@ -57,7 +59,7 @@ const SideBar = ({ isSideBar, wishCheck }) => {
         </div>
       </div>
       <footer>
-        <p>&copy; copyright.deokmani</p>
+        <p>&copy; Copyright 2023. deokmani All rights reserved.</p>
       </footer>
     </SideBarContainer>
   );
@@ -121,6 +123,9 @@ const SideBarContainer = styled.div`
     }
 
     .side-board {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       margin: 20px 0;
       width: 100%;
       height: 20vh;
