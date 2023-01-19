@@ -53,15 +53,6 @@ const WishList = ({
     }
   };
 
-  // console.log('키워드를 기준으로 분리', wishList[1]?.comment.split(keyword));
-
-  // console.log('키워드가 들어있는 인덱스', wishList[1]?.comment.indexOf(keyword));
-
-  // console.log('키워드 포함 여부', wishList[1]?.comment.includes(keyword));
-  let key = wishList[1]?.comment;
-
-  // let result = key.replace(key, '가');
-
   return (
     <WishListContainer>
       <div className='title-wrapper'>
