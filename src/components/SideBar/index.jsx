@@ -77,7 +77,7 @@ const SideBarContainer = styled.div`
   width: 70%;
   height: 100vh;
   max-height: 1100px;
-  background: url(${background});
+  background-color: ${({ theme }) => theme.boxBgColor};
   background-repeat: no-repeat;
   z-index: 30;
   transform: translateX(${({ isSideBar }) => (isSideBar ? '-100%' : '0%')});
@@ -156,7 +156,7 @@ const SideBarContainer = styled.div`
 
   footer {
     width: 100%;
-    font-size: 12px;
+    font-size: 10px;
   }
 `;
 

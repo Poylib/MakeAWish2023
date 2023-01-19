@@ -1,19 +1,22 @@
 import { useState, useEffect } from 'react';
 import { api } from '../../api';
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import { FiX } from 'react-icons/fi';
+import ToastAlert from '../ToastAlert';
 import MultiButton from '../MultiButton';
 import bg from '../../assets/readwish/bg.png';
 import luckOn from '../../assets/readwish/bok-on.png';
 import luckOff from '../../assets/readwish/bok-off.png';
 import { mainColor } from '../../theme';
 
-const ReadWishModal = ({ id, setIsReadWish, otherWish, wroteWish, setWroteWish }) => {
+const ReadWishModal = ({ id, setIsReadWishModal, otherWish }) => {
   const [wish, setWish] = useState();
   const [wishRenderId, setWishRenderId] = useState(id);
   const [wishListCount, setWishListCount] = useState(0);
   const uuid = localStorage.getItem('uuid');
   let changeLike = wroteWish;
+
   useEffect(() => {
     if (uuid) loader();
     else {
@@ -49,62 +52,67 @@ const ReadWishModal = ({ id, setIsReadWish, otherWish, wroteWish, setWroteWish }
       console.log(error);
     }
   };
+
   const nextWish = () => {
     if (wishListCount !== otherWish.length) {
       setWishRenderId(otherWish[wishListCount]._id);
       setWishListCount(wishListCount + 1);
-    } else alert('새로운 소원을 불러와주세요!');
+    } else toast('새로운 소원을 불러와주세요!');
   };
+
   return (
     wish && (
-      <Positioner>
-        <Background alt='background' src={bg} />
-        <ReadWishModalContainer>
-          <div className='user-wrapper'>
-            <span className='user-name'>{wish.nickName}</span>
-            <span className='user-wish'>님의 소원</span>
-          </div>
-          <div className='wish-wrapper'>
-            <div className='wish'>
-              <textarea className='text' value={wish.comment} readOnly />
-              <div className='luck-wrapper'>
-                <div className='luck'>
-                  <span className='user'>{wish.nickName}</span> 님의 소원에 복 보내기
-                </div>
-                <div className='image-wrapper'>
-                  <img
-                    alt='복'
-                    src={wish.isLike ? luckOn : luckOff}
-                    className='bok'
-                    onClick={() => {
-                      if (wish.isLike === false) {
-                        handleLike(true);
-                      } else if (wish.isLike === true) {
-                        handleLike(false);
-                      }
-                    }}
-                  />
-                  <span className='count'>
-                    <FiX />
-                    <span className='count-number'>{wish.likes}</span>
-                  </span>
+      <>
+        <ToastAlert />
+        <Positioner>
+          <Background alt='background' src={bg} />
+          <ReadWishModalContainer>
+            <div className='user-wrapper'>
+              <span className='user-name'>{wish.nickName}</span>
+              <span className='user-wish'>님의 소원</span>
+            </div>
+            <div className='wish-wrapper'>
+              <div className='wish'>
+                <textarea className='text' value={wish.comment} readOnly />
+                <div className='luck-wrapper'>
+                  <div className='luck'>
+                    <span className='user'>{wish.nickName}</span> 님의 소원에 복 보내기
+                  </div>
+                  <div className='image-wrapper'>
+                    <img
+                      alt='복'
+                      src={wish.isLike ? luckOn : luckOff}
+                      className='bok'
+                      onClick={() => {
+                        if (wish.isLike === false) {
+                          handleLike(true);
+                        } else if (wish.isLike === true) {
+                          handleLike(false);
+                        }
+                      }}
+                    />
+                    <span className='count'>
+                      <FiX />
+                      <span className='count-number'>{wish.likes}</span>
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className='button-wrapper'>
-            <MultiButton
-              onClose={() => {
-                setIsReadWish(false);
-                setWroteWish(changeLike);
-              }}
-              onConfirm={nextWish}
-              closeText='닫기'
-              confirmText='다음'
-            />
-          </div>
-        </ReadWishModalContainer>
-      </Positioner>
+            <div className='button-wrapper'>
+              <MultiButton
+                onClose={() => {
+                  setIsReadWishModal(false);
+                  setWroteWish(changeLike);
+                }}
+                onConfirm={nextWish}
+                closeText='닫기'
+                confirmText='다음'
+              />
+            </div>
+          </ReadWishModalContainer>
+        </Positioner>
+      </>
     )
   );
 };

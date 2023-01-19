@@ -26,6 +26,7 @@ const WishList = ({
 }) => {
   const navigate = useNavigate();
   const [lastLi, setLastLi] = useState(null);
+
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -51,6 +52,7 @@ const WishList = ({
       console.log(error);
     }
   };
+
   return (
     <WishListContainer>
       <div className='title-wrapper'>
