@@ -18,8 +18,8 @@ const Keyword = () => {
     getKeywordList();
 
     if (indexNum === 0) {
-      setIndexArr([9, indexNum, indexNum + 1]);
-    } else if (indexNum === 9) {
+      setIndexArr([keywordRank.length - 1, indexNum, indexNum + 1]);
+    } else if (indexNum === keywordRank.length - 1) {
       setIndexArr([indexNum - 1, indexNum, 0]);
     } else setIndexArr([indexNum - 1, indexNum, indexNum + 1]);
   }, [keyword]);
@@ -44,8 +44,7 @@ const Keyword = () => {
   const getKeywordList = async () => {
     const uuid = localStorage.getItem('uuid');
     try {
-      const { data } = await api.get(`search?keyword=${keyword}&skip=1&limit=5&uuid=${uuid}`);
-      // if (data.length || keywordList.length) setKeywordList([...keywordList, ...data]);
+      const { data } = await api.get(`search?keyword=${keyword}&skip=1&limit=10&uuid=${uuid}`);
       setKeywordList(data);
       setPage(1);
     } catch (error) {
