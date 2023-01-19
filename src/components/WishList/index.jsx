@@ -26,6 +26,7 @@ const WishList = ({
 }) => {
   const navigate = useNavigate();
   const [lastLi, setLastLi] = useState(null);
+
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -51,6 +52,16 @@ const WishList = ({
       console.log(error);
     }
   };
+
+  // console.log('키워드를 기준으로 분리', wishList[1]?.comment.split(keyword));
+
+  // console.log('키워드가 들어있는 인덱스', wishList[1]?.comment.indexOf(keyword));
+
+  // console.log('키워드 포함 여부', wishList[1]?.comment.includes(keyword));
+  let key = wishList[1]?.comment;
+
+  // let result = key.replace(key, '가');
+
   return (
     <WishListContainer>
       <div className='title-wrapper'>
@@ -88,7 +99,7 @@ const WishList = ({
               <Wish key={`${index}_${wish._id}`} like={location.pathname === '/like'} ref={wishList.length - 1 === index ? setLastLi : null}>
                 {location.pathname === '/like' && <span className='name'>{wish.nickName}</span>}
                 <div className='wish'>
-                  <div className='text'>{wish.comment}</div>
+                  {location.pathname === '/search' ? <div className='text'>{wish.comment}</div> : <div className='text'>{wish.comment}</div>}
                   <div className='like-wrapper'>
                     <p className={wish.isLike ? 'bok' : 'bok-off'}>{wish.likes}</p>
                     <img
@@ -213,6 +224,10 @@ const Wish = styled.div`
       line-height: 2;
       font-family: 'UhBeeRice';
       font-size: 1.25rem;
+
+      .red {
+        color: red;
+      }
     }
 
     .like-wrapper {

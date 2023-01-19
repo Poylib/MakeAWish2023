@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { toast } from 'react-toastify';
 import { api } from '../../api';
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import { TiWarningOutline } from 'react-icons/ti';
 import ToastAlert from '../ToastAlert';
@@ -8,7 +8,7 @@ import MultiButton from '../MultiButton';
 import background from '../../assets/makewish/wish-background.png';
 import moon from '../../assets/makewish/wish-moon.png';
 
-const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal, getWish, setIsLimitModal }) => {
+const MakeWishModal = ({ setIsMakeWishModal, setIsCreatedModal, getWish }) => {
   const [name, setName] = useState('');
   const [wish, setWish] = useState('');
   const wishLength = `${wish.length}`;
@@ -28,10 +28,7 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal, getWish, setIsLimitMo
         getWish();
       } catch (error) {
         const message = error.response.data;
-        if (message === 'Already created') {
-          setIsMakeWish(false);
-          setIsLimitModal(true);
-        } else if (message === '비속어는 사용 금지입니다.') {
+        if (message === '비속어는 사용 금지입니다.') {
           toast(message);
         } else if (message === '특수문자 제외 한글 또는 영문 숫자를 포함한 8글자 이내여야 합니다.' || '200글자 이하로 작성해주십시오') {
           toast('작성란을 확인해주세요.');
@@ -78,11 +75,9 @@ const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal, getWish, setIsLimitMo
               <div className='button-wrapper'>
                 <MultiButton
                   onClose={() => {
-                    setIsMakeWish(false);
+                    setIsMakeWishModal(false);
                   }}
-                  onConfirm={() => {
-                    makeWish();
-                  }}
+                  onConfirm={makeWish}
                   closeText='닫기'
                   confirmText='작성 완료'
                 />
