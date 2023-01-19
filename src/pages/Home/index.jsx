@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../api';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 import { BsArrowCounterclockwise } from 'react-icons/bs';
 import useStore from '../../context/store';
 import MakeWishModal from '../../components/MakeWishModal';
@@ -46,7 +45,7 @@ const Home = () => {
     getWishCheck();
     getWishCounts();
     if (wroteWish.length <= 7) getWish();
-  }, [isMakeWish]);
+  }, [isMakeWishModal]);
 
   const getWish = async () => {
     try {
