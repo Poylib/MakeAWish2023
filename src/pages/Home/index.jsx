@@ -18,9 +18,6 @@ import wishText from '../../assets/main/pockets/wish-text.png';
 import { imgArr } from '../../constant/bok';
 import { bell } from '../../utils/Animation';
 import { contentFontColor, headercolor, HomeButtonFont, redButton, wishButton } from '../../theme';
-import TopKeyword from '../../components/TopKeyword';
-import MenuButton from '../../components/MenuButton';
-import SideBar from '../../components/SideBar';
 
 const Home = () => {
   const navigate = useNavigate();

@@ -13,6 +13,7 @@ const Keyword = () => {
   const [page, setPage] = useState(1);
   const [indexArr, setIndexArr] = useState([0, indexNum, 0]);
   const [keywordArr, setKeywordArr] = useState(['', '', '']);
+
   useEffect(() => {
     getKeywordRank();
     getKeywordList();
@@ -59,6 +60,7 @@ const Keyword = () => {
       navigate(`/search?index=${indexArr[2]}&keyword=${keywordArr[2]}`);
     }
   };
+
   return (
     <KeywordContainer>
       <WishList //
