@@ -8,7 +8,7 @@ import MultiButton from '../MultiButton';
 import background from '../../assets/makewish/wish-background.png';
 import moon from '../../assets/makewish/wish-moon.png';
 
-const MakeWishModal = ({ setIsMakeWishModal, setIsCreatedModal, getWish }) => {
+const MakeWishModal = ({ setIsMakeWish, setIsCreatedModal }) => {
   const [name, setName] = useState('');
   const [wish, setWish] = useState('');
   const wishLength = `${wish.length}`;
@@ -25,8 +25,8 @@ const MakeWishModal = ({ setIsMakeWishModal, setIsCreatedModal, getWish }) => {
         await api.post('/wishes', body);
         setIsMakeWish(false);
         setIsCreatedModal(true);
-        getWish();
       } catch (error) {
+        console.log(error);
         const message = error.response.data;
         if (message === '비속어는 사용 금지입니다.') {
           toast(message);
@@ -75,7 +75,7 @@ const MakeWishModal = ({ setIsMakeWishModal, setIsCreatedModal, getWish }) => {
               <div className='button-wrapper'>
                 <MultiButton
                   onClose={() => {
-                    setIsMakeWishModal(false);
+                    setIsMakeWish(false);
                   }}
                   onConfirm={makeWish}
                   closeText='닫기'

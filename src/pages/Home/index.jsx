@@ -26,9 +26,9 @@ const Home = () => {
   const [wishId, setWishId] = useState();
   const [wishCheck, setWishCheck] = useState('');
   const [otherWish, setOtherWish] = useState([]);
-  const [isMakeWishModal, setIsMakeWishModal] = useState(false);
+  const [isMakeWish, setIsMakeWish] = useState(false);
   const [isCreatedModal, setIsCreatedModal] = useState(false);
-  const [isReadWishModal, setIsReadWishModal] = useState(false);
+  const [isReadWish, setIsReadWish] = useState(false);
   const [isLimitModal, setIsLimitModal] = useState(false);
   const [isSideBar, setIsSideBar] = useState(false);
   const [keywords, setKeywords] = useState();
@@ -45,7 +45,7 @@ const Home = () => {
     getWishCheck();
     getWishCounts();
     if (wroteWish.length <= 7) getWish();
-  }, [isMakeWishModal]);
+  }, [isMakeWish]);
 
   const getWish = async () => {
     try {
@@ -80,7 +80,7 @@ const Home = () => {
 
   const makeWish = () => {
     if (uuid) {
-      if (wishCheck === 'Nothing Duplication') setIsMakeWishModal(true);
+      if (wishCheck === 'Nothing Duplication') setIsMakeWish(true);
       else setIsLimitModal(true);
     } else {
       if (confirm('잘못된 접근입니다. 새로고침 후 다시 시도해주세요')) location.reload();
@@ -121,7 +121,7 @@ const Home = () => {
                 key={`${index}${wish._id}`}
                 onClick={() => {
                   setWishId(wish._id);
-                  setIsReadWishModal(true);
+                  setIsReadWish(true);
                   setOtherWish(other);
                 }}
               >
@@ -143,9 +143,9 @@ const Home = () => {
         <Blur isSideBar={isSideBar} onClick={() => setIsSideBar(false)} />
       </HomeArticle>
       <MainBackground />
-      {isMakeWishModal && <MakeWishModal setIsMakeWishModal={setIsMakeWishModal} setIsCreatedModal={setIsCreatedModal} />}
+      {isMakeWish && <MakeWishModal setIsMakeWish={setIsMakeWish} setIsCreatedModal={setIsCreatedModal} />}
       {isCreatedModal && <CreatedModal setIsCreatedModal={setIsCreatedModal} />}
-      {isReadWishModal && <ReadWishModal id={wishId} setIsReadWishModal={setIsReadWishModal} otherWish={otherWish} />}
+      {isReadWish && <ReadWishModal id={wishId} setIsReadWish={setIsReadWish} otherWish={otherWish} wroteWish={wroteWish} setWroteWish={setWroteWish} />}
       {isLimitModal && <LimitModal isLimitModal={isLimitModal} setIsLimitModal={setIsLimitModal} />}
     </HomeContainer>
   );

@@ -10,7 +10,7 @@ import luckOn from '../../assets/readwish/bok-on.png';
 import luckOff from '../../assets/readwish/bok-off.png';
 import { mainColor } from '../../theme';
 
-const ReadWishModal = ({ id, setIsReadWishModal, otherWish }) => {
+const ReadWishModal = ({ id, setIsReadWish, otherWish, wroteWish, setWroteWish }) => {
   const [wish, setWish] = useState();
   const [wishRenderId, setWishRenderId] = useState(id);
   const [wishListCount, setWishListCount] = useState(0);
@@ -102,7 +102,7 @@ const ReadWishModal = ({ id, setIsReadWishModal, otherWish }) => {
             <div className='button-wrapper'>
               <MultiButton
                 onClose={() => {
-                  setIsReadWishModal(false);
+                  setIsReadWish(false);
                   setWroteWish(changeLike);
                 }}
                 onConfirm={nextWish}
