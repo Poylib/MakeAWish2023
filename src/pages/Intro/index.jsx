@@ -68,6 +68,8 @@ const IntroArticle = styled.article`
   width: 90%;
   max-width: 440px;
   height: 90vh;
+  min-height: 700px;
+  max-height: 1100px;
   background-color: inherit;
   font-family: 'CWDangamAsac-Bold';
   color: ${contentFontColor};
