@@ -90,7 +90,7 @@ const WishList = ({
               <Wish key={`${index}_${wish._id}`} like={location.pathname === '/like'} ref={wishList.length - 1 === index ? setLastLi : null}>
                 {location.pathname === '/like' && <span className='name'>{wish.nickName}</span>}
                 <div className='wish'>
-                  {location.pathname === '/search' ? <div className='text'>{wish.comment}</div> : <div className='text'>{wish.comment}</div>}
+                  <div className='text'>{wish.comment}</div>
                   <div className='like-wrapper'>
                     <p className={wish.isLike ? 'bok' : 'bok-off'}>{wish.likes}</p>
                     <img
