@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
+import { maincolor } from './theme';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -14,10 +15,18 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
+  input::placeholder, textarea::placeholder {
+    color: #9e9e9e;
+  }
+
   body {
-    font-family: 'Noto Sans KR', sans-serif;
-    max-width:100vw;
+    font-family: 'Pretendard', sans-serif;
+    background-color: ${maincolor};
     margin:0 auto;
+  }
+
+  button {
+    font-family: inherit;
   }
 `;
 export default GlobalStyle;
