@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import useStore from '../../context/store';
-import hill from '../../assets/main/main-hill.png';
-import trees from '../../assets/main/main-trees-lines.png';
-import sun from '../../assets/main/main-sun.png';
-import lines from '../../assets/main/main-clothesline.png';
-import pocket from '../../assets/main/pocket-shadow.png';
+import hill from 'assets/main/main-hill.png';
+import trees from 'assets/main/main-trees-lines.png';
+import sun from 'assets/main/main-sun.png';
+import lines from 'assets/main/main-clothesline.png';
+import pocket from 'assets/main/pocket-shadow.png';
 import { useEffect, useState } from 'react';
 import { fadeIn } from '../../utils/Animation/index.jsx';
 
