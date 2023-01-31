@@ -7,7 +7,6 @@ import lines from '../../assets/main/main-clothesline.png';
 import pocket from '../../assets/main/pocket-shadow.png';
 import { useEffect, useState } from 'react';
 import { fadeIn } from '../../utils/Animation/index.jsx';
-import { Blur } from '../../pages/Home';
 
 const MainBackground = () => {
   const { introPass } = useStore();

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { mainColor, contentFontColor, HomeButtonFont } from '../../theme';
-import MainBackground from '@/components/MainBackground';
+import MainBackground from '@components/MainBackground';
 import useStore from '../../context/store';
 import { fadeIn } from '../../utils/Animation';
 import { Button } from '../Home';
@@ -17,7 +17,6 @@ const Intro = () => {
       setFadeInHeader(true);
     }, 1500);
   }, []);
-
   return (
     <HomeContainer>
       <IntroArticle>
