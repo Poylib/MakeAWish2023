@@ -12,7 +12,7 @@ const Intro = () => {
   const navigate = useNavigate();
   const { trueIntroPass } = useStore();
   const [fadeInHeader, setFadeInHeader] = useState(false);
-
+  console.log('render');
   useEffect(() => {
     trueIntroPass();
     setTimeout(() => {
