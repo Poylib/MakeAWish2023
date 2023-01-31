@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { api } from '../../api';
-import { mainColor, contentFontColor, wishButton, HomeButtonFont } from '../../theme';
-import MainBackground from '../../components/MainBackground';
+import { mainColor, contentFontColor, HomeButtonFont } from '../../theme';
+import MainBackground from '@/components/MainBackground';
 import useStore from '../../context/store';
 import { fadeIn } from '../../utils/Animation';
 import { Button } from '../Home';
@@ -12,7 +11,6 @@ const Intro = () => {
   const navigate = useNavigate();
   const { trueIntroPass } = useStore();
   const [fadeInHeader, setFadeInHeader] = useState(false);
-  console.log('render');
   useEffect(() => {
     trueIntroPass();
     setTimeout(() => {
