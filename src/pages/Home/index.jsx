@@ -4,6 +4,7 @@ import { api } from '../../api';
 import styled from 'styled-components';
 import { BsArrowCounterclockwise } from 'react-icons/bs';
 import useStore from '../../context/store';
+import CoachMark from '../../components/CoachMark';
 import MakeWishModal from '../../components/MakeWishModal';
 import CreatedModal from '../../components/CreatedModal';
 import ReadWishModal from '../../components/ReadWishModal';
@@ -32,6 +33,7 @@ const Home = () => {
   const [isLimitModal, setIsLimitModal] = useState(false);
   const [isSideBar, setIsSideBar] = useState(false);
   const [keywords, setKeywords] = useState();
+  const [isCoachMark, setIsCoachMark] = useState(true);
   const { falseIntroPass } = useStore();
   let uuid = localStorage.getItem('uuid');
 
@@ -95,59 +97,63 @@ const Home = () => {
       console.log(error);
     }
   };
+
   return (
-    <HomeContainer>
-      <HomeArticle>
-        <div className='home-header'>
-          <div>
-            <div className='font-box'>
-              <h2 className='header-color'>{pocketCounts.toLocaleString()}</h2>
-              <h2>개의</h2>
-            </div>
-            <h2>소원이 달렸어요</h2>
-          </div>
-        </div>
-        <div className='home-body'>
-          <div className='column wish-btn' onClick={makeWish}>
-            <img src={onePocket} />
-            <img className='text' src={wishText} />
-          </div>
-          {wroteWish.map((wish, index) => {
-            const randomNumber = Math.floor(Math.random() * 8) + 1;
-            const other = wroteWish.filter(el => el._id !== wish._id);
-            return (
-              <div
-                className='column'
-                key={`${index}${wish._id}`}
-                onClick={() => {
-                  setWishId(wish._id);
-                  setIsReadWish(true);
-                  setOtherWish(other);
-                }}
-              >
-                <img src={imgArr[randomNumber]} />
-                <p className='wish-num'>{wish.likes}</p>
+    <>
+      <CoachMark isCoachMark={isCoachMark} setIsCoachMark={setIsCoachMark} />
+      <HomeContainer>
+        <HomeArticle>
+          <div className='home-header'>
+            <div>
+              <div className='font-box'>
+                <h2 className='header-color'>{pocketCounts.toLocaleString()}</h2>
+                <h2>개의</h2>
               </div>
-            );
-          })}
-        </div>
-        <div className='home-bottom'>
-          <TopKeyword data={keywords} />
-          <Button home onClick={() => getWish()}>
-            <BsArrowCounterclockwise size='1.4rem' />
-            <button>다른 소원들 보기</button>
-          </Button>
-        </div>
-        <SideBar isSideBar={isSideBar} wishCheck={wishCheck} />
-        <MenuButton isSideBar={isSideBar} setIsSideBar={setIsSideBar} />
-        <Blur isSideBar={isSideBar} onClick={() => setIsSideBar(false)} />
-      </HomeArticle>
-      <MainBackground />
-      {isMakeWish && <MakeWishModal setIsMakeWish={setIsMakeWish} setIsCreatedModal={setIsCreatedModal} />}
-      {isCreatedModal && <CreatedModal setIsCreatedModal={setIsCreatedModal} />}
-      {isReadWish && <ReadWishModal id={wishId} setIsReadWish={setIsReadWish} otherWish={otherWish} wroteWish={wroteWish} setWroteWish={setWroteWish} />}
-      {isLimitModal && <LimitModal isLimitModal={isLimitModal} setIsLimitModal={setIsLimitModal} />}
-    </HomeContainer>
+              <h2>소원이 달렸어요</h2>
+            </div>
+          </div>
+          <div className='home-body'>
+            <div className='column wish-btn' onClick={makeWish}>
+              <img src={onePocket} />
+              <img className='text' src={wishText} />
+            </div>
+            {wroteWish.map((wish, index) => {
+              const randomNumber = Math.floor(Math.random() * 8) + 1;
+              const other = wroteWish.filter(el => el._id !== wish._id);
+              return (
+                <div
+                  className='column'
+                  key={`${index}${wish._id}`}
+                  onClick={() => {
+                    setWishId(wish._id);
+                    setIsReadWish(true);
+                    setOtherWish(other);
+                  }}
+                >
+                  <img src={imgArr[randomNumber]} />
+                  <p className='wish-num'>{wish.likes}</p>
+                </div>
+              );
+            })}
+          </div>
+          <div className='home-bottom'>
+            <TopKeyword data={keywords} />
+            <Button home onClick={() => getWish()}>
+              <BsArrowCounterclockwise size='1.4rem' />
+              <button>다른 소원들 보기</button>
+            </Button>
+          </div>
+          <SideBar isSideBar={isSideBar} wishCheck={wishCheck} />
+          <MenuButton isSideBar={isSideBar} setIsSideBar={setIsSideBar} />
+          <Blur isSideBar={isSideBar} onClick={() => setIsSideBar(false)} />
+        </HomeArticle>
+        <MainBackground />
+        {isMakeWish && <MakeWishModal setIsMakeWish={setIsMakeWish} setIsCreatedModal={setIsCreatedModal} />}
+        {isCreatedModal && <CreatedModal setIsCreatedModal={setIsCreatedModal} />}
+        {isReadWish && <ReadWishModal id={wishId} setIsReadWish={setIsReadWish} otherWish={otherWish} wroteWish={wroteWish} setWroteWish={setWroteWish} />}
+        {isLimitModal && <LimitModal isLimitModal={isLimitModal} setIsLimitModal={setIsLimitModal} />}
+      </HomeContainer>
+    </>
   );
 };
 
