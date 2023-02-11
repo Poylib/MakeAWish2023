@@ -1,7 +1,7 @@
 import { api } from '../../api';
 import styled from 'styled-components';
 import { GiCheckMark } from 'react-icons/gi';
-import { BsArrow90DegRight, BsArrow90DegDown, BsArrowDown } from 'react-icons/bs';
+import { BsArrow90DegRight, BsArrow90DegDown } from 'react-icons/bs';
 import Button from '../Button';
 
 const CoachMark = () => {
@@ -23,8 +23,9 @@ const CoachMark = () => {
           <p>메뉴를 열어볼 수 있어요</p>
         </div>
         <div className='make-wish'>
+          <BsArrow90DegDown />
+          &nbsp;&nbsp;
           <p>소원을 빌 수 있어요</p>
-          <BsArrowDown />
         </div>
         <div className='read-wish'>
           <p>
@@ -41,7 +42,7 @@ const CoachMark = () => {
         </div>
         <div className='other-wish'>
           <BsArrow90DegDown />
-          &nbsp;
+          &nbsp;&nbsp;
           <p>다른 소원으로 새로고침 할 수 있어요</p>
         </div>
         <Button color='main' text='모두 확인했어요' icon={<GiCheckMark />} onClick={getUuid} />
@@ -101,9 +102,24 @@ const CoachMarkContainer = styled.div`
 
   .make-wish {
     position: relative;
-    top: 15%;
-    left: -35%;
-    flex-direction: column;
+    top: 10%;
+    @media screen and (min-height: 730px) {
+      top: 12.5%;
+    }
+    @media screen and (min-height: 855px) {
+      top: 15%;
+    }
+    @media screen and (min-height: 900px) {
+      top: 12%;
+    }
+    @media screen and (min-height: 1000px) {
+      top: 17%;
+    }
+    @media screen and (min-height: 1100px) {
+      top: 19%;
+    }
+    left: -20%;
+    flex-direction: row;
   }
 
   .read-wish {
@@ -117,10 +133,19 @@ const CoachMarkContainer = styled.div`
     position: relative;
     bottom: -50%;
     @media screen and (min-height: 700px) {
+      bottom: -53%;
+    }
+    @media screen and (min-height: 750px) {
       bottom: -55%;
     }
-    @media screen and (min-height: 850px) {
+    @media screen and (min-height: 800px) {
+      bottom: -58%;
+    }
+    @media screen and (min-height: 840px) {
       bottom: -60%;
+    }
+    @media screen and (min-height: 900px) {
+      bottom: -63%;
     }
     @media screen and (min-height: 950px) {
       bottom: -65%;
@@ -135,10 +160,19 @@ const CoachMarkContainer = styled.div`
     position: relative;
     bottom: -55%;
     @media screen and (min-height: 700px) {
+      bottom: -58%;
+    }
+    @media screen and (min-height: 750px) {
       bottom: -60%;
     }
-    @media screen and (min-height: 850px) {
+    @media screen and (min-height: 800px) {
+      bottom: -63%;
+    }
+    @media screen and (min-height: 840px) {
       bottom: -65%;
+    }
+    @media screen and (min-height: 900px) {
+      bottom: -68%;
     }
     @media screen and (min-height: 950px) {
       bottom: -70%;
