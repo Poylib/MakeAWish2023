@@ -19,7 +19,7 @@ const CoachMark = () => {
     <Background>
       <CoachMarkContainer>
         <div className='menu'>
-          <BsArrow90DegRight />
+          <BsArrow90DegRight className='icon' />
           <p>메뉴를 열어볼 수 있어요</p>
         </div>
         <div className='make-wish'>
@@ -95,9 +95,20 @@ const CoachMarkContainer = styled.div`
 
   .menu {
     position: relative;
-    top: 3%;
+    top: 1.5%;
     left: 33%;
     flex-direction: column;
+
+    .icon {
+      margin-left: 20px;
+      margin-bottom: 5px;
+      @media screen and (min-width: 400px) {
+        margin-left: 40px;
+      }
+      @media screen and (min-width: 440px) {
+        margin-left: 60px;
+      }
+    }
   }
 
   .make-wish {
