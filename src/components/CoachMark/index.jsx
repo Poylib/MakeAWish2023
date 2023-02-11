@@ -1,11 +1,24 @@
+import { api } from '../../api';
 import styled from 'styled-components';
+import { GiCheckMark } from 'react-icons/gi';
 import Button from '../Button';
 
 const CoachMark = () => {
+  const getUuid = async () => {
+    try {
+      const { data } = await api.get('id');
+      localStorage.setItem('uuid', data.uuid);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Background>
       <CoachMarkContainer>
-        <div>coach mark</div>
+        <div className='mark-wrapper'>coach mark</div>
+        <Button color='main' text='확인했어요' icon={<GiCheckMark />} onClick={getUuid} />
       </CoachMarkContainer>
     </Background>
   );
@@ -25,10 +38,22 @@ const Background = styled.div`
 `;
 
 const CoachMarkContainer = styled.div`
-  width: 390px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 390px;
+  height: 100%;
+  min-height: 660px;
+  padding: 1.5rem;
+  color: #fff;
 
-  div {
-    color: #fff;
+  .mark-wrapper {
+    height: 80vh;
+  }
+
+  button {
+    height: 50px;
+    font-size: 1.5rem;
   }
 `;
 

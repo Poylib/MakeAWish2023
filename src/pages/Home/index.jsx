@@ -33,7 +33,6 @@ const Home = () => {
   const [isLimitModal, setIsLimitModal] = useState(false);
   const [isSideBar, setIsSideBar] = useState(false);
   const [keywords, setKeywords] = useState();
-  const [isCoachMark, setIsCoachMark] = useState(true);
   const { falseIntroPass } = useStore();
   let uuid = localStorage.getItem('uuid');
 
@@ -100,7 +99,7 @@ const Home = () => {
 
   return (
     <>
-      <CoachMark isCoachMark={isCoachMark} setIsCoachMark={setIsCoachMark} />
+      {!uuid && <CoachMark />}
       <HomeContainer>
         <HomeArticle>
           <div className='home-header'>

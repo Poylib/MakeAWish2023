@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { mainColor } from '../../theme';
 
-const Button = ({ color, onClick, text }) => {
+const Button = ({ color, onClick, text, icon }) => {
   return (
-    <ButtonContainer color={color} onClick={onClick}>
-      {text}
+    <ButtonContainer color={color} onClick={onClick} icon={icon}>
+      {text}&nbsp;{icon}
     </ButtonContainer>
   );
 };
